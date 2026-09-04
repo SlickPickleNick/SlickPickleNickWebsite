@@ -1,6 +1,6 @@
 /**
  * Channel Point Rewards Explorer - SlickPickleNick Website
- * Live search, category filtering, cost sorting, and detailed stats.
+ * Live search, category filtering, cost sorting, and streamlined reward cards.
  */
 
 (function () {
@@ -74,13 +74,11 @@
       return matchCategory && matchSearch;
     });
 
-    // Sort
     if (currentSort === 'low-high') {
       filtered.sort((a, b) => a.cost - b.cost);
     } else if (currentSort === 'high-low') {
       filtered.sort((a, b) => b.cost - a.cost);
     } else {
-      // Default: featured first, then lowest cost
       filtered.sort((a, b) => {
         if (a.isFeatured && !b.isFeatured) return -1;
         if (!a.isFeatured && b.isFeatured) return 1;
@@ -89,7 +87,7 @@
     }
 
     if (countEl) {
-      countEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'reward' : 'rewards'} found`;
+      countEl.textContent = `${filtered.length} ${filtered.length === 1 ? 'reward' : 'rewards'}`;
     }
 
     if (filtered.length === 0) {
@@ -103,34 +101,22 @@
     container.innerHTML = filtered
       .map((reward) => {
         const formattedCost = Number(reward.cost).toLocaleString();
+        const cooldownText = reward.cooldown && reward.cooldown !== 'None' ? `${reward.cooldown} cooldown` : 'No cooldown';
+        const userLimitText = reward.perUser && reward.perUser !== 'Unlimited' ? `Max ${reward.perUser}/user` : 'Unlimited';
+
         return `
         <article class="reward-card ${reward.isFeatured ? 'featured' : ''}">
           <div class="reward-card-top">
             <h3>${escapeHTML(reward.title)}</h3>
-            <span class="badge badge-points">${formattedCost} pts</span>
+            <span class="reward-cost">${formattedCost} PTS</span>
           </div>
           <p class="reward-desc">${escapeHTML(reward.description)}</p>
-          <div class="reward-stats">
-            <div class="reward-stat-item">
-              <span>Cooldown</span>
-              <strong>${escapeHTML(reward.cooldown || 'None')}</strong>
-            </div>
-            <div class="reward-stat-item">
-              <span>Per Stream</span>
-              <strong>${escapeHTML(reward.perStream || 'Unlimited')}</strong>
-            </div>
-            <div class="reward-stat-item">
-              <span>Per User</span>
-              <strong>${escapeHTML(reward.perUser || 'Unlimited')}</strong>
-            </div>
-            <div class="reward-stat-item">
-              <span>Status</span>
-              <strong>${escapeHTML(reward.status || 'Active')}</strong>
-            </div>
-          </div>
-          <div class="reward-tags">
-            <span class="badge badge-everyone">${escapeHTML(reward.category)}</span>
-            ${reward.isFeatured ? '<span class="badge badge-sub">Featured</span>' : ''}
+          <div class="reward-meta">
+            <span>${escapeHTML(reward.category)}</span>
+            <span>&bull;</span>
+            <span>${escapeHTML(cooldownText)}</span>
+            <span>&bull;</span>
+            <span>${escapeHTML(userLimitText)}</span>
           </div>
         </article>
       `;

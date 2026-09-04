@@ -124,91 +124,95 @@
           </div>
           <h1>Games I Play</h1>
           <p class="description">
-            The regular rotation of games featured on stream, with viewer challenges, chat mini-systems, and interactive gameplay.
+            Regular stream titles featuring viewer challenges, chat mini-games, and interactive rules.
           </p>
         </header>
 
-        <!-- Games Grid -->
-        <div class="cards-grid" style="grid-template-columns: 1fr; gap: var(--space-6);">
+        <!-- Clean Game Showcase List -->
+        <div class="game-showcase-list" style="max-width: 900px; margin: 0 auto;">
           
           <!-- Fortnite -->
-          <article class="explore-card" style="padding: var(--space-8);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
-              <div>
-                <span class="badge badge-everyone" style="margin-bottom: var(--space-2);">Battle Royale &amp; Ranked</span>
-                <h2 style="font-size: var(--font-size-2xl);">Fortnite</h2>
-              </div>
-              <span class="badge badge-points">Frequent Stream</span>
+          <article class="game-showcase-item">
+            <div class="game-meta-col">
+              <h2>Fortnite</h2>
+              <div class="game-tagline">Battle Royale &amp; Ranked</div>
+              <a href="rewards.html" class="btn btn-secondary btn-sm">Fortnite Rewards</a>
             </div>
-            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
-              Fast-paced Battle Royale matches, Zero Build duos/squads, and viewer challenge runs. Viewers use Channel Points to pick Nick's character skin, designate drop locations, ban vehicle usage, or restrict weapon loadouts to one chest.
-            </p>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: var(--space-4); transition: var(--transition-theme);">
-              <strong style="color: var(--brand-green-light); display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Chat Integrations:</strong>
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); line-height: 1.5;">Skin Selection &bull; Drop Location Choice &bull; Vehicle Bans &bull; Weapon Class Bans &bull; One Chest Challenge</span>
-            </div>
-            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-              <a href="rewards.html" class="btn btn-secondary btn-sm">View Fortnite Rewards</a>
+            <div class="game-content-col">
+              <p>
+                Fast-paced Battle Royale matches, Zero Build duos/squads, and viewer challenge runs. Viewers use Channel Points to pick character skins, force specific map drops, ban vehicle usage, or restrict weapons to a single chest.
+              </p>
+              <div class="game-mechanics-title">Chat Mechanics</div>
+              <ul class="game-mechanics-list">
+                <li>Skin Selection</li>
+                <li>Drop Location Choice</li>
+                <li>Vehicle Bans</li>
+                <li>Weapon Class Bans</li>
+                <li>One Chest Only</li>
+              </ul>
             </div>
           </article>
 
           <!-- GeoGuessr -->
-          <article class="explore-card" style="padding: var(--space-8);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
-              <div>
-                <span class="badge badge-sub" style="margin-bottom: var(--space-2);">Geography &amp; Mini-Games</span>
-                <h2 style="font-size: var(--font-size-2xl);">GeoGuessr</h2>
-              </div>
-              <span class="badge badge-points">Frequent Stream</span>
+          <article class="game-showcase-item">
+            <div class="game-meta-col">
+              <h2>GeoGuessr</h2>
+              <div class="game-tagline">Geography &amp; Mini-Games</div>
+              <a href="commands.html" class="btn btn-secondary btn-sm">Torch Commands</a>
             </div>
-            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
-              International geography challenges, streaks, and community party rounds. Featuring the signature <strong>GeoGuessr Torch Game</strong> where viewers type <code>!torch</code> to become the active torch bearer with the power to command Nick to <code>!stop</code> and guess instantly.
-            </p>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: var(--space-4); transition: var(--transition-theme);">
-              <strong style="color: var(--color-discord); display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Chat Integrations:</strong>
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); line-height: 1.5;">Torch Game Commands (<code>!torch</code>, <code>!stop</code>) &bull; Country Bans &bull; No-Move Challenges &bull; 50/50 Chat Hints</span>
-            </div>
-            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-              <a href="commands.html" class="btn btn-secondary btn-sm">View Torch Commands</a>
+            <div class="game-content-col">
+              <p>
+                International geography exploration, streaks, and community party rounds. Featuring the signature <strong>GeoGuessr Torch Game</strong> where viewers type <code>!torch</code> to become the active bearer with the power to command Nick to <code>!stop</code> and guess instantly.
+              </p>
+              <div class="game-mechanics-title">Chat Mechanics</div>
+              <ul class="game-mechanics-list">
+                <li>Torch Game Commands (!torch, !stop)</li>
+                <li>Country Bans</li>
+                <li>No-Move Challenge</li>
+                <li>50/50 Chat Hints</li>
+              </ul>
             </div>
           </article>
 
           <!-- Meccha Chameleon -->
-          <article class="explore-card" style="padding: var(--space-8);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
-              <div>
-                <span class="badge badge-points" style="margin-bottom: var(--space-2);">Stealth &amp; Camouflage</span>
-                <h2 style="font-size: var(--font-size-2xl);">Meccha Chameleon</h2>
-              </div>
-              <span class="badge badge-everyone">Party Game</span>
+          <article class="game-showcase-item">
+            <div class="game-meta-col">
+              <h2>Meccha Chameleon</h2>
+              <div class="game-tagline">Stealth &amp; Camouflage</div>
+              <a href="rewards.html" class="btn btn-secondary btn-sm">Chameleon Rewards</a>
             </div>
-            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
-              An artistic hide-and-seek game where Nick camouflages into the background to evade seekers. Viewers actively redeem Channel Points to force Nick to taunt seekers, delay his start, restrict him to a single paint color, or force complete emergency repaints.
-            </p>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: var(--space-4); transition: var(--transition-theme);">
-              <strong style="color: #fbbf24; display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Chat Integrations:</strong>
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); line-height: 1.5;">Force Taunt &bull; Late Start &bull; The Chatter's Touch &bull; One-Color Camo &bull; Panic Repaint</span>
-            </div>
-            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
-              <a href="rewards.html" class="btn btn-secondary btn-sm">View Chameleon Rewards</a>
+            <div class="game-content-col">
+              <p>
+                An artistic hide-and-seek game where Nick camouflages into background scenes to evade seekers. Viewers actively redeem Channel Points to force taunts, delay starts, restrict him to a single paint color, or force emergency full repaints.
+              </p>
+              <div class="game-mechanics-title">Chat Mechanics</div>
+              <ul class="game-mechanics-list">
+                <li>Force Taunt</li>
+                <li>Late Start</li>
+                <li>The Chatter's Touch</li>
+                <li>One-Color Challenge</li>
+                <li>Panic Repaint</li>
+              </ul>
             </div>
           </article>
 
-          <!-- Arc Raiders & Community Titles -->
-          <article class="explore-card" style="padding: var(--space-8);">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
-              <div>
-                <span class="badge badge-everyone" style="margin-bottom: var(--space-2);">Extraction &amp; Community</span>
-                <h2 style="font-size: var(--font-size-2xl);">Arc Raiders &amp; Variety</h2>
-              </div>
-              <span class="badge badge-everyone">Rotation</span>
+          <!-- Arc Raiders & Variety -->
+          <article class="game-showcase-item">
+            <div class="game-meta-col">
+              <h2>Arc Raiders &amp; Variety</h2>
+              <div class="game-tagline">Extraction &amp; Community</div>
+              <a href="https://discordapp.com/invite/c2pM23t5fT" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Suggest Games</a>
             </div>
-            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
-              Tactical extraction shooter action in Arc Raiders, survival building in Minecraft, and community multiplayer games voted on by the Discord server.
-            </p>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
-              <strong style="color: var(--brand-green-light); display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Community Suggestions:</strong>
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); line-height: 1.5;">Got a game you'd love to see on stream? Suggest it anytime in the Discord!</span>
+            <div class="game-content-col">
+              <p>
+                Tactical extraction shooter action in Arc Raiders, survival building in Minecraft, and community multiplayer games voted on directly by Discord members.
+              </p>
+              <div class="game-mechanics-title">Chat Mechanics</div>
+              <ul class="game-mechanics-list">
+                <li>Community Game Polls</li>
+                <li>Discord Game Nights</li>
+                <li>Multiplayer Squads</li>
+              </ul>
             </div>
           </article>
 

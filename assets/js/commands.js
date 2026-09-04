@@ -89,7 +89,7 @@
     });
 
     if (resultCount) {
-      resultCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'command' : 'commands'} found`;
+      resultCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'command' : 'commands'}`;
     }
 
     if (filtered.length === 0) {
@@ -105,18 +105,17 @@
         const pureCmd = item.command.split(' ')[0];
         return `
         <tr>
-          <td>
+          <td style="font-weight: 600;">
             <div class="command-code-wrap">
               <code>${escapeHTML(item.command)}</code>
-              <button class="copy-btn" data-copy="${escapeHTML(pureCmd)}" title="Copy ${escapeHTML(pureCmd)} to clipboard" aria-label="Copy ${escapeHTML(pureCmd)} to clipboard">
+              <button class="copy-btn" data-copy="${escapeHTML(pureCmd)}" title="Copy ${escapeHTML(pureCmd)}" aria-label="Copy ${escapeHTML(pureCmd)}">
                 <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
               </button>
             </div>
           </td>
-          <td><span class="badge badge-everyone">${escapeHTML(item.access)}</span></td>
           <td>${escapeHTML(item.description)}</td>
-          <td><code>${escapeHTML(item.example || item.command)}</code></td>
-          <td><span style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.cooldown || 'None')}</span></td>
+          <td style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.example || item.command)}</td>
+          <td style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.cooldown || 'None')}</td>
         </tr>
       `;
       })
@@ -172,7 +171,7 @@
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
-      <svg class="toast-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <svg class="toast-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
       <span>${escapeHTML(message)}</span>
     `;
 

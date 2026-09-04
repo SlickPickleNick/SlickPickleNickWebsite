@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SlickPickleNick | Official Website &amp; Stream Hub</title>
-  <meta name="description" content="Official website of SlickPickleNick. Interactive gaming streams, Twitch chat commands, channel point rewards, setup specs, and community hub.">
+  <title>SlickPickleNick | Stream Hub</title>
+  <meta name="description" content="Official stream hub for SlickPickleNick. Interactive gaming streams, Twitch chat commands, channel point rewards, setup specs, and community hub.">
   <link rel="canonical" href="https://slickpicklenick.live/">
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="SlickPickleNick">
-  <meta property="og:title" content="SlickPickleNick | Official Website &amp; Stream Hub">
+  <meta property="og:title" content="SlickPickleNick | Stream Hub">
   <meta property="og:description" content="Gaming streams, Twitch commands, channel point rewards, and interactive stream tools.">
   <meta property="og:type" content="website">
 
@@ -130,13 +130,13 @@
       <div class="container">
         
         <!-- Hero Section -->
-        <section class="page-header" style="margin-bottom: var(--space-10);">
+        <section class="page-header" style="margin-top: var(--space-4); margin-bottom: var(--space-8);">
           <div class="eyebrow">
-            Creator &bull; Stream Hub
+            Live Streaming &amp; Community
           </div>
           <h1>SlickPickleNick</h1>
           <p class="description">
-            Interactive gaming streams, chat participation, channel point rewards, and community-driven live systems.
+            Interactive gaming streams built around chat participation, custom stream tools, and viewer challenges.
           </p>
           <div style="display: flex; justify-content: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-6);">
             <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="btn btn-twitch">
@@ -146,7 +146,7 @@
               Join Discord
             </a>
             <a href="commands.html" class="btn btn-secondary">
-              Browse Commands
+              Chat Commands
             </a>
             <a href="rewards.html" class="btn btn-primary">
               Channel Points
@@ -154,32 +154,30 @@
           </div>
         </section>
 
-        <!-- Quick Facts Banner -->
-        <section style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: var(--space-6); margin-bottom: var(--space-10); box-shadow: var(--card-shadow); transition: var(--transition-theme);" aria-label="Stream summary">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4);">
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: var(--space-1); letter-spacing: 0.05em;">Primary Stream</span>
-              <strong style="font-size: var(--font-size-md); color: var(--brand-green-primary);">Twitch</strong>
-            </div>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: var(--space-1); letter-spacing: 0.05em;">Community</span>
-              <strong style="font-size: var(--font-size-md); color: var(--color-discord);">Discord</strong>
-            </div>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: var(--space-1); letter-spacing: 0.05em;">Format</span>
-              <strong style="font-size: var(--font-size-md); color: var(--text-primary);">Interactive Gaming</strong>
-            </div>
-            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
-              <span style="font-size: var(--font-size-xs); color: var(--text-muted); text-transform: uppercase; font-weight: 600; display: block; margin-bottom: var(--space-1); letter-spacing: 0.05em;">Live Tech</span>
-              <strong style="font-size: var(--font-size-md); color: var(--text-primary);">Custom Tools</strong>
-            </div>
+        <!-- Minimal Stream Summary Strip -->
+        <section class="stream-strip" aria-label="Stream summary details">
+          <div class="stream-strip-item">
+            <span class="stream-strip-label">Broadcast Platform</span>
+            <span class="stream-strip-value" style="color: var(--brand-green-light);">Twitch</span>
+          </div>
+          <div class="stream-strip-item">
+            <span class="stream-strip-label">Community Hub</span>
+            <span class="stream-strip-value" style="color: var(--color-discord);">Discord</span>
+          </div>
+          <div class="stream-strip-item">
+            <span class="stream-strip-label">Stream Style</span>
+            <span class="stream-strip-value">Interactive Gaming</span>
+          </div>
+          <div class="stream-strip-item">
+            <span class="stream-strip-label">Integration</span>
+            <span class="stream-strip-value">Custom Chat Tools</span>
           </div>
         </section>
 
-        <!-- Explore Directory Grid -->
+        <!-- Explore Directory Showcase -->
         <section aria-labelledby="explore-heading">
           <div style="margin-bottom: var(--space-5);">
-            <h2 id="explore-heading">Explore the Site</h2>
+            <h2 id="explore-heading" style="font-size: var(--font-size-xl);">Explore the Hub</h2>
           </div>
 
           <div class="cards-grid">
@@ -187,42 +185,60 @@
               <span class="explore-card-category">Chat &amp; Interaction</span>
               <h3>Twitch Commands</h3>
               <p>Find full lists of chat commands, Spotify queue requests, loyalty point games, and GeoGuessr torch tools.</p>
-              <span class="explore-card-footer">View 36+ Commands &rarr;</span>
+              <span class="explore-card-footer">
+                <span>View 36+ Commands</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </a>
 
             <a href="rewards.html" class="explore-card">
               <span class="explore-card-category">Viewer Rewards</span>
-              <h3>Channel Point Rewards</h3>
+              <h3>Channel Points</h3>
               <p>Browse live channel point rewards, point costs, cooldown timers, and game-specific redemption challenges.</p>
-              <span class="explore-card-footer">Browse Rewards &rarr;</span>
+              <span class="explore-card-footer">
+                <span>Browse Rewards</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </a>
 
             <a href="about.html" class="explore-card">
               <span class="explore-card-category">Background &amp; Specs</span>
-              <h3>About Nick &amp; Gear</h3>
-              <p>Learn about Nick's streaming philosophy, live event experience background, streaming setup, and FAQ.</p>
-              <span class="explore-card-footer">Read Bio &amp; Specs &rarr;</span>
+              <h3>About &amp; Gear</h3>
+              <p>Learn about Nick's streaming philosophy, live event experience background, workstation setup, and FAQ.</p>
+              <span class="explore-card-footer">
+                <span>Read Bio &amp; Specs</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </a>
 
             <a href="games.html" class="explore-card">
               <span class="explore-card-category">Live Gameplay</span>
               <h3>Games I Play</h3>
               <p>Discover games featured on stream including Fortnite, GeoGuessr, Meccha Chameleon, and Arc Raiders.</p>
-              <span class="explore-card-footer">View Games &rarr;</span>
+              <span class="explore-card-footer">
+                <span>View Games</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </a>
 
             <a href="community.html" class="explore-card">
               <span class="explore-card-category">Community</span>
               <h3>Community &amp; Socials</h3>
               <p>Join the Discord server, submit stream ideas, follow on socials, and review community guidelines.</p>
-              <span class="explore-card-footer">Join Community &rarr;</span>
+              <span class="explore-card-footer">
+                <span>Join Community</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </a>
 
             <a href="https://slickpicklenick.live/collections/all" target="_blank" rel="noopener noreferrer" class="explore-card">
               <span class="explore-card-category">Official Merch</span>
               <h3>Shop Merch</h3>
               <p>Topographic desk mats, accessories, and official SlickPickleNick merchandise.</p>
-              <span class="explore-card-footer">Visit Shop &rarr;</span>
+              <span class="explore-card-footer">
+                <span>Visit Shop</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </a>
           </div>
         </section>

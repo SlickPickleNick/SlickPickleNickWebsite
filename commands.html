@@ -125,7 +125,7 @@
           </div>
           <h1>Twitch Commands</h1>
           <p class="description">
-            Search chat commands, verify permission levels, and copy syntax directly to your clipboard.
+            Search chat commands, view usage examples, and copy syntax directly to your clipboard.
           </p>
         </header>
 
@@ -133,7 +133,7 @@
         <section class="search-container" aria-label="Command search and filter">
           <div class="search-input-wrapper">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="search" id="commands-search-input" class="search-input" placeholder="Search commands, keywords, or examples (e.g. !lurk, spotify, torch)..." aria-label="Search Twitch commands">
+            <input type="search" id="commands-search-input" class="search-input" placeholder="Search commands or keywords (e.g. !lurk, spotify, torch)..." aria-label="Search Twitch commands">
             <button type="button" id="commands-search-clear" class="search-clear-btn" aria-label="Clear search input">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
@@ -179,9 +179,8 @@
             <thead>
               <tr>
                 <th scope="col" style="width: 25%;">Command</th>
-                <th scope="col" style="width: 15%;">Access</th>
-                <th scope="col" style="width: 35%;">Description</th>
-                <th scope="col" style="width: 25%;">Example / Syntax</th>
+                <th scope="col" style="width: 45%;">Description</th>
+                <th scope="col" style="width: 20%;">Example</th>
                 <th scope="col" style="width: 10%;">Cooldown</th>
               </tr>
             </thead>
@@ -192,9 +191,9 @@
         </div>
 
         <!-- Empty State -->
-        <div id="commands-empty-state" style="display: none; text-align: center; padding: var(--space-12) var(--space-4); background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-medium);">
+        <div id="commands-empty-state" style="display: none; text-align: center; padding: var(--space-12) var(--space-4); border: 1px dashed var(--border-medium); border-radius: var(--radius-md);">
           <p style="font-size: var(--font-size-md); font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-1);">No matching commands</p>
-          <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Try a different keyword or category filter.</p>
+          <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Try searching for a different keyword or category.</p>
         </div>
 
       </div>
