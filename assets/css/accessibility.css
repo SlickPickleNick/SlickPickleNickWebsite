@@ -1,0 +1,296 @@
+/* ==========================================================================
+   Accessibility Styles & Tools - SlickPickleNick Website
+   ========================================================================== */
+
+/* Accessibility Modal / Panel */
+.a11y-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.25s ease;
+}
+
+.a11y-modal-backdrop.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.a11y-modal {
+  width: 100%;
+  max-width: 520px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.a11y-modal-backdrop.open .a11y-modal {
+  transform: scale(1);
+}
+
+.a11y-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.a11y-modal-header h2 {
+  font-size: var(--font-size-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.a11y-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.a11y-close-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+/* Accessibility Control Groups */
+.a11y-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.a11y-group-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.a11y-options-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+
+.a11y-opt-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-align: center;
+  gap: var(--space-1);
+  transition: all var(--transition-fast);
+}
+
+.a11y-opt-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+  border-color: var(--border-medium);
+}
+
+.a11y-opt-btn.active {
+  background: var(--brand-green-subtle);
+  color: var(--brand-green-primary);
+  border-color: var(--brand-green-primary);
+  font-weight: 700;
+}
+
+.a11y-toggle-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.a11y-toggle-info strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.a11y-toggle-info span {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+/* Switch Toggle UI */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-strong);
+  transition: var(--transition-fast);
+  border-radius: var(--radius-full);
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: var(--transition-fast);
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--brand-green-primary);
+}
+
+input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+/* Reset Button */
+.a11y-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  border: 1px dashed var(--border-medium);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.a11y-reset-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* ==========================================================================
+   Accessibility Modifiers Applied to <html> or <body>
+   ========================================================================== */
+
+/* Text Sizing Scale */
+html[data-text-size="large"] {
+  font-size: 18px;
+}
+
+html[data-text-size="xlarge"] {
+  font-size: 20px;
+}
+
+/* Dyslexic Friendly Font */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@0.91.0/open-dyslexic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html[data-dyslexic="true"],
+html[data-dyslexic="true"] body,
+html[data-dyslexic="true"] button,
+html[data-dyslexic="true"] input,
+html[data-dyslexic="true"] select,
+html[data-dyslexic="true"] textarea {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+  line-height: 1.8;
+}
+
+/* Highlight Links Mode */
+html[data-highlight-links="true"] a {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 4px !important;
+  font-weight: 700 !important;
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  padding: 0 4px !important;
+  border-radius: 3px !important;
+}
+
+/* Monochrome / Grayscale Mode */
+html[data-monochrome="true"] {
+  filter: grayscale(100%) !important;
+}
+
+/* Big Cursor */
+html[data-big-cursor="true"],
+html[data-big-cursor="true"] * {
+  cursor: default !important;
+}
+
+html[data-big-cursor="true"] a,
+html[data-big-cursor="true"] button,
+html[data-big-cursor="true"] input,
+html[data-big-cursor="true"] [role="button"] {
+  cursor: pointer !important;
+}
+
+/* Reduced Motion Mode */
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after,
+@media (prefers-reduced-motion: reduce) {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

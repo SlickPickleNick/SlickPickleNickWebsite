@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games I Play | SlickPickleNick</title>
+  <meta name="description" content="Discover the primary games streamed by SlickPickleNick, including Fortnite, GeoGuessr, Meccha Chameleon, Arc Raiders, and community events.">
+  <link rel="canonical" href="https://slickpicklenick.live/games.html">
+
+  <meta property="og:site_name" content="SlickPickleNick">
+  <meta property="og:title" content="Games I Play | SlickPickleNick">
+  <meta property="og:description" content="Discover games featured on stream with interactive viewer challenges.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/accessibility.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="site-wrapper">
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="container nav-container">
+        <a href="index.html" class="brand-link" aria-label="SlickPickleNick Home">
+          <div class="brand-badge" aria-hidden="true">🥒</div>
+          <div class="brand-text">
+            <span class="brand-name">SlickPickleNick</span>
+            <span class="brand-tagline">Stream Hub</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav" role="navigation" aria-label="Primary Navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="commands.html" class="nav-link">Commands</a>
+          <a href="rewards.html" class="nav-link">Channel Points</a>
+          <a href="about.html" class="nav-link">About &amp; Gear</a>
+          <a href="games.html" class="nav-link active">Games</a>
+          <a href="community.html" class="nav-link">Community</a>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="action-btn a11y-toggle-btn" aria-label="Open Accessibility Options" title="Accessibility Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </button>
+          <button type="button" class="action-btn theme-toggle-btn" aria-label="Toggle Dark or Light Mode" title="Toggle Theme">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="live-btn" aria-label="Watch live on Twitch (opens in new tab)">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span>Watch Live</span>
+          </a>
+          <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-drawer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="drawer-backdrop" tabindex="-1"></div>
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <div class="brand-link">
+            <span class="brand-badge" aria-hidden="true">🥒</span>
+            <span class="brand-name">SlickPickleNick</span>
+          </div>
+          <button type="button" id="mobile-drawer-close" class="action-btn" aria-label="Close navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <nav class="drawer-nav">
+          <a href="index.html" class="drawer-link">Home</a>
+          <a href="commands.html" class="drawer-link">Twitch Commands</a>
+          <a href="rewards.html" class="drawer-link">Channel Points</a>
+          <a href="about.html" class="drawer-link">About &amp; Gear</a>
+          <a href="games.html" class="drawer-link active">Games I Play</a>
+          <a href="community.html" class="drawer-link">Community &amp; Socials</a>
+        </nav>
+        <div class="drawer-footer">
+          <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="btn btn-twitch">
+            Watch Live on Twitch
+          </a>
+          <button type="button" class="btn btn-secondary a11y-toggle-btn">
+            Accessibility Options
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="page-main" role="main">
+      <div class="container">
+        
+        <header class="page-header">
+          <div class="eyebrow">
+            <span aria-hidden="true">🎯</span> Stream Rotation
+          </div>
+          <h1>Games I Play</h1>
+          <p class="description">
+            The regular rotation of games featured on stream, including viewer challenges, chat mini-systems, and interactive gameplay.
+          </p>
+        </header>
+
+        <!-- Games Grid -->
+        <div class="cards-grid" style="grid-template-columns: 1fr; gap: var(--space-8);">
+          
+          <!-- Fortnite -->
+          <article class="explore-card" style="padding: var(--space-8);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
+              <div>
+                <span class="badge badge-everyone" style="margin-bottom: var(--space-2);">Battle Royale &amp; Ranked</span>
+                <h2 style="font-size: var(--font-size-2xl);">Fortnite</h2>
+              </div>
+              <span class="badge badge-points">Frequent Stream</span>
+            </div>
+            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
+              Fast-paced Battle Royale matches, Zero Build duos/squads, and viewer challenge runs. Viewers use Channel Points to pick Nick's character skin, designate drop locations, ban vehicle usage, or restrict weapon loadouts to one chest.
+            </p>
+            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: var(--space-4);">
+              <strong style="color: var(--brand-green-light); display: block; margin-bottom: var(--space-1);">Chat Integrations:</strong>
+              <span style="font-size: var(--font-size-sm); color: var(--text-secondary);">Skin Selection &bull; Drop Location Choice &bull; Vehicle Bans &bull; Weapon Class Bans &bull; One Chest Challenge</span>
+            </div>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a href="rewards.html" class="btn btn-secondary btn-sm">View Fortnite Rewards</a>
+            </div>
+          </article>
+
+          <!-- GeoGuessr -->
+          <article class="explore-card" style="padding: var(--space-8);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
+              <div>
+                <span class="badge badge-sub" style="margin-bottom: var(--space-2);">Geography &amp; Mini-Games</span>
+                <h2 style="font-size: var(--font-size-2xl);">GeoGuessr</h2>
+              </div>
+              <span class="badge badge-points">Frequent Stream</span>
+            </div>
+            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
+              International geography challenges, streaks, and community party rounds. Featuring the signature <strong>GeoGuessr Torch Game</strong> where viewers type <code>!torch</code> to become the active torch bearer with the power to command Nick to <code>!stop</code> and guess instantly.
+            </p>
+            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: var(--space-4);">
+              <strong style="color: var(--color-discord); display: block; margin-bottom: var(--space-1);">Chat Integrations:</strong>
+              <span style="font-size: var(--font-size-sm); color: var(--text-secondary);">Torch Game Commands (<code>!torch</code>, <code>!stop</code>) &bull; Country Bans &bull; No-Move Challenges &bull; 50/50 Chat Hints</span>
+            </div>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a href="commands.html" class="btn btn-secondary btn-sm">View Torch Commands</a>
+            </div>
+          </article>
+
+          <!-- Meccha Chameleon -->
+          <article class="explore-card" style="padding: var(--space-8);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
+              <div>
+                <span class="badge badge-points" style="margin-bottom: var(--space-2);">Stealth &amp; Camouflage</span>
+                <h2 style="font-size: var(--font-size-2xl);">Meccha Chameleon</h2>
+              </div>
+              <span class="badge badge-everyone">Party Game</span>
+            </div>
+            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
+              An artistic hide-and-seek game where Nick camouflages into the background to evade seekers. Viewers actively redeem Channel Points to force Nick to taunt seekers, delay his start, restrict him to a single paint color, or force complete emergency repaints.
+            </p>
+            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: var(--space-4);">
+              <strong style="color: #fbbf24; display: block; margin-bottom: var(--space-1);">Chat Integrations:</strong>
+              <span style="font-size: var(--font-size-sm); color: var(--text-secondary);">Force Taunt &bull; Late Start &bull; The Chatter's Touch &bull; One-Color Camo &bull; Panic Repaint</span>
+            </div>
+            <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+              <a href="rewards.html" class="btn btn-secondary btn-sm">View Chameleon Rewards</a>
+            </div>
+          </article>
+
+          <!-- Arc Raiders & Community Titles -->
+          <article class="explore-card" style="padding: var(--space-8);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-3);">
+              <div>
+                <span class="badge badge-everyone" style="margin-bottom: var(--space-2);">Extraction &amp; Community</span>
+                <h2 style="font-size: var(--font-size-2xl);">Arc Raiders &amp; Variety</h2>
+              </div>
+              <span class="badge badge-everyone">Rotation</span>
+            </div>
+            <p style="font-size: var(--font-size-base); color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--space-4);">
+              Tactical extraction shooter action in Arc Raiders, survival building in Minecraft, and community multiplayer games voted on by the Discord server.
+            </p>
+            <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+              <strong style="color: var(--brand-green-light); display: block; margin-bottom: var(--space-1);">Community Suggestions:</strong>
+              <span style="font-size: var(--font-size-sm); color: var(--text-secondary);">Got a game you'd love to see on stream? Suggest it anytime in the Discord!</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h2>🥒 SlickPickleNick</h2>
+            <p>Interactive gaming streams, chat chaos, stream tools, and community-driven live experiences.</p>
+          </div>
+          <div class="footer-col">
+            <h3>Navigation</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="commands.html">Twitch Commands</a></li>
+              <li><a href="rewards.html">Channel Points</a></li>
+              <li><a href="about.html">About &amp; Gear</a></li>
+              <li><a href="games.html">Games I Play</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Community</h3>
+            <ul class="footer-links">
+              <li><a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer">Twitch Stream</a></li>
+              <li><a href="https://discordapp.com/invite/c2pM23t5fT" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+              <li><a href="https://youtube.com/channel/UCiQZNWUQmMgmMGHYPF1fe6Q" target="_blank" rel="noopener noreferrer">YouTube Channel</a></li>
+              <li><a href="https://x.com/SlickPickleNick" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Accessibility</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: var(--space-3);">
+              Adjust text sizing, contrast, or dyslexic fonts anytime.
+            </p>
+            <button type="button" class="btn btn-secondary btn-sm a11y-toggle-btn">
+              Accessibility Settings
+            </button>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>&copy; 2026 SlickPickleNick. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Accessibility Customization Modal -->
+  <div id="a11y-modal-backdrop" class="a11y-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
+    <div class="a11y-modal">
+      <div class="a11y-modal-header">
+        <h2 id="a11y-modal-title">
+          <span aria-hidden="true">⚙️</span> Accessibility Options
+        </h2>
+        <button type="button" id="a11y-modal-close" class="a11y-close-btn" aria-label="Close accessibility options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group-title">Text Size</span>
+        <div class="a11y-options-row">
+          <button type="button" class="a11y-opt-btn" data-a11y-size="normal" aria-pressed="true">
+            <span style="font-size: 1rem;">A</span>
+            <span>Normal</span>
+          </button>
+          <button type="button" class="a11y-opt-btn" data-a11y-size="large" aria-pressed="false">
+            <span style="font-size: 1.25rem;">A</span>
+            <span>Large</span>
+          </button>
+          <button type="button" class="a11y-opt-btn" data-a11y-size="xlarge" aria-pressed="false">
+            <span style="font-size: 1.5rem;">A</span>
+            <span>Extra Large</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group-title">Color Contrast</span>
+        <div class="a11y-options-row" style="grid-template-columns: repeat(2, 1fr);">
+          <button type="button" class="a11y-opt-btn" data-a11y-contrast="normal" aria-pressed="true">
+            <span>Standard Contrast</span>
+          </button>
+          <button type="button" class="a11y-opt-btn" data-a11y-contrast="high" aria-pressed="false">
+            <span>High Contrast</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Dyslexia-Friendly Font</strong>
+          <span>Applies OpenDyslexic typeface</span>
+        </div>
+        <label class="switch" for="a11y-dyslexic-toggle">
+          <input type="checkbox" id="a11y-dyslexic-toggle" aria-label="Toggle Dyslexia-Friendly Font">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Highlight Links</strong>
+          <span>Underlines and highlights all links</span>
+        </div>
+        <label class="switch" for="a11y-links-toggle">
+          <input type="checkbox" id="a11y-links-toggle" aria-label="Toggle Highlight Links">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Stop Animations</strong>
+          <span>Disables animations and transitions</span>
+        </div>
+        <label class="switch" for="a11y-motion-toggle">
+          <input type="checkbox" id="a11y-motion-toggle" aria-label="Toggle Reduced Motion">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Monochrome Grayscale</strong>
+          <span>Removes color saturation</span>
+        </div>
+        <label class="switch" for="a11y-mono-toggle">
+          <input type="checkbox" id="a11y-mono-toggle" aria-label="Toggle Monochrome Grayscale">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <button type="button" id="a11y-reset-btn" class="a11y-reset-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        <span>Reset Accessibility Settings</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/accessibility.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+[
+  {
+    "command": "!clip",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Clip the last 60 seconds of the stream.",
+    "example": "!clip",
+    "cooldown": "30s"
+  },
+  {
+    "command": "!lurk",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Start the lurk timer while you are away.",
+    "example": "!lurk",
+    "cooldown": "None"
+  },
+  {
+    "command": "!lurkStats",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Sends your personal lurking stats to chat.",
+    "example": "!lurkStats",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!lurkLeaderboard",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Shows the top lurkers of the stream.",
+    "example": "!lurkLeaderboard",
+    "cooldown": "30s"
+  },
+  {
+    "command": "!followage",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Shows how long you have been following the stream.",
+    "example": "!followage",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!watchtime",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Sends your total watchtime to the chat.",
+    "example": "!watchtime",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!watchtimeLeaderboard",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Shows the top watchtime users across the channel.",
+    "example": "!watchtimeLeaderboard",
+    "cooldown": "30s"
+  },
+  {
+    "command": "!emote",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Showcases all available emotes for viewers and subscribers.",
+    "example": "!emote",
+    "cooldown": "15s"
+  },
+  {
+    "command": "!time",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Shows the current local time for Nick.",
+    "example": "!time",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!uptime",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Shows how long the stream has been live.",
+    "example": "!uptime",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!checkinlb",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Sends the leaderboard for check-ins based off Check-In reward redemptions.",
+    "example": "!checkinlb",
+    "cooldown": "30s"
+  },
+  {
+    "command": "!checkins",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Shows your personal check-in history.",
+    "example": "!checkins",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!socials",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Shows Nick's main social media links.",
+    "example": "!socials",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!discord",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Sends the official Discord invite link.",
+    "example": "!discord",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!website",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Links directly to Nick's website.",
+    "example": "!website",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!tip",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Sends the link to send a tip or donation to Nick.",
+    "example": "!tip",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!merch",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Links to the official merch shop.",
+    "example": "!merch",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!sr [Song and Artist]",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Request a song to be played in the stream queue.",
+    "example": "!sr End of August by Noah Kahan",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!wrongsong",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Removes your most recent song request.",
+    "example": "!wrongsong",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!myRequests",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows your requested songs and their queue positions.",
+    "example": "!myRequests",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!requests",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Retrieves the full list of all requested songs.",
+    "example": "!requests",
+    "cooldown": "15s"
+  },
+  {
+    "command": "!queue",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows the next three songs waiting in the queue.",
+    "example": "!queue",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!like",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Add the currently playing song to your personal liked songs.",
+    "example": "!like",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!unlike",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Removes the currently playing song from your liked songs.",
+    "example": "!unlike",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!likes",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Retrieve your list of liked songs.",
+    "example": "!likes",
+    "cooldown": "15s"
+  },
+  {
+    "command": "!songLink",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Provides the direct Spotify track link for the current song.",
+    "example": "!songLink",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!song",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows the title and artist of the currently playing song.",
+    "example": "!song",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!lastSong",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows the title and artist of the previous song played.",
+    "example": "!lastSong",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!points",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Shows your current stream loyalty point balance.",
+    "example": "!points",
+    "cooldown": "5s"
+  },
+  {
+    "command": "!pointsLeaderboard",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Shows the channel loyalty point leaderboard.",
+    "example": "!pointsLeaderboard",
+    "cooldown": "30s"
+  },
+  {
+    "command": "!gamble [amount]",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Gambles a chosen amount of loyalty points.",
+    "example": "!gamble 1000",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!scratchCard",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Purchase a scratch card for a chance to win points. Losses contribute to the Jackpot pool.",
+    "example": "!scratchCard",
+    "cooldown": "15s"
+  },
+  {
+    "command": "!givePoints [user] [amount]",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Give a specified amount of your loyalty points to another viewer.",
+    "example": "!givePoints SlickCass989 500",
+    "cooldown": "10s"
+  },
+  {
+    "command": "!torch",
+    "category": "Torch Game",
+    "access": "Everyone",
+    "description": "Join the viewer pool to be selected as the torch bearer for the GeoGuessr round.",
+    "example": "!torch",
+    "cooldown": "Round-based"
+  },
+  {
+    "command": "!acceptTorch",
+    "category": "Torch Game",
+    "access": "Everyone",
+    "description": "Accept the responsibility of stopping Nick when prompted in chat.",
+    "example": "!acceptTorch",
+    "cooldown": "When prompted"
+  },
+  {
+    "command": "!declineTorch",
+    "category": "Torch Game",
+    "access": "Everyone",
+    "description": "Decline the torch bearer role. A new viewer will be selected.",
+    "example": "!declineTorch",
+    "cooldown": "When prompted"
+  },
+  {
+    "command": "!stop",
+    "category": "Torch Game",
+    "access": "Everyone",
+    "description": "Use this command when prompted to freeze Nick's movement during the torch game.",
+    "example": "!stop",
+    "cooldown": "Active bearer only"
+  }
+]

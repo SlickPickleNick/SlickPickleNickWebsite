@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twitch Commands | SlickPickleNick</title>
+  <meta name="description" content="Browse and search all Twitch chat commands for SlickPickleNick's stream, including Spotify song requests, loyalty point games, and GeoGuessr torch tools.">
+  <link rel="canonical" href="https://slickpicklenick.live/commands.html">
+
+  <meta property="og:site_name" content="SlickPickleNick">
+  <meta property="og:title" content="Twitch Commands | SlickPickleNick">
+  <meta property="og:description" content="Browse all Twitch chat commands with one-click copy and instant search.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/navigation.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/accessibility.css">
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="site-wrapper">
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="container nav-container">
+        <a href="index.html" class="brand-link" aria-label="SlickPickleNick Home">
+          <div class="brand-badge" aria-hidden="true">🥒</div>
+          <div class="brand-text">
+            <span class="brand-name">SlickPickleNick</span>
+            <span class="brand-tagline">Stream Hub</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav" role="navigation" aria-label="Primary Navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="commands.html" class="nav-link active">Commands</a>
+          <a href="rewards.html" class="nav-link">Channel Points</a>
+          <a href="about.html" class="nav-link">About &amp; Gear</a>
+          <a href="games.html" class="nav-link">Games</a>
+          <a href="community.html" class="nav-link">Community</a>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="action-btn a11y-toggle-btn" aria-label="Open Accessibility Options" title="Accessibility Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </button>
+          <button type="button" class="action-btn theme-toggle-btn" aria-label="Toggle Dark or Light Mode" title="Toggle Theme">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </button>
+          <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="live-btn" aria-label="Watch live on Twitch (opens in new tab)">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span>Watch Live</span>
+          </a>
+          <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-drawer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+      <div class="drawer-backdrop" tabindex="-1"></div>
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <div class="brand-link">
+            <span class="brand-badge" aria-hidden="true">🥒</span>
+            <span class="brand-name">SlickPickleNick</span>
+          </div>
+          <button type="button" id="mobile-drawer-close" class="action-btn" aria-label="Close navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <nav class="drawer-nav">
+          <a href="index.html" class="drawer-link">Home</a>
+          <a href="commands.html" class="drawer-link active">Twitch Commands</a>
+          <a href="rewards.html" class="drawer-link">Channel Points</a>
+          <a href="about.html" class="drawer-link">About &amp; Gear</a>
+          <a href="games.html" class="drawer-link">Games I Play</a>
+          <a href="community.html" class="drawer-link">Community &amp; Socials</a>
+        </nav>
+        <div class="drawer-footer">
+          <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="btn btn-twitch">
+            Watch Live on Twitch
+          </a>
+          <button type="button" class="btn btn-secondary a11y-toggle-btn">
+            Accessibility Options
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="page-main" role="main">
+      <div class="container">
+        
+        <!-- Header -->
+        <header class="page-header">
+          <div class="eyebrow">
+            <span aria-hidden="true">💬</span> Chat Interaction
+          </div>
+          <h1>Twitch Commands</h1>
+          <p class="description">
+            Search available chat commands, check permission requirements, view syntax examples, and click any copy icon to quickly grab a command.
+          </p>
+        </header>
+
+        <!-- Search & Filter Controls -->
+        <section class="search-container" aria-label="Command search and filter">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" id="commands-search-input" class="search-input" placeholder="Search commands, descriptions, or parameters (e.g. !lurk, spotify, points)..." aria-label="Search Twitch commands">
+            <button type="button" id="commands-search-clear" class="search-clear-btn" aria-label="Clear search input">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+
+          <!-- Category Chips -->
+          <div class="filter-chips" role="tablist" aria-label="Filter commands by category">
+            <button type="button" class="chip-btn active" data-category="all" role="tab" aria-selected="true">
+              <span>All Commands</span>
+              <span class="chip-count">36</span>
+            </button>
+            <button type="button" class="chip-btn" data-category="General" role="tab" aria-selected="false">
+              <span>General</span>
+              <span class="chip-count">12</span>
+            </button>
+            <button type="button" class="chip-btn" data-category="Socials" role="tab" aria-selected="false">
+              <span>Socials &amp; Links</span>
+              <span class="chip-count">5</span>
+            </button>
+            <button type="button" class="chip-btn" data-category="Spotify" role="tab" aria-selected="false">
+              <span>Spotify Requests</span>
+              <span class="chip-count">11</span>
+            </button>
+            <button type="button" class="chip-btn" data-category="Loyalty" role="tab" aria-selected="false">
+              <span>Loyalty Points</span>
+              <span class="chip-count">5</span>
+            </button>
+            <button type="button" class="chip-btn" data-category="Torch Game" role="tab" aria-selected="false">
+              <span>GeoGuessr Torch</span>
+              <span class="chip-count">4</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Command Counter -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+          <span id="commands-count" style="font-size: var(--font-size-sm); color: var(--text-muted); font-weight: 600;">Loading commands...</span>
+        </div>
+
+        <!-- Commands Table -->
+        <div class="table-responsive">
+          <table class="data-table" aria-label="Twitch Commands List">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 25%;">Command</th>
+                <th scope="col" style="width: 15%;">Access</th>
+                <th scope="col" style="width: 35%;">Description</th>
+                <th scope="col" style="width: 25%;">Example / Syntax</th>
+                <th scope="col" style="width: 10%;">Cooldown</th>
+              </tr>
+            </thead>
+            <tbody id="commands-table-body">
+              <!-- Dynamically rendered by assets/js/commands.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="commands-empty-state" style="display: none; text-align: center; padding: var(--space-12) var(--space-4); background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-medium);">
+          <p style="font-size: var(--font-size-lg); font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-2);">No matching commands found</p>
+          <p style="font-size: var(--font-size-sm); color: var(--text-muted);">Try adjusting your search query or selecting a different category filter.</p>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h2>🥒 SlickPickleNick</h2>
+            <p>Interactive gaming streams, chat chaos, stream tools, and community-driven live experiences.</p>
+          </div>
+          <div class="footer-col">
+            <h3>Navigation</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="commands.html">Twitch Commands</a></li>
+              <li><a href="rewards.html">Channel Points</a></li>
+              <li><a href="about.html">About &amp; Gear</a></li>
+              <li><a href="games.html">Games I Play</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Community</h3>
+            <ul class="footer-links">
+              <li><a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer">Twitch Stream</a></li>
+              <li><a href="https://discordapp.com/invite/c2pM23t5fT" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+              <li><a href="https://youtube.com/channel/UCiQZNWUQmMgmMGHYPF1fe6Q" target="_blank" rel="noopener noreferrer">YouTube Channel</a></li>
+              <li><a href="https://x.com/SlickPickleNick" target="_blank" rel="noopener noreferrer">X / Twitter</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Accessibility</h3>
+            <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: var(--space-3);">
+              Adjust text sizing, contrast, or dyslexic fonts anytime.
+            </p>
+            <button type="button" class="btn btn-secondary btn-sm a11y-toggle-btn">
+              Accessibility Settings
+            </button>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>&copy; 2026 SlickPickleNick. All rights reserved.</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Accessibility Customization Modal -->
+  <div id="a11y-modal-backdrop" class="a11y-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
+    <div class="a11y-modal">
+      <div class="a11y-modal-header">
+        <h2 id="a11y-modal-title">
+          <span aria-hidden="true">⚙️</span> Accessibility Options
+        </h2>
+        <button type="button" id="a11y-modal-close" class="a11y-close-btn" aria-label="Close accessibility options">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group-title">Text Size</span>
+        <div class="a11y-options-row">
+          <button type="button" class="a11y-opt-btn" data-a11y-size="normal" aria-pressed="true">
+            <span style="font-size: 1rem;">A</span>
+            <span>Normal</span>
+          </button>
+          <button type="button" class="a11y-opt-btn" data-a11y-size="large" aria-pressed="false">
+            <span style="font-size: 1.25rem;">A</span>
+            <span>Large</span>
+          </button>
+          <button type="button" class="a11y-opt-btn" data-a11y-size="xlarge" aria-pressed="false">
+            <span style="font-size: 1.5rem;">A</span>
+            <span>Extra Large</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="a11y-group">
+        <span class="a11y-group-title">Color Contrast</span>
+        <div class="a11y-options-row" style="grid-template-columns: repeat(2, 1fr);">
+          <button type="button" class="a11y-opt-btn" data-a11y-contrast="normal" aria-pressed="true">
+            <span>Standard Contrast</span>
+          </button>
+          <button type="button" class="a11y-opt-btn" data-a11y-contrast="high" aria-pressed="false">
+            <span>High Contrast</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Dyslexia-Friendly Font</strong>
+          <span>Applies OpenDyslexic typeface</span>
+        </div>
+        <label class="switch" for="a11y-dyslexic-toggle">
+          <input type="checkbox" id="a11y-dyslexic-toggle" aria-label="Toggle Dyslexia-Friendly Font">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Highlight Links</strong>
+          <span>Underlines and highlights all links</span>
+        </div>
+        <label class="switch" for="a11y-links-toggle">
+          <input type="checkbox" id="a11y-links-toggle" aria-label="Toggle Highlight Links">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Stop Animations</strong>
+          <span>Disables animations and transitions</span>
+        </div>
+        <label class="switch" for="a11y-motion-toggle">
+          <input type="checkbox" id="a11y-motion-toggle" aria-label="Toggle Reduced Motion">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="a11y-toggle-card">
+        <div class="a11y-toggle-info">
+          <strong>Monochrome Grayscale</strong>
+          <span>Removes color saturation</span>
+        </div>
+        <label class="switch" for="a11y-mono-toggle">
+          <input type="checkbox" id="a11y-mono-toggle" aria-label="Toggle Monochrome Grayscale">
+          <span class="slider" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <button type="button" id="a11y-reset-btn" class="a11y-reset-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        <span>Reset Accessibility Settings</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/accessibility.js"></script>
+  <script src="assets/js/commands.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
