@@ -1,6 +1,6 @@
 /**
  * Main Application Script - SlickPickleNick Website
- * Global navigation, drawer management, and active route handling.
+ * Sliding navigation pill, mobile drawer, and active route controller.
  */
 
 (function () {
@@ -22,6 +22,66 @@
       } else {
         link.classList.remove('active');
         link.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  // Sliding Navigation Pill Indicator
+  function setupSlidingNav() {
+    const desktopNav = document.querySelector('.desktop-nav');
+    if (!desktopNav) return;
+
+    let pill = desktopNav.querySelector('.nav-sliding-pill');
+    if (!pill) {
+      pill = document.createElement('div');
+      pill.className = 'nav-sliding-pill';
+      desktopNav.insertBefore(pill, desktopNav.firstChild);
+    }
+
+    const navLinks = desktopNav.querySelectorAll('.nav-link');
+    let activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
+
+    function movePillTo(targetLink) {
+      if (!targetLink || !pill) return;
+      const navRect = desktopNav.getBoundingClientRect();
+      const linkRect = targetLink.getBoundingClientRect();
+
+      const offsetLeft = linkRect.left - navRect.left;
+      const linkWidth = linkRect.width;
+
+      pill.style.transform = `translateX(${offsetLeft}px)`;
+      pill.style.width = `${linkWidth}px`;
+      pill.classList.add('visible');
+    }
+
+    // Initial positioning after DOM render
+    requestAnimationFrame(() => {
+      activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
+      if (activeLink) {
+        movePillTo(activeLink);
+      }
+    });
+
+    // Hover glide across nav items
+    navLinks.forEach((link) => {
+      link.addEventListener('mouseenter', () => {
+        movePillTo(link);
+      });
+    });
+
+    // Return to active page on mouse leave
+    desktopNav.addEventListener('mouseleave', () => {
+      activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
+      if (activeLink) {
+        movePillTo(activeLink);
+      }
+    });
+
+    // Recalculate on window resize
+    window.addEventListener('resize', () => {
+      activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
+      if (activeLink) {
+        movePillTo(activeLink);
       }
     });
   }
@@ -73,7 +133,7 @@
     });
   }
 
-  // Accordions enhancement
+  // Accordion ARIA & Toggle Enhancement
   function setupAccordions() {
     document.querySelectorAll('details.accordion-item').forEach((item) => {
       item.addEventListener('toggle', () => {
@@ -87,6 +147,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     highlightActiveRoute();
+    setupSlidingNav();
     setupMobileDrawer();
     setupAccordions();
   });

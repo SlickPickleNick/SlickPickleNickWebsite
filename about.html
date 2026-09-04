@@ -31,14 +31,13 @@
     <header class="site-header" role="banner">
       <div class="container nav-container">
         <a href="index.html" class="brand-link" aria-label="SlickPickleNick Home">
-          <div class="brand-badge" aria-hidden="true">🥒</div>
-          <div class="brand-text">
-            <span class="brand-name">SlickPickleNick</span>
-            <span class="brand-tagline">Stream Hub</span>
-          </div>
+          <div class="brand-badge" aria-hidden="true">SPN</div>
+          <span class="brand-name">SlickPickleNick</span>
         </a>
 
+        <!-- Desktop Navigation with Sliding Pill -->
         <nav class="desktop-nav" role="navigation" aria-label="Primary Navigation">
+          <div class="nav-sliding-pill" aria-hidden="true"></div>
           <a href="index.html" class="nav-link">Home</a>
           <a href="commands.html" class="nav-link">Commands</a>
           <a href="rewards.html" class="nav-link">Channel Points</a>
@@ -49,15 +48,33 @@
 
         <div class="header-actions">
           <button type="button" class="action-btn a11y-toggle-btn" aria-label="Open Accessibility Options" title="Accessibility Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
           </button>
+          
           <button type="button" class="action-btn theme-toggle-btn" aria-label="Toggle Dark or Light Mode" title="Toggle Theme">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <div class="theme-icon-wrap" aria-hidden="true">
+              <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
           </button>
+
           <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="live-btn" aria-label="Watch live on Twitch (opens in new tab)">
             <span class="live-dot" aria-hidden="true"></span>
             <span>Watch Live</span>
           </a>
+
           <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-drawer">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
@@ -71,7 +88,7 @@
       <div class="drawer-panel">
         <div class="drawer-header">
           <div class="brand-link">
-            <span class="brand-badge" aria-hidden="true">🥒</span>
+            <span class="brand-badge" aria-hidden="true">SPN</span>
             <span class="brand-name">SlickPickleNick</span>
           </div>
           <button type="button" id="mobile-drawer-close" class="action-btn" aria-label="Close navigation menu">
@@ -104,35 +121,35 @@
         <!-- Header -->
         <header class="page-header">
           <div class="eyebrow">
-            <span aria-hidden="true">👋</span> Creator Profile
+            Creator Profile
           </div>
           <h1>About Nick &amp; Gear</h1>
           <p class="description">
-            The background story, streaming philosophy, technical setup, and quick answers about all things SlickPickleNick.
+            Background, streaming philosophy, technical broadcast setup, and frequently asked questions.
           </p>
         </header>
 
         <!-- Bio Card -->
-        <section style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: var(--space-8); margin-bottom: var(--space-10); box-shadow: var(--card-shadow);" aria-labelledby="bio-heading">
-          <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-8);">
+        <section style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: var(--space-8); margin-bottom: var(--space-8); box-shadow: var(--card-shadow); transition: var(--transition-theme);" aria-labelledby="bio-heading">
+          <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-6);">
             <div>
-              <p style="font-size: var(--font-size-xs); font-weight: 700; color: var(--brand-green-primary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-2);">Nick &bull; SlickPickleNick</p>
+              <p style="font-size: var(--font-size-xs); font-weight: 600; color: var(--brand-green-primary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--space-2);">Nick &bull; SlickPickleNick</p>
               <h2 id="bio-heading" style="font-size: var(--font-size-2xl); margin-bottom: var(--space-4);">Building Interactive, Community-Driven Streams</h2>
               <p style="font-size: var(--font-size-base); line-height: 1.7; margin-bottom: var(--space-4);">
                 I create gaming and community-focused streams built around active chat participation, custom stream tools, and viewer interaction. Rather than just broadcasting gameplay, I design systems that allow viewers to directly trigger in-game challenges, play chat mini-games, queue music, and shape live moments.
               </p>
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); margin-top: var(--space-6);">
-                <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
-                  <strong style="color: var(--brand-green-light); display: block; margin-bottom: var(--space-1);">🎮 Interactive Streams</strong>
-                  <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0;">Chat is part of the experience through custom commands, channel points, and live alerts.</p>
+                <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
+                  <strong style="color: var(--brand-green-light); display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Interactive Broadcasts</strong>
+                  <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0; line-height: 1.5;">Chat is part of the experience through custom commands, channel points, and live alerts.</p>
                 </div>
-                <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
-                  <strong style="color: var(--color-discord); display: block; margin-bottom: var(--space-1);">💬 Community Focused</strong>
-                  <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0;">The stream is driven by viewer suggestions, friendly banter, and shared milestones.</p>
+                <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
+                  <strong style="color: var(--color-discord); display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Community Centered</strong>
+                  <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0; line-height: 1.5;">The stream is driven by viewer suggestions, friendly banter, and shared milestones.</p>
                 </div>
-                <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
-                  <strong style="color: #fbbf24; display: block; margin-bottom: var(--space-1);">⚙️ Custom Tech</strong>
-                  <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0;">OBS, Streamer.bot, web overlays, and custom bots power real-time interactions.</p>
+                <div style="background: var(--bg-surface-elevated); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-subtle); transition: var(--transition-theme);">
+                  <strong style="color: #fbbf24; display: block; margin-bottom: var(--space-1); font-size: var(--font-size-sm);">Custom Stream Tech</strong>
+                  <p style="font-size: var(--font-size-xs); color: var(--text-muted); margin: 0; line-height: 1.5;">OBS, Streamer.bot, web overlays, and custom bots power real-time interactions.</p>
                 </div>
               </div>
             </div>
@@ -140,31 +157,29 @@
         </section>
 
         <!-- Behind the Stream / Philosophy -->
-        <section style="background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: var(--space-8); margin-bottom: var(--space-10); box-shadow: var(--card-shadow);" aria-labelledby="philosophy-heading">
+        <section style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: var(--space-8); margin-bottom: var(--space-8); box-shadow: var(--card-shadow); transition: var(--transition-theme);" aria-labelledby="philosophy-heading">
           <div style="max-width: 800px;">
-            <span class="badge badge-everyone" style="margin-bottom: var(--space-3);">Background &amp; Vision</span>
-            <h2 id="philosophy-heading" style="margin-bottom: var(--space-4);">Why the Stream Works This Way</h2>
+            <span class="badge badge-everyone" style="margin-bottom: var(--space-3);">Background</span>
+            <h2 id="philosophy-heading" style="margin-bottom: var(--space-3);">Why the Stream Works This Way</h2>
             <p>
-              Outside of content creation, I am a graduate student completing my master’s degree in Spring 2027. My academic and professional interests center around live experiences, event operations, hospitality, guest experience, and human engagement with digital communities.
+              Outside of streaming, I am a graduate student completing my master’s degree in Spring 2027. My academic and professional focus centers around live experiences, event operations, hospitality, guest experience, and community engagement.
             </p>
             <p>
-              That background directly influences my approach to streaming. Every broadcast is designed like a digital live event — with structured entertainment, seamless pacing, welcoming hospitality for newcomers, and custom interactivity.
+              That background directly shapes my approach to content creation. Every stream is structured like a digital live event — with engaging pacing, thoughtful hospitality for new viewers, and interactive systems that turn passive viewers into active participants.
             </p>
           </div>
         </section>
 
         <!-- Setup & Gear Specs -->
-        <section style="margin-bottom: var(--space-12);" aria-labelledby="gear-heading">
-          <div style="margin-bottom: var(--space-6);">
-            <p style="font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-green-primary); margin-bottom: var(--space-1);">Equipment</p>
+        <section style="margin-bottom: var(--space-10);" aria-labelledby="gear-heading">
+          <div style="margin-bottom: var(--space-5);">
             <h2 id="gear-heading">Setup &amp; Gear</h2>
           </div>
 
           <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <!-- Streaming PC -->
             <div class="reward-card">
               <div class="reward-card-top">
-                <h3>🖥️ Gaming &amp; Stream PC</h3>
+                <h3>Gaming &amp; Stream PC</h3>
                 <span class="badge badge-everyone">Hardware</span>
               </div>
               <p class="reward-desc">Custom high-performance workstation engineered for low-latency streaming and high FPS gameplay.</p>
@@ -175,10 +190,9 @@
               </div>
             </div>
 
-            <!-- Audio & Mic -->
             <div class="reward-card">
               <div class="reward-card-top">
-                <h3>🎙️ Audio &amp; Voice</h3>
+                <h3>Audio &amp; Voice</h3>
                 <span class="badge badge-sub">Broadcast</span>
               </div>
               <p class="reward-desc">Dedicated XLR broadcast microphone setup with real-time compression, noise gating, and equalization.</p>
@@ -189,10 +203,9 @@
               </div>
             </div>
 
-            <!-- Visuals & Peripherals -->
             <div class="reward-card">
               <div class="reward-card-top">
-                <h3>📷 Camera &amp; Lighting</h3>
+                <h3>Camera &amp; Lighting</h3>
                 <span class="badge badge-points">Visuals</span>
               </div>
               <p class="reward-desc">Clean optical feed paired with diffused multi-point LED softbox lighting for optimal stream clarity.</p>
@@ -207,8 +220,7 @@
 
         <!-- FAQ Section -->
         <section aria-labelledby="faq-heading">
-          <div style="margin-bottom: var(--space-6);">
-            <p style="font-size: var(--font-size-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand-green-primary); margin-bottom: var(--space-1);">Answers</p>
+          <div style="margin-bottom: var(--space-5);">
             <h2 id="faq-heading">Frequently Asked Questions</h2>
           </div>
 
@@ -216,7 +228,7 @@
             <details class="accordion-item" open>
               <summary class="accordion-summary">
                 <span>When do you usually stream?</span>
-                <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </summary>
               <div class="accordion-content">
                 Streams are announced in advance in the official Discord server. Because of graduate school schedules, exact start times are posted weekly in the <code>#announcements</code> channel.
@@ -226,7 +238,7 @@
             <details class="accordion-item">
               <summary class="accordion-summary">
                 <span>How do song requests work?</span>
-                <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </summary>
               <div class="accordion-content">
                 You can request songs in Twitch chat using <code>!sr [Song and Artist]</code>. To check your song queue position, use <code>!myRequests</code>, or view what is currently playing with <code>!song</code>.
@@ -236,7 +248,7 @@
             <details class="accordion-item">
               <summary class="accordion-summary">
                 <span>What is the GeoGuessr Torch Game?</span>
-                <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </summary>
               <div class="accordion-content">
                 The Torch Game is an interactive chat mini-game during GeoGuessr streams. Viewers join the pool by typing <code>!torch</code>. When selected, the torch bearer can type <code>!stop</code> to freeze Nick's movement and force an instant guess.
@@ -246,7 +258,7 @@
             <details class="accordion-item">
               <summary class="accordion-summary">
                 <span>Can I suggest new Channel Point rewards or commands?</span>
-                <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </summary>
               <div class="accordion-content">
                 Yes! Head over to the official <a href="https://discordapp.com/invite/c2pM23t5fT" target="_blank" rel="noopener noreferrer">Discord server</a> and post your idea in the suggestions channel. Many of our best stream rewards came directly from community members.
@@ -256,7 +268,7 @@
             <details class="accordion-item">
               <summary class="accordion-summary">
                 <span>Where can I buy official merch?</span>
-                <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
               </summary>
               <div class="accordion-content">
                 You can browse topographic desk mats and official creator apparel in the <a href="https://slickpicklenick.live/collections/all" target="_blank" rel="noopener noreferrer">Official Merch Shop</a>.
@@ -273,8 +285,8 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <h2>🥒 SlickPickleNick</h2>
-            <p>Interactive gaming streams, chat chaos, stream tools, and community-driven live experiences.</p>
+            <h2>SlickPickleNick</h2>
+            <p>Interactive gaming streams, chat participation, stream tools, and community live experiences.</p>
           </div>
           <div class="footer-col">
             <h3>Navigation</h3>
@@ -316,9 +328,7 @@
   <div id="a11y-modal-backdrop" class="a11y-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
     <div class="a11y-modal">
       <div class="a11y-modal-header">
-        <h2 id="a11y-modal-title">
-          <span aria-hidden="true">⚙️</span> Accessibility Options
-        </h2>
+        <h2 id="a11y-modal-title">Accessibility Options</h2>
         <button type="button" id="a11y-modal-close" class="a11y-close-btn" aria-label="Close accessibility options">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
@@ -368,7 +378,7 @@
       <div class="a11y-toggle-card">
         <div class="a11y-toggle-info">
           <strong>Highlight Links</strong>
-          <span>Underlines and highlights all links</span>
+          <span>Adds high-contrast underlines to all links</span>
         </div>
         <label class="switch" for="a11y-links-toggle">
           <input type="checkbox" id="a11y-links-toggle" aria-label="Toggle Highlight Links">

@@ -7,74 +7,70 @@
   top: 0;
   z-index: 1000;
   background: var(--bg-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
   box-shadow: var(--header-shadow);
-  transition: background-color var(--transition-base), border-color var(--transition-base);
+  transition: var(--transition-theme);
 }
 
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 68px;
   gap: var(--space-4);
 }
 
-/* Brand Logo */
+/* Brand Wordmark */
 .brand-link {
   display: flex;
   align-items: center;
   gap: var(--space-3);
   text-decoration: none;
   color: var(--text-primary);
-  font-weight: 800;
-  font-size: var(--font-size-lg);
+  font-weight: 700;
+  font-size: var(--font-size-md);
   letter-spacing: -0.02em;
-  transition: transform var(--transition-fast);
+  transition: opacity var(--transition-fast);
 }
 
 .brand-link:hover {
-  transform: scale(1.02);
+  opacity: 0.85;
 }
 
 .brand-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-md);
-  background: var(--brand-gradient);
-  color: #ffffff;
-  box-shadow: var(--brand-glow);
-  font-size: 1.25rem;
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
+  background: var(--brand-green-subtle);
+  border: 1px solid var(--brand-green-border);
+  color: var(--brand-green-primary);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: -0.05em;
+  transition: var(--transition-theme);
 }
 
 .brand-name {
-  line-height: 1.1;
-  font-weight: 800;
-}
-
-.brand-tagline {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--brand-green-primary);
   font-weight: 700;
+  line-height: 1.2;
 }
 
-/* Desktop Navigation */
+/* Desktop Sliding Pill Navigation */
 .desktop-nav {
+  position: relative;
   display: none;
   align-items: center;
   gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  transition: var(--transition-theme);
 }
 
 @media (min-width: 900px) {
@@ -83,31 +79,51 @@
   }
 }
 
+/* The Animated Sliding Pill Background */
+.nav-sliding-pill {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: calc(100% - 8px);
+  background: var(--nav-pill-bg);
+  border: 1px solid var(--nav-pill-border);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(0);
+  transition: transform 0.35s var(--ease-spring), width 0.35s var(--ease-spring), opacity 0.2s ease, background-color 0.4s ease;
+}
+
+.nav-sliding-pill.visible {
+  opacity: 1;
+}
+
 .nav-link {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
   font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: all var(--transition-fast);
+  transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .nav-link:hover {
   color: var(--text-primary);
-  background: var(--bg-surface-hover);
 }
 
 .nav-link.active {
-  color: var(--brand-green-primary);
-  background: var(--brand-green-subtle);
-  font-weight: 700;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
-/* Header Utilities (Theme Toggle, A11y, Social) */
+/* Header Utilities */
 .header-actions {
   display: flex;
   align-items: center;
@@ -115,16 +131,18 @@
 }
 
 .action-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-md);
-  background: var(--bg-surface-elevated);
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   transition: all var(--transition-fast);
+  overflow: hidden;
 }
 
 .action-btn:hover {
@@ -134,25 +152,59 @@
   transform: translateY(-1px);
 }
 
-.action-btn[aria-pressed="true"],
-.action-btn.active {
-  background: var(--brand-green-subtle);
-  color: var(--brand-green-primary);
-  border-color: var(--brand-green-border);
+/* Animated Theme Switcher Icon */
+.theme-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s var(--ease-spring);
 }
 
+[data-theme="light"] .theme-icon-wrap {
+  transform: rotate(180deg);
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.4s var(--ease-spring);
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+}
+
+[data-theme="light"] .theme-icon-sun {
+  opacity: 0;
+  transform: scale(0.5) rotate(90deg);
+}
+
+[data-theme="light"] .theme-icon-moon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Watch Live Pill */
 .live-btn {
   display: none;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
+  padding: 0.45rem 1rem;
   border-radius: var(--radius-full);
   background: var(--color-twitch);
   color: #ffffff;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(145, 70, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(145, 70, 255, 0.3);
   transition: all var(--transition-fast);
 }
 
@@ -166,20 +218,21 @@
   background: var(--color-twitch-hover);
   color: #ffffff;
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(145, 70, 255, 0.4);
 }
 
 .live-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 8px #ffffff;
-  animation: pulse-dot 1.8s infinite;
+  box-shadow: 0 0 6px #ffffff;
+  animation: pulse-dot 2s infinite ease-in-out;
 }
 
 @keyframes pulse-dot {
   0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.6; }
+  50% { transform: scale(1.3); opacity: 0.5; }
 }
 
 /* Mobile Menu Button */
@@ -187,12 +240,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-md);
-  background: var(--bg-surface-elevated);
+  background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
+  transition: var(--transition-fast);
 }
 
 @media (min-width: 900px) {
@@ -201,7 +255,7 @@
   }
 }
 
-/* Mobile Drawer Overlay */
+/* Mobile Drawer */
 .mobile-drawer {
   position: fixed;
   top: 0;
@@ -212,7 +266,7 @@
   display: flex;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0.3s, opacity 0.3s ease;
+  transition: visibility 0.28s, opacity 0.28s ease;
 }
 
 .mobile-drawer.open {
@@ -233,7 +287,7 @@
 .drawer-panel {
   position: relative;
   width: 85%;
-  max-width: 320px;
+  max-width: 300px;
   height: 100%;
   background: var(--bg-surface);
   border-right: 1px solid var(--border-subtle);
@@ -241,7 +295,7 @@
   flex-direction: column;
   padding: var(--space-6);
   transform: translateX(-100%);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.32s var(--ease-spring), background-color 0.4s ease;
   box-shadow: var(--shadow-xl);
 }
 
@@ -261,7 +315,7 @@
 .drawer-nav {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1);
   flex: 1;
   overflow-y: auto;
 }
@@ -269,11 +323,10 @@
 .drawer-link {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
   transition: all var(--transition-fast);
@@ -281,8 +334,9 @@
 
 .drawer-link:hover,
 .drawer-link.active {
-  background: var(--brand-green-subtle);
-  color: var(--brand-green-primary);
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .drawer-footer {

@@ -24,7 +24,6 @@
   <link rel="stylesheet" href="assets/css/accessibility.css">
 </head>
 <body>
-  <!-- Accessible Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <div class="site-wrapper">
@@ -32,14 +31,13 @@
     <header class="site-header" role="banner">
       <div class="container nav-container">
         <a href="index.html" class="brand-link" aria-label="SlickPickleNick Home">
-          <div class="brand-badge" aria-hidden="true">🥒</div>
-          <div class="brand-text">
-            <span class="brand-name">SlickPickleNick</span>
-            <span class="brand-tagline">Stream Hub</span>
-          </div>
+          <div class="brand-badge" aria-hidden="true">SPN</div>
+          <span class="brand-name">SlickPickleNick</span>
         </a>
 
+        <!-- Desktop Navigation with Sliding Pill -->
         <nav class="desktop-nav" role="navigation" aria-label="Primary Navigation">
+          <div class="nav-sliding-pill" aria-hidden="true"></div>
           <a href="index.html" class="nav-link">Home</a>
           <a href="commands.html" class="nav-link">Commands</a>
           <a href="rewards.html" class="nav-link active">Channel Points</a>
@@ -50,15 +48,33 @@
 
         <div class="header-actions">
           <button type="button" class="action-btn a11y-toggle-btn" aria-label="Open Accessibility Options" title="Accessibility Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path><circle cx="12" cy="12" r="4"></circle></svg>
           </button>
+          
           <button type="button" class="action-btn theme-toggle-btn" aria-label="Toggle Dark or Light Mode" title="Toggle Theme">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <div class="theme-icon-wrap" aria-hidden="true">
+              <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </div>
           </button>
+
           <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="live-btn" aria-label="Watch live on Twitch (opens in new tab)">
             <span class="live-dot" aria-hidden="true"></span>
             <span>Watch Live</span>
           </a>
+
           <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-drawer">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
           </button>
@@ -72,7 +88,7 @@
       <div class="drawer-panel">
         <div class="drawer-header">
           <div class="brand-link">
-            <span class="brand-badge" aria-hidden="true">🥒</span>
+            <span class="brand-badge" aria-hidden="true">SPN</span>
             <span class="brand-name">SlickPickleNick</span>
           </div>
           <button type="button" id="mobile-drawer-close" class="action-btn" aria-label="Close navigation menu">
@@ -105,21 +121,21 @@
         <!-- Header -->
         <header class="page-header">
           <div class="eyebrow">
-            <span aria-hidden="true">💎</span> Channel Point Rewards
+            Point Redemptions
           </div>
           <h1>Channel Points</h1>
           <p class="description">
-            Browse available Twitch channel point rewards, point costs, cooldown limits, and in-game challenges.
+            Browse available Twitch channel point rewards, point costs, cooldown limits, and game challenge redemptions.
           </p>
         </header>
 
-        <!-- Search & Filters -->
+        <!-- Search & Filter Controls -->
         <section class="search-container" aria-label="Reward search and filter controls">
           <div class="search-input-wrapper">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="search" id="rewards-search-input" class="search-input" placeholder="Search rewards by name, challenge, or game..." aria-label="Search channel point rewards">
             <button type="button" id="rewards-search-clear" class="search-clear-btn" aria-label="Clear search">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
 
@@ -127,11 +143,11 @@
             <!-- Category Chips -->
             <div class="filter-chips" role="tablist" aria-label="Filter rewards by category">
               <button type="button" class="chip-btn active" data-reward-category="all" role="tab" aria-selected="true">
-                <span>All Rewards</span>
+                <span>All</span>
                 <span class="chip-count">24</span>
               </button>
               <button type="button" class="chip-btn" data-reward-category="General" role="tab" aria-selected="false">
-                <span>General Stream</span>
+                <span>General</span>
                 <span class="chip-count">9</span>
               </button>
               <button type="button" class="chip-btn" data-reward-category="Fortnite" role="tab" aria-selected="false">
@@ -150,19 +166,19 @@
 
             <!-- Sort dropdown -->
             <div style="display: flex; align-items: center; gap: var(--space-2);">
-              <label for="rewards-sort-select" style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Sort by:</label>
-              <select id="rewards-sort-select" style="background: var(--bg-surface-elevated); color: var(--text-primary); border: 1px solid var(--border-medium); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); font-size: var(--font-size-xs); font-family: inherit;">
+              <label for="rewards-sort-select" style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Sort:</label>
+              <select id="rewards-sort-select" style="background: var(--bg-surface-elevated); color: var(--text-primary); border: 1px solid var(--border-subtle); padding: 0.35rem 0.65rem; border-radius: var(--radius-sm); font-size: var(--font-size-xs); font-family: inherit; cursor: pointer; transition: var(--transition-theme);">
                 <option value="featured">Featured &amp; Cost</option>
-                <option value="low-high">Points: Low to High</option>
-                <option value="high-low">Points: High to Low</option>
+                <option value="low-high">Cost: Low to High</option>
+                <option value="high-low">Cost: High to Low</option>
               </select>
             </div>
           </div>
         </section>
 
         <!-- Count -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-6);">
-          <span id="rewards-count" style="font-size: var(--font-size-sm); color: var(--text-muted); font-weight: 600;">Loading rewards...</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+          <span id="rewards-count" style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 500;">Loading rewards...</span>
         </div>
 
         <!-- Reward Cards Grid -->
@@ -171,9 +187,9 @@
         </div>
 
         <!-- Empty State -->
-        <div id="rewards-empty-state" style="display: none; text-align: center; padding: var(--space-12) var(--space-4); background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-medium); margin-top: var(--space-6);">
-          <p style="font-size: var(--font-size-lg); font-weight: 700; color: var(--text-primary); margin-bottom: var(--space-2);">No matching rewards found</p>
-          <p style="font-size: var(--font-size-sm); color: var(--text-muted);">Try searching for a different keyword or selecting another category filter.</p>
+        <div id="rewards-empty-state" style="display: none; text-align: center; padding: var(--space-12) var(--space-4); background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-medium); margin-top: var(--space-4);">
+          <p style="font-size: var(--font-size-md); font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-1);">No matching rewards</p>
+          <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Try searching for a different keyword or selecting another category filter.</p>
         </div>
 
       </div>
@@ -184,8 +200,8 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <h2>🥒 SlickPickleNick</h2>
-            <p>Interactive gaming streams, chat chaos, stream tools, and community-driven live experiences.</p>
+            <h2>SlickPickleNick</h2>
+            <p>Interactive gaming streams, chat participation, stream tools, and community live experiences.</p>
           </div>
           <div class="footer-col">
             <h3>Navigation</h3>
@@ -227,9 +243,7 @@
   <div id="a11y-modal-backdrop" class="a11y-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
     <div class="a11y-modal">
       <div class="a11y-modal-header">
-        <h2 id="a11y-modal-title">
-          <span aria-hidden="true">⚙️</span> Accessibility Options
-        </h2>
+        <h2 id="a11y-modal-title">Accessibility Options</h2>
         <button type="button" id="a11y-modal-close" class="a11y-close-btn" aria-label="Close accessibility options">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
@@ -279,7 +293,7 @@
       <div class="a11y-toggle-card">
         <div class="a11y-toggle-info">
           <strong>Highlight Links</strong>
-          <span>Underlines and highlights all links</span>
+          <span>Adds high-contrast underlines to all links</span>
         </div>
         <label class="switch" for="a11y-links-toggle">
           <input type="checkbox" id="a11y-links-toggle" aria-label="Toggle Highlight Links">

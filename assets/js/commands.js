@@ -1,6 +1,6 @@
 /**
  * Twitch Commands Explorer - SlickPickleNick Website
- * Live search, category tabs, filtering, and copy-to-clipboard.
+ * Live search, category tabs, filtering, and animated copy-to-clipboard.
  */
 
 (function () {
@@ -10,7 +10,6 @@
   let currentCategory = 'all';
   let searchQuery = '';
 
-  // Embedded fallback in case fetch is blocked by local file:// CORS
   const fallbackCommands = [
     { "command": "!clip", "category": "General", "access": "Everyone", "description": "Clip the last 60 seconds of the stream.", "example": "!clip", "cooldown": "30s" },
     { "command": "!lurk", "category": "General", "access": "Everyone", "description": "Start the lurk timer while you are away.", "example": "!lurk", "cooldown": "None" },
@@ -110,14 +109,14 @@
             <div class="command-code-wrap">
               <code>${escapeHTML(item.command)}</code>
               <button class="copy-btn" data-copy="${escapeHTML(pureCmd)}" title="Copy ${escapeHTML(pureCmd)} to clipboard" aria-label="Copy ${escapeHTML(pureCmd)} to clipboard">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
               </button>
             </div>
           </td>
           <td><span class="badge badge-everyone">${escapeHTML(item.access)}</span></td>
           <td>${escapeHTML(item.description)}</td>
           <td><code>${escapeHTML(item.example || item.command)}</code></td>
-          <td><span class="text-muted">${escapeHTML(item.cooldown || 'None')}</span></td>
+          <td><span style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.cooldown || 'None')}</span></td>
         </tr>
       `;
       })
@@ -147,7 +146,14 @@
         const text = btn.getAttribute('data-copy');
         if (!text) return;
         navigator.clipboard.writeText(text).then(() => {
-          showToast(`Copied "${text}" to clipboard!`);
+          btn.classList.add('copied');
+          btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+          showToast(`Copied ${text}`);
+
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+          }, 1800);
         });
       });
     });
@@ -166,7 +172,7 @@
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
-      <svg class="toast-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <svg class="toast-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
       <span>${escapeHTML(message)}</span>
     `;
 
@@ -175,8 +181,8 @@
 
     setTimeout(() => {
       toast.classList.remove('show');
-      setTimeout(() => toast.remove(), 300);
-    }, 2500);
+      setTimeout(() => toast.remove(), 250);
+    }, 2200);
   }
 
   function escapeHTML(str) {
