@@ -77,30 +77,30 @@
 }
 
 /* ==========================================================================
-   Dark Theme (Default)
+   Dark Theme (Default) - Crisp, High-Readability Charcoal Palette
    ========================================================================== */
 :root,
 [data-theme="dark"] {
-  --bg-app: #080b11;
-  --bg-surface: #0e131f;
-  --bg-surface-elevated: #161d2e;
-  --bg-surface-hover: #1e273d;
-  --bg-glass: rgba(14, 19, 31, 0.85);
-  --bg-glass-elevated: rgba(22, 29, 46, 0.9);
+  --bg-app: #0e1218;
+  --bg-surface: #161c24;
+  --bg-surface-elevated: #202732;
+  --bg-surface-hover: #2a3340;
+  --bg-glass: rgba(14, 18, 24, 0.88);
+  --bg-glass-elevated: rgba(22, 28, 36, 0.94);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #080b11;
+  --text-primary: #ffffff;
+  --text-secondary: #d1d7e0;
+  --text-muted: #9aa5b5;
+  --text-inverse: #0e1218;
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-medium: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.18);
+  --border-strong: rgba(255, 255, 255, 0.28);
 
   --nav-pill-bg: rgba(255, 255, 255, 0.08);
-  --nav-pill-border: rgba(255, 255, 255, 0.1);
+  --nav-pill-border: rgba(255, 255, 255, 0.15);
 
-  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
@@ -112,11 +112,11 @@
   --bg-surface: #ffffff;
   --bg-surface-elevated: #f1f5f9;
   --bg-surface-hover: #e2e8f0;
-  --bg-glass: rgba(255, 255, 255, 0.88);
-  --bg-glass-elevated: rgba(241, 245, 249, 0.92);
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-glass-elevated: rgba(241, 245, 249, 0.95);
 
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #334155;
   --text-muted: #64748b;
   --text-inverse: #ffffff;
 
@@ -127,7 +127,7 @@
   --nav-pill-bg: #e2e8f0;
   --nav-pill-border: #cbd5e1;
 
-  --card-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   --header-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
 }
 
