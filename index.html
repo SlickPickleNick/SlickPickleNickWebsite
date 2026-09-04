@@ -1,11 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SlickPickleNick | Stream Hub</title>
   <meta name="description" content="Official stream hub for SlickPickleNick. Interactive gaming streams, Twitch chat commands, channel point rewards, setup specs, and community hub.">
   <link rel="canonical" href="https://slickpicklenick.live/">
+
+  <!-- Theme & A11y Anti-Flash Initialization -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('spn_theme');
+        if (!theme) {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+
+        var contrast = localStorage.getItem('spn_a11y_contrast');
+        if (contrast && contrast !== 'normal') document.documentElement.setAttribute('data-contrast', contrast);
+        var size = localStorage.getItem('spn_a11y_size');
+        if (size && size !== 'normal') document.documentElement.setAttribute('data-size', size);
+        if (localStorage.getItem('spn_a11y_dyslexic') === 'true') document.documentElement.setAttribute('data-font', 'dyslexic');
+        if (localStorage.getItem('spn_a11y_links') === 'true') document.documentElement.setAttribute('data-links', 'highlight');
+        if (localStorage.getItem('spn_a11y_motion') === 'true') document.documentElement.setAttribute('data-reduced-motion', 'true');
+        if (localStorage.getItem('spn_a11y_mono') === 'true') document.documentElement.setAttribute('data-monochrome', 'true');
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:site_name" content="SlickPickleNick">
