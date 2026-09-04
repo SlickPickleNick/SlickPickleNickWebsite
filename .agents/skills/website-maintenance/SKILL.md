@@ -56,7 +56,38 @@ Rewards are stored in [`assets/data/rewards.json`](file:///Users/nicksilvestro/G
 
 ---
 
-## 3. Local Testing & Verification
+## 3. Updating Stream Schedule & Google Calendar
+
+Stream schedule data is managed through **Google Calendar** or [`assets/data/schedule.json`](file:///Users/nicksilvestro/GitHub%20Repos/SlickPickleNickWebsite/SlickPickleNickWebsite/assets/data/schedule.json).
+
+### Method A: Linking a Public Google Calendar (Recommended)
+1. Open Google Calendar on web and go to **Settings > Settings for my calendars > [Your Calendar]**.
+2. Under **Access permissions for events**, check **Make available to public**.
+3. Under **Integrate calendar**, copy the **Calendar ID** (or Public address in iCal format).
+4. In [`assets/js/schedule.js`](file:///Users/nicksilvestro/GitHub%20Repos/SlickPickleNickWebsite/SlickPickleNickWebsite/assets/js/schedule.js), set:
+   ```javascript
+   const GOOGLE_CALENDAR_ID = 'your_calendar_id@group.calendar.google.com';
+   ```
+5. When you schedule stream events in Google Calendar with titles like `Fortnite Stream` or `GeoGuessr Torch Games`, the website will automatically pull and display the times in the viewer's local timezone.
+
+### Method B: Static Schedule Fallback (`assets/data/schedule.json`)
+If not using Google Calendar, edit [`assets/data/schedule.json`](file:///Users/nicksilvestro/GitHub%20Repos/SlickPickleNickWebsite/SlickPickleNickWebsite/assets/data/schedule.json):
+```json
+{
+  "id": "stream-1",
+  "title": "GeoGuessr Torch Games & World Tour",
+  "game": "GeoGuessr",
+  "dayOffset": 2,
+  "hour": 19,
+  "minute": 0,
+  "durationHours": 3.5,
+  "description": "Interactive viewer chat mini-game with !torch and !stop."
+}
+```
+
+---
+
+## 4. Local Testing & Verification
 To test changes locally before merging to `main`:
 1. Ensure you are on the `beta` branch: `git checkout beta`
 2. Start a lightweight local server:

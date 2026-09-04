@@ -1,0 +1,38 @@
+[
+  {
+    "id": "stream-1",
+    "title": "GeoGuessr Torch Games & World Tour",
+    "game": "GeoGuessr",
+    "dayOfWeek": "Tuesday",
+    "timeString": "7:00 PM EDT",
+    "dayOffset": 2,
+    "hour": 19,
+    "minute": 0,
+    "durationHours": 3.5,
+    "description": "Interactive viewer chat mini-game! Viewers join the torch bearer pool with !torch and control Nick's movement with !stop."
+  },
+  {
+    "id": "stream-2",
+    "title": "Fortnite Zero Build & Ranked Duos",
+    "game": "Fortnite",
+    "dayOfWeek": "Friday",
+    "timeString": "7:30 PM EDT",
+    "dayOffset": 5,
+    "hour": 19,
+    "minute": 30,
+    "durationHours": 4,
+    "description": "Fast-paced Battle Royale action with Channel Point viewer challenges: skin picks, map drops, and loadout restrictions."
+  },
+  {
+    "id": "stream-3",
+    "title": "Meccha Chameleon & Community Variety",
+    "game": "Meccha Chameleon",
+    "dayOfWeek": "Sunday",
+    "timeString": "6:00 PM EDT",
+    "dayOffset": 7,
+    "hour": 18,
+    "minute": 0,
+    "durationHours": 3,
+    "description": "Stealth camouflage hide-and-seek, Discord community multiplayer polls, and chat reward madness."
+  }
+]
