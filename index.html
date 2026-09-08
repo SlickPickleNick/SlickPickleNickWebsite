@@ -17,14 +17,26 @@
         }
         document.documentElement.setAttribute('data-theme', theme);
 
-        var contrast = localStorage.getItem('spn_a11y_contrast');
-        if (contrast && contrast !== 'normal') document.documentElement.setAttribute('data-contrast', contrast);
-        var size = localStorage.getItem('spn_a11y_size');
-        if (size && size !== 'normal') document.documentElement.setAttribute('data-size', size);
-        if (localStorage.getItem('spn_a11y_dyslexic') === 'true') document.documentElement.setAttribute('data-font', 'dyslexic');
-        if (localStorage.getItem('spn_a11y_links') === 'true') document.documentElement.setAttribute('data-links', 'highlight');
-        if (localStorage.getItem('spn_a11y_motion') === 'true') document.documentElement.setAttribute('data-reduced-motion', 'true');
-        if (localStorage.getItem('spn_a11y_mono') === 'true') document.documentElement.setAttribute('data-monochrome', 'true');
+        var a11yRaw = localStorage.getItem('spn_a11y_prefs');
+        if (a11yRaw) {
+          var p = JSON.parse(a11yRaw);
+          var html = document.documentElement;
+          if (p.textSize && p.textSize !== 'normal') html.setAttribute('data-text-size', p.textSize);
+          if (p.dyslexic) html.setAttribute('data-dyslexic', 'true');
+          if (p.lineHeight && p.lineHeight !== 'normal') html.setAttribute('data-line-height', p.lineHeight);
+          if (p.bigCursor && p.bigCursor !== 'none') html.setAttribute('data-big-cursor', p.bigCursor);
+          if (p.letterSpacing && p.letterSpacing !== 'normal') html.setAttribute('data-letter-spacing', p.letterSpacing);
+          if (p.textAlign && p.textAlign !== 'left') html.setAttribute('data-text-align', p.textAlign);
+          if (p.fontWeight && p.fontWeight !== 'normal') html.setAttribute('data-font-weight', p.fontWeight);
+          if (p.contrast && p.contrast !== 'normal') html.setAttribute('data-contrast', p.contrast);
+          if (p.monochrome) html.setAttribute('data-monochrome', 'true');
+          if (p.readingLine) html.setAttribute('data-reading-line', 'true');
+          if (p.readingMask) html.setAttribute('data-reading-mask', 'true');
+          if (p.hideImages) html.setAttribute('data-hide-images', 'true');
+          if (p.highlightContent) html.setAttribute('data-highlight-content', 'true');
+          if (p.stopAnimations) html.setAttribute('data-reduced-motion', 'true');
+          if (p.highlightLinks) html.setAttribute('data-highlight-links', 'true');
+        }
       } catch (e) {}
     })();
   </script>
@@ -335,94 +347,277 @@
     </footer>
   </div>
 
+  <!-- Floating Accessibility Launcher Button (Bottom-Left) -->
+  <button type="button" class="a11y-floating-btn" id="a11y-floating-trigger" aria-label="Open Accessibility Options" aria-controls="a11y-modal-backdrop" aria-expanded="false" title="Accessibility Options (Alt + A)">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="4.5" r="2.5"></circle>
+      <path d="M4 8.5h16"></path>
+      <path d="M12 8.5v6"></path>
+      <path d="m8.5 21 3.5-6.5 3.5 6.5"></path>
+    </svg>
+    <span class="a11y-badge-count" id="a11y-active-count" aria-hidden="true" style="display: none;">0</span>
+  </button>
+
   <!-- Accessibility Customization Modal -->
   <div id="a11y-modal-backdrop" class="a11y-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="a11y-modal-title">
     <div class="a11y-modal">
       <div class="a11y-modal-header">
-        <h2 id="a11y-modal-title">Accessibility Options</h2>
+        <div style="display: flex; align-items: center; gap: var(--space-2);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brand-green-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="4.5" r="2.5"></circle>
+            <path d="M4 8.5h16"></path>
+            <path d="M12 8.5v6"></path>
+            <path d="m8.5 21 3.5-6.5 3.5 6.5"></path>
+          </svg>
+          <h2 id="a11y-modal-title">Accessibility Options</h2>
+        </div>
         <button type="button" id="a11y-modal-close" class="a11y-close-btn" aria-label="Close accessibility options">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
 
-      <div class="a11y-group">
-        <span class="a11y-group-title">Text Size</span>
-        <div class="a11y-options-row">
-          <button type="button" class="a11y-opt-btn" data-a11y-size="normal" aria-pressed="true">
-            <span style="font-size: 1rem;">A</span>
-            <span>Normal</span>
-          </button>
-          <button type="button" class="a11y-opt-btn" data-a11y-size="large" aria-pressed="false">
-            <span style="font-size: 1.25rem;">A</span>
-            <span>Large</span>
-          </button>
-          <button type="button" class="a11y-opt-btn" data-a11y-size="xlarge" aria-pressed="false">
-            <span style="font-size: 1.5rem;">A</span>
-            <span>Extra Large</span>
-          </button>
-        </div>
+      <!-- Quick Navigation Tabs for Modules -->
+      <div class="a11y-tabs" role="tablist" aria-label="Accessibility Categories">
+        <button type="button" class="a11y-tab-btn active" role="tab" aria-selected="true" data-tab="content">Content</button>
+        <button type="button" class="a11y-tab-btn" role="tab" aria-selected="false" data-tab="color">Color</button>
+        <button type="button" class="a11y-tab-btn" role="tab" aria-selected="false" data-tab="orientation">Orientation</button>
       </div>
 
-      <div class="a11y-group">
-        <span class="a11y-group-title">Color Contrast</span>
-        <div class="a11y-options-row" style="grid-template-columns: repeat(2, 1fr);">
-          <button type="button" class="a11y-opt-btn" data-a11y-contrast="normal" aria-pressed="true">
-            <span>Standard Contrast</span>
-          </button>
-          <button type="button" class="a11y-opt-btn" data-a11y-contrast="high" aria-pressed="false">
-            <span>High Contrast</span>
-          </button>
-        </div>
+      <div class="a11y-modal-body">
+        <!-- MODULE 1: Content Modules -->
+        <section class="a11y-tab-panel active" id="a11y-tab-content" data-panel="content" role="tabpanel" aria-label="Content Modules">
+          <div class="a11y-section-title">Content Modules</div>
+
+          <!-- Font Size -->
+          <div class="a11y-group">
+            <span class="a11y-group-title">Font Size</span>
+            <div class="a11y-options-row a11y-cols-4">
+              <button type="button" class="a11y-opt-btn" data-a11y-size="normal" aria-pressed="true">
+                <span style="font-size: 0.9rem;">100%</span>
+                <span>Normal</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-size="large" aria-pressed="false">
+                <span style="font-size: 1.05rem;">115%</span>
+                <span>Large</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-size="xlarge" aria-pressed="false">
+                <span style="font-size: 1.2rem;">130%</span>
+                <span>X-Large</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-size="xxlarge" aria-pressed="false">
+                <span style="font-size: 1.35rem;">150%</span>
+                <span>Huge</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Readable Font (OpenDyslexic) -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Readable Font (OpenDyslexic)</strong>
+              <span>Applies weighted character shapes to assist with dyslexia</span>
+            </div>
+            <label class="switch" for="a11y-dyslexic-toggle">
+              <input type="checkbox" id="a11y-dyslexic-toggle" aria-label="Toggle Readable Font (OpenDyslexic)">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <!-- Line Height -->
+          <div class="a11y-group">
+            <span class="a11y-group-title">Line Height</span>
+            <div class="a11y-options-row">
+              <button type="button" class="a11y-opt-btn" data-a11y-lineheight="normal" aria-pressed="true">
+                <span>Default</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-lineheight="relaxed" aria-pressed="false">
+                <span>Relaxed (1.8x)</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-lineheight="loose" aria-pressed="false">
+                <span>Loose (2.2x)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Big Cursor -->
+          <div class="a11y-group">
+            <span class="a11y-group-title">Big Cursor</span>
+            <div class="a11y-options-row">
+              <button type="button" class="a11y-opt-btn" data-a11y-cursor="none" aria-pressed="true">
+                <span>Default</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-cursor="white" aria-pressed="false">
+                <span>Big White</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-cursor="black" aria-pressed="false">
+                <span>Big Black</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Letter Spacing -->
+          <div class="a11y-group">
+            <span class="a11y-group-title">Letter Spacing</span>
+            <div class="a11y-options-row">
+              <button type="button" class="a11y-opt-btn" data-a11y-spacing="normal" aria-pressed="true">
+                <span>Default</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-spacing="wide" aria-pressed="false">
+                <span>Wide (+0.08em)</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-spacing="wider" aria-pressed="false">
+                <span>Wider (+0.16em)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Align Text -->
+          <div class="a11y-group">
+            <span class="a11y-group-title">Align Text</span>
+            <div class="a11y-options-row">
+              <button type="button" class="a11y-opt-btn" data-a11y-align="left" aria-pressed="true">
+                <span>Left</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-align="center" aria-pressed="false">
+                <span>Center</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-align="justify" aria-pressed="false">
+                <span>Justify</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Font Weight -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Font Weight (Bolder Text)</strong>
+              <span>Increases thickness of body text and headers for maximum clarity</span>
+            </div>
+            <label class="switch" for="a11y-fontweight-toggle">
+              <input type="checkbox" id="a11y-fontweight-toggle" aria-label="Toggle Bolder Font Weight">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- MODULE 2: Color Modules -->
+        <section class="a11y-tab-panel" id="a11y-tab-color" data-panel="color" role="tabpanel" aria-label="Color Modules">
+          <div class="a11y-section-title">Color Modules</div>
+
+          <!-- Contrast Modes -->
+          <div class="a11y-group">
+            <span class="a11y-group-title">Contrast Mode</span>
+            <div class="a11y-options-row">
+              <button type="button" class="a11y-opt-btn" data-a11y-contrast="normal" aria-pressed="true">
+                <span>Standard</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-contrast="light" aria-pressed="false">
+                <span>Light Contrast</span>
+              </button>
+              <button type="button" class="a11y-opt-btn" data-a11y-contrast="high" aria-pressed="false">
+                <span>High Contrast</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Monochrome -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Monochrome (Grayscale)</strong>
+              <span>Converts all colors across the entire site to pure grayscale</span>
+            </div>
+            <label class="switch" for="a11y-mono-toggle">
+              <input type="checkbox" id="a11y-mono-toggle" aria-label="Toggle Monochrome Grayscale">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
+        <!-- MODULE 3: Orientation Modules -->
+        <section class="a11y-tab-panel" id="a11y-tab-orientation" data-panel="orientation" role="tabpanel" aria-label="Orientation Modules">
+          <div class="a11y-section-title">Orientation Modules</div>
+
+          <!-- Reading Line -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Reading Line</strong>
+              <span>A horizontal guide ruler that follows your cursor to maintain focus</span>
+            </div>
+            <label class="switch" for="a11y-readingline-toggle">
+              <input type="checkbox" id="a11y-readingline-toggle" aria-label="Toggle Reading Line">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <!-- Reading Mask -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Reading Mask</strong>
+              <span>Dims the screen around a focused reading aperture tracking your mouse</span>
+            </div>
+            <label class="switch" for="a11y-readingmask-toggle">
+              <input type="checkbox" id="a11y-readingmask-toggle" aria-label="Toggle Reading Mask">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <!-- Hide Images -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Hide Images</strong>
+              <span>Hides illustrations, photos, and video embeds for distraction-free reading</span>
+            </div>
+            <label class="switch" for="a11y-hideimages-toggle">
+              <input type="checkbox" id="a11y-hideimages-toggle" aria-label="Toggle Hide Images">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <!-- Highlight Content -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Highlight Content</strong>
+              <span>Emphasizes the focused or hovered paragraph, card, or section</span>
+            </div>
+            <label class="switch" for="a11y-highlightcontent-toggle">
+              <input type="checkbox" id="a11y-highlightcontent-toggle" aria-label="Toggle Highlight Content">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <!-- Stop Animations -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Stop Animations</strong>
+              <span>Disables animations, transitions, and dynamic sliding effects</span>
+            </div>
+            <label class="switch" for="a11y-motion-toggle">
+              <input type="checkbox" id="a11y-motion-toggle" aria-label="Toggle Stop Animations">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <!-- Highlight Links -->
+          <div class="a11y-toggle-card">
+            <div class="a11y-toggle-info">
+              <strong>Highlight Links</strong>
+              <span>Adds high-contrast underlines and background highlighting to all links</span>
+            </div>
+            <label class="switch" for="a11y-links-toggle">
+              <input type="checkbox" id="a11y-links-toggle" aria-label="Toggle Highlight Links">
+              <span class="slider" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
       </div>
 
-      <div class="a11y-toggle-card">
-        <div class="a11y-toggle-info">
-          <strong>Dyslexia-Friendly Font</strong>
-          <span>Applies OpenDyslexic typeface for easier reading</span>
-        </div>
-        <label class="switch" for="a11y-dyslexic-toggle">
-          <input type="checkbox" id="a11y-dyslexic-toggle" aria-label="Toggle Dyslexia-Friendly Font">
-          <span class="slider" aria-hidden="true"></span>
-        </label>
+      <!-- Footer Action -->
+      <div class="a11y-modal-footer">
+        <button type="button" id="a11y-reset-btn" class="a11y-reset-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+          <span>Reset All Accessibility Settings</span>
+        </button>
       </div>
-
-      <div class="a11y-toggle-card">
-        <div class="a11y-toggle-info">
-          <strong>Highlight Links</strong>
-          <span>Adds high-contrast underlines to all links</span>
-        </div>
-        <label class="switch" for="a11y-links-toggle">
-          <input type="checkbox" id="a11y-links-toggle" aria-label="Toggle Highlight Links">
-          <span class="slider" aria-hidden="true"></span>
-        </label>
-      </div>
-
-      <div class="a11y-toggle-card">
-        <div class="a11y-toggle-info">
-          <strong>Stop Animations</strong>
-          <span>Disables animations, transitions, and sliding effects</span>
-        </div>
-        <label class="switch" for="a11y-motion-toggle">
-          <input type="checkbox" id="a11y-motion-toggle" aria-label="Toggle Reduced Motion">
-          <span class="slider" aria-hidden="true"></span>
-        </label>
-      </div>
-
-      <div class="a11y-toggle-card">
-        <div class="a11y-toggle-info">
-          <strong>Monochrome Grayscale</strong>
-          <span>Removes color saturation across the entire interface</span>
-        </div>
-        <label class="switch" for="a11y-mono-toggle">
-          <input type="checkbox" id="a11y-mono-toggle" aria-label="Toggle Monochrome Grayscale">
-          <span class="slider" aria-hidden="true"></span>
-        </label>
-      </div>
-
-      <button type="button" id="a11y-reset-btn" class="a11y-reset-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-        <span>Reset Accessibility Settings</span>
-      </button>
     </div>
   </div>
 
