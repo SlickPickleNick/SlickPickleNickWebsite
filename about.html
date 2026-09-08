@@ -177,98 +177,65 @@
           </p>
         </section>
 
-        <!-- Setup & Gear Explorer -->
-        <section class="gear-section" aria-labelledby="gear-heading">
-          <!-- Overview Card with Quick Highlights & Copy Button -->
-          <div class="gear-overview-card">
-            <div class="gear-overview-header">
-              <div>
-                <h2 id="gear-heading" class="gear-overview-title">Streaming Battlestation Specs</h2>
-                <p class="gear-overview-subtitle">
-                  Authentic hardware inventory configured for 1440p high-refresh gaming, low-noise broadcast audio, and uncompressed 1080p60 stream delivery.
-                </p>
+        <!-- Interactive 3D Setup & Battlestation Explorer -->
+        <section class="battlestation-3d-section" id="battlestation-3d-wrapper" aria-labelledby="gear-heading">
+          <div class="battlestation-section-header">
+            <div>
+              <div class="badge badge-green" style="margin-bottom: var(--space-2);">Creator Battlestation</div>
+              <h2 id="gear-heading" style="margin: 0 0 var(--space-2);">Interactive 3D Setup &amp; Battlestation</h2>
+              <p style="color: var(--text-secondary); margin: 0; font-size: var(--font-size-sm); max-width: 620px;">
+                Explore Nick’s authentic streaming workstation in interactive 3D. Drag to rotate, scroll to zoom, or select camera presets and hotspots to inspect hardware specs and stream performance tuning.
+              </p>
+            </div>
+            <button type="button" id="copy-specs-btn" class="copy-specs-btn" aria-label="Copy all setup specs to clipboard">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy Setup Specs</span>
+            </button>
+          </div>
+
+          <!-- 3D Viewport + Hardware Inspector 2-Column Layout -->
+          <div class="battlestation-3d-layout">
+            <!-- Left Column: 3D WebGL Canvas & Camera Angle Bar -->
+            <div class="battlestation-3d-viewport">
+              <div id="battlestation-3d-canvas" class="battlestation-3d-canvas" role="region" aria-label="Interactive 3D Battlestation Model"></div>
+
+              <!-- Top Tool Overlays -->
+              <div class="battlestation-3d-top-tools">
+                <button type="button" id="toggle-rotate-btn" class="tool-icon-btn" title="Toggle Auto-Rotate" aria-label="Toggle Auto-Rotate">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                </button>
+                <button type="button" id="reset-3d-view-btn" class="tool-icon-btn" title="Reset Camera View" aria-label="Reset Camera View">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                </button>
               </div>
-              <button type="button" id="copy-specs-btn" class="copy-specs-btn" aria-label="Copy full setup specs to clipboard">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span>Copy Setup Specs</span>
-              </button>
+
+              <!-- Bottom Camera Presets -->
+              <div class="battlestation-preset-bar" role="toolbar" aria-label="Camera angle presets">
+                <button type="button" class="view-preset-btn active" data-preset="overview">🔭 Overview</button>
+                <button type="button" class="view-preset-btn" data-preset="pc">⚡ Gaming Rig</button>
+                <button type="button" class="view-preset-btn" data-preset="monitors">📺 Monitors</button>
+                <button type="button" class="view-preset-btn" data-preset="audio">🎙️ Audio</button>
+                <button type="button" class="view-preset-btn" data-preset="peripherals">⌨️ Peripherals</button>
+                <button type="button" class="view-preset-btn" data-preset="camera">📷 Lighting</button>
+              </div>
             </div>
 
-            <div class="gear-stats-grid">
-              <div class="gear-stat-box">
-                <span class="gear-stat-label">Processor</span>
-                <span class="gear-stat-value">Ryzen 7 7800X3D</span>
-                <span class="gear-stat-sub">8C / 16T • 96MB 3D V-Cache</span>
-              </div>
-              <div class="gear-stat-box">
-                <span class="gear-stat-label">Graphics</span>
-                <span class="gear-stat-value">RTX 4070 Ti SUPER</span>
-                <span class="gear-stat-sub">16GB GDDR6X • Dual NVENC</span>
-              </div>
-              <div class="gear-stat-box">
-                <span class="gear-stat-label">Displays</span>
-                <span class="gear-stat-value">Triple-Screen Array</span>
-                <span class="gear-stat-sub">170Hz Main + 144Hz + Touch</span>
-              </div>
-              <div class="gear-stat-box">
-                <span class="gear-stat-label">Audio Chain</span>
-                <span class="gear-stat-value">Elgato Wave DX (XLR)</span>
-                <span class="gear-stat-sub">Wave XLR Preamp &amp; Clipguard</span>
-              </div>
+            <!-- Right Column: Active Hardware Spec Inspector -->
+            <div id="active-gear-inspector" class="active-gear-inspector" aria-live="polite">
+              <!-- Dynamically rendered by assets/js/gear.js -->
             </div>
           </div>
 
-          <!-- Filter & Search Controls -->
-          <div class="search-container" aria-label="Gear search and category filter controls">
-            <div class="search-input-wrapper">
-              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              <input type="search" id="gear-search-input" class="search-input" placeholder="Search gear specs, models, hardware roles..." aria-label="Search gear by name, spec, or role">
-              <button type="button" id="gear-search-clear" class="search-clear-btn" aria-label="Clear gear search" style="display: none;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-              </button>
+          <!-- Categorized Full Hardware Inventory (Expandable Accordion) -->
+          <div style="margin-top: var(--space-8);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-4);">
+              <h3 style="font-size: var(--font-size-md); font-weight: 800; color: var(--text-primary); margin: 0;">Complete Hardware Inventory</h3>
+              <span style="font-size: var(--font-size-xs); color: var(--text-muted);">22 Pro Studio Components</span>
             </div>
 
-            <!-- Category Filter Chips -->
-            <div class="filter-chips" role="tablist" aria-label="Filter gear by category">
-              <button type="button" class="chip-btn active" data-category="all" role="tab" aria-selected="true">
-                <span>All Gear</span>
-                <span class="chip-count">22</span>
-              </button>
-              <button type="button" class="chip-btn" data-category="pc" role="tab" aria-selected="false">
-                <span>Gaming Rig</span>
-                <span class="chip-count">7</span>
-              </button>
-              <button type="button" class="chip-btn" data-category="monitors" role="tab" aria-selected="false">
-                <span>Monitors</span>
-                <span class="chip-count">3</span>
-              </button>
-              <button type="button" class="chip-btn" data-category="audio" role="tab" aria-selected="false">
-                <span>Audio Chain</span>
-                <span class="chip-count">5</span>
-              </button>
-              <button type="button" class="chip-btn" data-category="peripherals" role="tab" aria-selected="false">
-                <span>Peripherals &amp; Desk</span>
-                <span class="chip-count">4</span>
-              </button>
-              <button type="button" class="chip-btn" data-category="camera" role="tab" aria-selected="false">
-                <span>Camera &amp; Lighting</span>
-                <span class="chip-count">3</span>
-              </button>
+            <div class="accordion" id="gear-accordion-container">
+              <!-- Dynamically populated by assets/js/gear.js -->
             </div>
-          </div>
-
-          <!-- Count Indicator -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
-            <span id="gear-count" style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 500;" aria-live="polite">Showing 22 hardware items</span>
-          </div>
-
-          <!-- Dynamic Gear Cards Grid -->
-          <div id="gear-grid" class="gear-grid" aria-label="Hardware inventory cards"></div>
-
-          <!-- Empty State -->
-          <div id="gear-empty-state" class="empty-state" style="display: none; text-align: center; padding: var(--space-12) var(--space-4); border: 1px dashed var(--border-medium); border-radius: var(--radius-md); margin-top: var(--space-4);">
-            <p style="font-size: var(--font-size-md); font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-1);">No matching gear items</p>
-            <p style="font-size: var(--font-size-xs); color: var(--text-muted);">Try searching for a different component name, model, or category.</p>
           </div>
         </section>
 
@@ -651,6 +618,8 @@
   </aside>
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/accessibility.js"></script>
   <script src="assets/js/gear.js"></script>
