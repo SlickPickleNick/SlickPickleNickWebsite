@@ -110,4 +110,48 @@ describe('Data Integrity & Schema Validation', () => {
     });
   });
 
+  describe('gear.json', () => {
+    const gearPath = path.join(rootDir, 'assets', 'data', 'gear.json');
+
+    it('should exist and be valid JSON', () => {
+      assert.ok(fs.existsSync(gearPath), 'gear.json must exist');
+      const raw = fs.readFileSync(gearPath, 'utf8');
+      const data = JSON.parse(raw);
+      assert.ok(Array.isArray(data), 'gear.json must contain an array');
+      assert.strictEqual(data.length, 22, 'gear.json should contain all 22 setup hardware items');
+    });
+
+    it('should validate complete schema, categories, and unique IDs for all gear items', () => {
+      const data = JSON.parse(fs.readFileSync(gearPath, 'utf8'));
+      const seenIds = new Set();
+      const validCategories = ['pc', 'monitors', 'audio', 'peripherals', 'camera'];
+
+      data.forEach((item, index) => {
+        assert.ok(item.id && typeof item.id === 'string', `Gear entry ${index} must have 'id' string`);
+        assert.ok(!seenIds.has(item.id), `Duplicate gear id: ${item.id}`);
+        seenIds.add(item.id);
+
+        assert.ok(item.name && typeof item.name === 'string', `Gear ${item.id} must have 'name'`);
+        assert.ok(item.category && validCategories.includes(item.category), `Gear ${item.id} has invalid category '${item.category}'`);
+        assert.ok(item.categoryLabel && typeof item.categoryLabel === 'string', `Gear ${item.id} must have 'categoryLabel'`);
+        assert.ok(item.role && typeof item.role === 'string', `Gear ${item.id} must have 'role'`);
+        assert.ok(item.whyNickUsesIt && typeof item.whyNickUsesIt === 'string', `Gear ${item.id} must have 'whyNickUsesIt'`);
+
+        assert.ok(Array.isArray(item.specs), `Gear ${item.id} must have specs array`);
+        assert.ok(item.specs.length > 0, `Gear ${item.id} must have at least 1 spec`);
+        item.specs.forEach(s => {
+          assert.ok(s.label && typeof s.label === 'string', `Spec in ${item.id} missing label`);
+          assert.ok(s.value && typeof s.value === 'string', `Spec in ${item.id} missing value`);
+        });
+
+        if (item.hotspotIndex !== undefined) {
+          assert.ok(
+            typeof item.hotspotIndex === 'number' && item.hotspotIndex >= 1 && item.hotspotIndex <= 7,
+            `Gear ${item.id} hotspotIndex must be between 1 and 7`
+          );
+        }
+      });
+    });
+  });
+
 });

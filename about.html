@@ -177,64 +177,200 @@
           </p>
         </section>
 
-        <!-- Hardware & Setup Specs Sheet -->
-        <section style="max-width: 800px; margin: 0 auto var(--space-12);" aria-labelledby="gear-heading">
-          <h2 id="gear-heading" style="margin-bottom: var(--space-6);">Setup &amp; Gear Specs</h2>
+        <!-- Interactive Setup & Gear Explorer -->
+        <section class="battlestation-hero-wrap" aria-labelledby="gear-heading">
+          <div class="battlestation-header-actions">
+            <div>
+              <div class="badge badge-green" style="margin-bottom: var(--space-2);">Creator Battlestation</div>
+              <h2 id="gear-heading" style="margin: 0 0 var(--space-2);">Interactive Setup &amp; Gear Explorer</h2>
+              <p style="color: var(--text-secondary); margin: 0; font-size: var(--font-size-sm); max-width: 600px;">
+                Explore Nick’s authentic streaming rig, triple-monitor workstation, audio chain, and broadcast hardware. Click any hotspot or filter by category below.
+              </p>
+            </div>
+            <button type="button" id="copy-specs-btn" class="copy-specs-btn" aria-label="Copy all setup specs to clipboard">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy Setup Specs</span>
+            </button>
+          </div>
 
-          <div class="specs-sheet">
-            <div class="spec-category">
-              <h3 class="spec-category-title">Workstation &amp; Performance</h3>
-              <div class="spec-rows">
-                <div class="spec-row">
-                  <span class="spec-key">Processor</span>
-                  <span class="spec-value">High-Performance Multi-Core CPU</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-key">Graphics</span>
-                  <span class="spec-value">NVIDIA GeForce RTX Series</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-key">Memory</span>
-                  <span class="spec-value">32GB+ High-Speed RAM</span>
-                </div>
-              </div>
+          <!-- Interactive Battlestation Map Visualizer -->
+          <div class="battlestation-visualizer" id="battlestation-map">
+            <div class="battlestation-map-header">
+              <span class="battlestation-map-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                Streaming Battlestation Blueprint
+              </span>
+              <span>Click any numbered hotspot to jump to hardware specs</span>
             </div>
 
-            <div class="spec-category">
-              <h3 class="spec-category-title">Audio &amp; Monitoring</h3>
-              <div class="spec-rows">
-                <div class="spec-row">
-                  <span class="spec-key">Microphone</span>
-                  <span class="spec-value">Dynamic Broadcast Microphone</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-key">Interface</span>
-                  <span class="spec-value">Low-Noise XLR Interface</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-key">Headphones</span>
-                  <span class="spec-value">Studio Reference Monitoring</span>
-                </div>
-              </div>
+            <div class="hotspot-map" role="region" aria-label="Interactive Battlestation Workstation Map">
+              <!-- Visual Workstation SVG Schematic -->
+              <svg class="hotspot-map-svg" viewBox="0 0 1000 560" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="deskGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="var(--bg-surface-elevated)" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="var(--bg-surface)" stop-opacity="0.95" />
+                  </linearGradient>
+                  <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(16, 185, 129, 0.15)" />
+                    <stop offset="100%" stop-color="rgba(5, 150, 105, 0.05)" />
+                  </linearGradient>
+                  <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--border-subtle)" stroke-width="0.75" stroke-opacity="0.6" />
+                  </pattern>
+                </defs>
+
+                <!-- Grid Blueprint Background -->
+                <rect width="1000" height="560" fill="url(#gridPattern)" />
+
+                <!-- Desk Surface -->
+                <polygon points="60,420 940,420 980,540 20,540" fill="url(#deskGrad)" stroke="var(--border-medium)" stroke-width="1.5" />
+                <!-- Topographic Desk Mat -->
+                <polygon points="240,435 760,435 790,525 210,525" fill="var(--bg-surface)" stroke="var(--brand-green-primary)" stroke-width="1.5" stroke-dasharray="6 3" />
+                <text x="500" y="480" text-anchor="middle" fill="var(--brand-green-primary)" font-size="11" font-weight="700" letter-spacing="2" opacity="0.8">TOPOGRAPHIC DESK MAT</text>
+
+                <!-- Left Peripheral Zone: Wave XLR & Stream Deck Mk.2 (Hotspot 5) -->
+                <rect x="100" y="445" width="80" height="55" rx="6" fill="var(--bg-surface-hover)" stroke="var(--border-medium)" stroke-width="1.5" />
+                <text x="140" y="476" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-weight="600">STREAM DECK</text>
+
+                <!-- Center Peripheral: Lemokey P1 Pro Keyboard & Razer Mouse (Hotspot 7) -->
+                <rect x="340" y="450" width="200" height="60" rx="6" fill="var(--bg-surface-hover)" stroke="var(--border-strong)" stroke-width="1.5" />
+                <rect x="580" y="455" width="40" height="50" rx="14" fill="var(--bg-surface-hover)" stroke="var(--border-strong)" stroke-width="1.5" />
+
+                <!-- Right Side: NZXT H6 Flow Dual-Chamber PC Tower (Hotspot 6) -->
+                <rect x="850" y="160" width="110" height="280" rx="8" fill="var(--bg-surface-elevated)" stroke="var(--brand-green-primary)" stroke-width="2" />
+                <line x1="865" y1="210" x2="945" y2="210" stroke="var(--brand-green-light)" stroke-width="1.5" />
+                <line x1="865" y1="230" x2="945" y2="230" stroke="var(--brand-green-light)" stroke-width="1.5" />
+                <line x1="865" y1="250" x2="945" y2="250" stroke="var(--brand-green-light)" stroke-width="1.5" />
+                <circle cx="905" cy="330" r="28" stroke="var(--brand-green-primary)" stroke-width="2" fill="var(--bg-surface)" />
+                <text x="905" y="334" text-anchor="middle" fill="var(--brand-green-primary)" font-size="10" font-weight="700">7800X3D</text>
+                <text x="905" y="415" text-anchor="middle" fill="var(--text-primary)" font-size="10" font-weight="700">RTX 4070 Ti S</text>
+
+                <!-- Monitors Mount Stand -->
+                <rect x="470" y="320" width="60" height="100" fill="var(--bg-surface-hover)" stroke="var(--border-strong)" stroke-width="1" />
+                <rect x="420" y="410" width="160" height="15" rx="3" fill="var(--bg-surface-hover)" stroke="var(--border-strong)" stroke-width="1" />
+
+                <!-- Main Gaming Display: ASUS TUF 32" 170Hz (Hotspot 2) -->
+                <rect x="330" y="120" width="340" height="200" rx="6" fill="url(#screenGrad)" stroke="var(--brand-green-primary)" stroke-width="2.5" />
+                <text x="500" y="210" text-anchor="middle" fill="var(--text-primary)" font-size="14" font-weight="800">ASUS TUF 32" QHD</text>
+                <text x="500" y="232" text-anchor="middle" fill="var(--brand-green-light)" font-size="11" font-weight="700">170Hz • 1ms • Gameplay</text>
+
+                <!-- Secondary Display: Sceptre 32" 144Hz (Hotspot 3) -->
+                <polygon points="685,135 830,155 830,305 685,315" fill="url(#screenGrad)" stroke="var(--border-strong)" stroke-width="2" />
+                <text x="755" y="225" text-anchor="middle" fill="var(--text-primary)" font-size="11" font-weight="700">SCEPTRE 32"</text>
+                <text x="755" y="242" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-weight="600">OBS &amp; Chat</text>
+
+                <!-- Utility Display: Corsair Xeneon Edge (Hotspot 4) -->
+                <rect x="380" y="330" width="240" height="70" rx="4" fill="url(#screenGrad)" stroke="var(--border-strong)" stroke-width="1.5" />
+                <text x="500" y="370" text-anchor="middle" fill="var(--text-secondary)" font-size="10" font-weight="700">CORSAIR XENEON EDGE 14.5"</text>
+
+                <!-- Elgato Facecam & Mount (Hotspot 4 top) -->
+                <rect x="475" y="90" width="50" height="22" rx="4" fill="var(--bg-surface-elevated)" stroke="var(--border-strong)" stroke-width="1.5" />
+                <circle cx="500" cy="101" r="5" fill="var(--brand-green-primary)" />
+
+                <!-- Elgato Wave DX & Wave LP Boom Arm (Hotspot 1) -->
+                <path d="M 210 450 C 240 380, 270 320, 310 270" stroke="var(--border-strong)" stroke-width="4" stroke-linecap="round" fill="none" />
+                <rect x="290" y="240" width="50" height="24" rx="10" transform="rotate(-20 315 252)" fill="var(--bg-surface-elevated)" stroke="var(--brand-green-primary)" stroke-width="2" />
+                <text x="260" y="235" text-anchor="middle" fill="var(--brand-green-primary)" font-size="9" font-weight="700">WAVE DX</text>
+              </svg>
+
+              <!-- Hotspot 1: XLR Dynamic Mic & Boom Arm -->
+              <button type="button" class="hotspot-pin" style="left: 31%; top: 46%;" data-hotspot="1" aria-label="Hotspot 1: Elgato Wave DX Dynamic Microphone &amp; Low Profile Boom Arm">
+                1
+                <span class="hotspot-tooltip" aria-hidden="true">🎙️ Elgato Wave DX &amp; LP Boom Arm</span>
+              </button>
+
+              <!-- Hotspot 2: Main 170Hz Gaming Display -->
+              <button type="button" class="hotspot-pin" style="left: 50%; top: 34%;" data-hotspot="2" aria-label="Hotspot 2: ASUS TUF Gaming 32-inch 170Hz Main Display">
+                2
+                <span class="hotspot-tooltip" aria-hidden="true">🖥️ ASUS TUF 32" 170Hz Gaming Monitor</span>
+              </button>
+
+              <!-- Hotspot 3: Secondary 144Hz Monitor (OBS & Chat) -->
+              <button type="button" class="hotspot-pin" style="left: 76%; top: 40%;" data-hotspot="3" aria-label="Hotspot 3: Sceptre 32-inch 144Hz OBS &amp; Chat Display">
+                3
+                <span class="hotspot-tooltip" aria-hidden="true">📺 Sceptre 32" QHD OBS &amp; Chat Display</span>
+              </button>
+
+              <!-- Hotspot 4: Touchscreen Dashboard & 1080p60 Facecam -->
+              <button type="button" class="hotspot-pin" style="left: 50%; top: 16%;" data-hotspot="4" aria-label="Hotspot 4: Corsair Xeneon Edge &amp; Elgato Facecam 1080p60">
+                4
+                <span class="hotspot-tooltip" aria-hidden="true">📷 Elgato Facecam &amp; Touchscreen Display</span>
+              </button>
+
+              <!-- Hotspot 5: Wave XLR & Stream Deck Mk.2 -->
+              <button type="button" class="hotspot-pin" style="left: 14%; top: 82%;" data-hotspot="5" aria-label="Hotspot 5: Elgato Wave XLR &amp; Stream Deck Mk.2 Controller">
+                5
+                <span class="hotspot-tooltip" aria-hidden="true">🎛️ Elgato Stream Deck Mk.2 &amp; Wave XLR</span>
+              </button>
+
+              <!-- Hotspot 6: AMD 7800X3D + RTX 4070 Ti SUPER PC Tower -->
+              <button type="button" class="hotspot-pin" style="left: 91%; top: 52%;" data-hotspot="6" aria-label="Hotspot 6: AMD Ryzen 7 7800X3D &amp; RTX 4070 Ti SUPER Gaming Rig">
+                6
+                <span class="hotspot-tooltip" aria-hidden="true">⚡ AMD Ryzen 7 7800X3D &amp; RTX 4070 Ti SUPER</span>
+              </button>
+
+              <!-- Hotspot 7: Custom Keyboard, Razer Mouse & Desk Mat -->
+              <button type="button" class="hotspot-pin" style="left: 45%; top: 86%;" data-hotspot="7" aria-label="Hotspot 7: Lemokey P1 Pro Custom Keyboard, Razer DeathAdder V3 &amp; Topographic Mat">
+                7
+                <span class="hotspot-tooltip" aria-hidden="true">⌨️ Lemokey P1 Pro, Razer Mouse &amp; Desk Mat</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter & Search Controls -->
+          <div class="gear-explorer-controls">
+            <!-- Category Filter Pills -->
+            <div class="chips-group" role="tablist" aria-label="Gear category filter">
+              <button type="button" class="chip-btn active" data-category="all" role="tab" aria-selected="true">
+                <span>All Gear</span>
+                <span class="chip-count">22</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="pc" role="tab" aria-selected="false">
+                <span>Gaming Rig</span>
+                <span class="chip-count">7</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="monitors" role="tab" aria-selected="false">
+                <span>Monitors</span>
+                <span class="chip-count">3</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="audio" role="tab" aria-selected="false">
+                <span>Audio Chain</span>
+                <span class="chip-count">5</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="peripherals" role="tab" aria-selected="false">
+                <span>Peripherals &amp; Desk</span>
+                <span class="chip-count">4</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="camera" role="tab" aria-selected="false">
+                <span>Camera &amp; Lighting</span>
+                <span class="chip-count">3</span>
+              </button>
             </div>
 
-            <div class="spec-category">
-              <h3 class="spec-category-title">Camera &amp; Lighting</h3>
-              <div class="spec-rows">
-                <div class="spec-row">
-                  <span class="spec-key">Video Feed</span>
-                  <span class="spec-value">1080p60 Low-Latency Capture</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-key">Lighting</span>
-                  <span class="spec-value">Diffused Dual Softbox Key &amp; Fill</span>
-                </div>
-                <div class="spec-row">
-                  <span class="spec-key">Desk Mat</span>
-                  <span class="spec-value">Official Topographic Desk Mat</span>
-                </div>
-              </div>
+            <!-- Search Input -->
+            <div class="search-input-wrap">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="search" id="gear-search-input" class="search-input" placeholder="Search gear specs, models, hardware roles..." aria-label="Search gear by name, spec, or role">
+              <button type="button" id="gear-search-clear" class="search-clear-btn" aria-label="Clear gear search" style="display: none;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
             </div>
+
+            <div class="gear-results-bar">
+              <span id="gear-count" aria-live="polite">Showing 22 items</span>
+              <span>Official Battlestation Hardware</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Gear Cards Grid -->
+          <div id="gear-grid" class="gear-grid" aria-label="Hardware inventory cards"></div>
+
+          <!-- Empty State -->
+          <div id="gear-empty-state" class="empty-state" style="display: none;">
+            <svg class="empty-state-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <h3 class="empty-state-title">No gear items found</h3>
+            <p class="empty-state-desc">Try searching for another hardware spec, component name, or switch category tabs.</p>
           </div>
         </section>
 
@@ -619,6 +755,7 @@
   <!-- Scripts -->
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/accessibility.js"></script>
+  <script src="assets/js/gear.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

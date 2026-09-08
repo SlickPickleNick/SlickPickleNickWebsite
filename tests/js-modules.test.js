@@ -20,10 +20,11 @@ describe('JavaScript Modules & Logic', () => {
     'commands.js',
     'rewards.js',
     'schedule.js',
+    'gear.js',
     'main.js'
   ];
 
-  it('all 6 JavaScript files should pass syntax compilation without errors', () => {
+  it('all 7 JavaScript files should pass syntax compilation without errors', () => {
     jsFiles.forEach(file => {
       const filePath = path.join(rootDir, 'assets', 'js', file);
       assert.ok(fs.existsSync(filePath), `JS file missing: ${file}`);
@@ -219,6 +220,104 @@ describe('JavaScript Modules & Logic', () => {
       const past = now - 5000;
       const res = calculateTimeRemaining(past, now);
       assert.strictEqual(res.isLiveOrPast, true);
+    });
+  });
+
+  describe('Gear Explorer Logic & Spec Formatting', () => {
+    const sampleGear = [
+      {
+        id: 'pc-cpu',
+        name: 'AMD Ryzen 7 7800X3D',
+        category: 'pc',
+        categoryLabel: 'Gaming Rig',
+        role: 'Primary Processor & 3D V-Cache Gaming',
+        specs: [{ label: 'Cores', value: '8 Cores' }, { label: 'Cache', value: '96MB 3D V-Cache' }],
+        whyNickUsesIt: 'Zero frame drops in CPU-demanding games.',
+        hotspotIndex: 6
+      },
+      {
+        id: 'audio-mic',
+        name: 'Elgato Wave DX',
+        category: 'audio',
+        categoryLabel: 'Audio Chain',
+        role: 'Broadcast Dynamic XLR Microphone',
+        specs: [{ label: 'Capsule', value: 'Dynamic Cardioid' }],
+        whyNickUsesIt: 'Rejects keyboard noise while streaming.',
+        hotspotIndex: 1
+      },
+      {
+        id: 'peripheral-mat',
+        name: 'Official Topographic Desk Mat',
+        category: 'peripherals',
+        categoryLabel: 'Peripherals & Desk',
+        role: 'Official Creator Merch Desk Surface',
+        specs: [{ label: 'Material', value: 'Micro-weave cloth' }],
+        whyNickUsesIt: 'Smooth mouse glide and signature branding.',
+        hotspotIndex: 7
+      }
+    ];
+
+    function filterGear(gearList, query, category) {
+      const q = (query || '').toLowerCase().trim();
+      const cat = (category || 'all').toLowerCase();
+
+      return gearList.filter(item => {
+        const matchesCategory = cat === 'all' || item.category.toLowerCase() === cat;
+        if (!q) return matchesCategory;
+
+        const inName = item.name.toLowerCase().includes(q);
+        const inRole = (item.role || '').toLowerCase().includes(q);
+        const inCat = (item.categoryLabel || '').toLowerCase().includes(q);
+        const inWhy = (item.whyNickUsesIt || '').toLowerCase().includes(q);
+        const inSpecs = (item.specs || []).some(
+          s => (s.label && s.label.toLowerCase().includes(q)) || (s.value && s.value.toLowerCase().includes(q))
+        );
+
+        return matchesCategory && (inName || inRole || inCat || inWhy || inSpecs);
+      });
+    }
+
+    function formatSpecsText(gearList) {
+      const lines = ["🎮 SLICKPICKLENICK PRO STREAMING SETUP & GEAR SPECS"];
+      gearList.forEach(item => {
+        lines.push(`• ${item.name} (${item.role})`);
+      });
+      return lines.join('\n');
+    }
+
+    it('should filter gear by category', () => {
+      const audioGear = filterGear(sampleGear, '', 'audio');
+      assert.strictEqual(audioGear.length, 1);
+      assert.strictEqual(audioGear[0].id, 'audio-mic');
+
+      const pcGear = filterGear(sampleGear, '', 'pc');
+      assert.strictEqual(pcGear.length, 1);
+      assert.strictEqual(pcGear[0].id, 'pc-cpu');
+    });
+
+    it('should filter gear by keyword across name, specs, and creator commentary', () => {
+      // By spec value
+      const vCacheResults = filterGear(sampleGear, '96MB', 'all');
+      assert.strictEqual(vCacheResults.length, 1);
+      assert.strictEqual(vCacheResults[0].id, 'pc-cpu');
+
+      // By commentary keyword
+      const noiseResults = filterGear(sampleGear, 'keyboard noise', 'all');
+      assert.strictEqual(noiseResults.length, 1);
+      assert.strictEqual(noiseResults[0].id, 'audio-mic');
+
+      // By role
+      const merchResults = filterGear(sampleGear, 'merch', 'all');
+      assert.strictEqual(merchResults.length, 1);
+      assert.strictEqual(merchResults[0].id, 'peripheral-mat');
+    });
+
+    it('should format clipboard export text with valid hardware details', () => {
+      const text = formatSpecsText(sampleGear);
+      assert.ok(text.includes('SLICKPICKLENICK'));
+      assert.ok(text.includes('AMD Ryzen 7 7800X3D'));
+      assert.ok(text.includes('Elgato Wave DX'));
+      assert.ok(text.includes('Official Topographic Desk Mat'));
     });
   });
 
