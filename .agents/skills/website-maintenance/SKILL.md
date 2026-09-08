@@ -87,23 +87,46 @@ If not using Google Calendar, edit [`assets/data/schedule.json`](file:///Users/n
 
 ---
 
-## 4. Local Testing & Verification
-To test changes locally before merging to `main`:
-1. Ensure you are on the `beta` branch: `git checkout beta`
-2. Start a lightweight local server:
-   ```bash
-   python3 -m http.server 8080
-   ```
-3. Open `http://localhost:8080` in your browser.
-4. Verify:
-   - Light & Dark theme toggle functionality.
-   - Accessibility panel toggles (text sizing, dyslexic font, high contrast).
-   - Search filtering in `commands.html` and `rewards.html`.
-   - Responsive mobile navigation.
+## 4. Automated Test Suite
+The repository includes a comprehensive, zero-dependency test suite running on Node.js built-in test runner.
+
+### Running Tests
+To run all tests:
+```bash
+npm test
+# or
+node tests/run-all.js
+```
+
+### Running Targeted Test Suites
+```bash
+npm run test:data   # Validate commands.json, rewards.json, schedule.json schemas
+npm run test:html   # Validate HTML5 semantics, landmarks, skip links, and local link routing
+npm run test:a11y   # Validate WCAG AA/AAA ARIA attributes and accessibility drawer controls
+npm run test:css    # Validate design tokens, theme palettes, and color contrast ratios
+npm run test:js     # Validate JavaScript syntax, theme switcher, a11y engine, search algorithms
+```
 
 ---
 
-## 4. Releasing to Production
+## 5. Local Browser Testing & Verification
+To test changes in the browser:
+1. Ensure you are on the `beta` branch: `git checkout beta`
+2. Run the automated test suite: `npm test`
+3. Start the local server:
+   ```bash
+   python3 -m http.server 8080
+   ```
+4. Open `http://localhost:8080` in your browser.
+5. Verify:
+   - Light & Dark theme toggle functionality.
+   - Accessibility side drawer toggles (text sizing, dyslexic font, high contrast, cursor, reading guides).
+   - Search filtering in `commands.html` and `rewards.html`.
+   - Responsive mobile navigation drawer.
+
+---
+
+## 6. Releasing to Production
 Once changes on `beta` are verified:
 ```bash
 git checkout main

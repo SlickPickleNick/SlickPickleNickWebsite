@@ -1,0 +1,22 @@
+{
+  "name": "slickpicklenick-website",
+  "version": "1.0.0",
+  "description": "Official website for SlickPickleNick - interactive streaming, Twitch commands, and channel points.",
+  "scripts": {
+    "test": "node tests/run-all.js",
+    "test:data": "node --test tests/data-integrity.test.js",
+    "test:html": "node --test tests/html-structure.test.js",
+    "test:a11y": "node --test tests/a11y-compliance.test.js",
+    "test:css": "node --test tests/css-tokens.test.js",
+    "test:js": "node --test tests/js-modules.test.js"
+  },
+  "keywords": [
+    "slickpicklenick",
+    "twitch",
+    "gaming",
+    "website",
+    "accessibility"
+  ],
+  "author": "SlickPickleNick",
+  "license": "MIT"
+}
