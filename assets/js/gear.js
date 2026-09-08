@@ -1,7 +1,7 @@
 /**
- * Interactive 3D Battlestation & Gear Explorer - SlickPickleNick Official Website
- * Features a real-time Three.js 3D WebGL workstation model, interactive raycast hotspots,
- * smooth camera transitions, hardware spec inspector, categorized specs, and clipboard export.
+ * Streamlined Broadcast Setup & Hardware Specs - SlickPickleNick Official Website
+ * Provides clean, digestible hardware specs rendering, category filtering, instant search,
+ * Grid/Table view switching, and single-click clipboard export.
  */
 
 (function () {
@@ -10,15 +10,7 @@
   let gearData = [];
   let currentCategory = 'all';
   let searchQuery = '';
-  let selectedGearIndex = 0;
-
-  // 3D Scene globals
-  let scene, camera, renderer, controls;
-  let animationFrameId;
-  let isAutoRotating = false;
-  let hotspotMeshes = [];
-  let raycaster, mouse;
-  let cameraTween = null;
+  let currentViewMode = 'grid'; // 'grid' | 'table'
 
   const fallbackGear = [
     {
@@ -33,9 +25,7 @@
         { "label": "Boost Clock", "value": "Up to 5.0 GHz" },
         { "label": "L3 Cache", "value": "96MB 3D V-Cache" }
       ],
-      "whyNickUsesIt": "Unparalleled 1% low frame consistency in CPU-heavy games while encoding and running stream bots simultaneously.",
-      "viewPreset": "pc",
-      "hotspotIndex": 6
+      "whyNickUsesIt": "Unparalleled 1% low frame consistency in CPU-heavy games like Fortnite and GeoGuessr while encoding and running stream bots simultaneously."
     },
     {
       "id": "pc-gpu",
@@ -49,9 +39,7 @@
         { "label": "Encoding", "value": "8th Gen Dual NVENC (AV1 & HEVC)" },
         { "label": "Target Res", "value": "1440p High Refresh Gameplay" }
       ],
-      "whyNickUsesIt": "Flawless 1440p gaming fidelity with dedicated NVENC stream encoding that avoids taxing game rendering.",
-      "viewPreset": "pc",
-      "hotspotIndex": 6
+      "whyNickUsesIt": "Flawless 1440p gaming fidelity with dedicated NVENC stream encoding that avoids taxing game rendering."
     },
     {
       "id": "pc-ram",
@@ -64,9 +52,7 @@
         { "label": "Type", "value": "DDR5 High Speed" },
         { "label": "Profile", "value": "AMD EXPO Optimized" }
       ],
-      "whyNickUsesIt": "Handles OBS Studio, Streamer.bot, Spotify, browser sources, Discord, and games concurrently.",
-      "viewPreset": "pc",
-      "hotspotIndex": 6
+      "whyNickUsesIt": "Handles OBS Studio, Streamer.bot, Spotify, browser sources, Discord, and games concurrently."
     },
     {
       "id": "pc-storage",
@@ -79,9 +65,7 @@
         { "label": "Interface", "value": "PCIe Gen 4.0 x4, NVMe 2.0" },
         { "label": "Read / Write", "value": "Up to 7,450 / 6,900 MB/s" }
       ],
-      "whyNickUsesIt": "Instant game load times and rapid local clip recording with zero latency.",
-      "viewPreset": "pc",
-      "hotspotIndex": 6
+      "whyNickUsesIt": "Instant game load times and rapid local clip recording with zero latency."
     },
     {
       "id": "pc-motherboard",
@@ -94,8 +78,7 @@
         { "label": "Power Design", "value": "Twin 14+2+1 Phases Digital VRM" },
         { "label": "Connectivity", "value": "Wi-Fi 6E, 2.5GbE LAN, PCIe 5.0 M.2" }
       ],
-      "whyNickUsesIt": "Rock-solid VRM thermal performance and extensive rear I/O connectivity for all streaming capture cards.",
-      "viewPreset": "pc"
+      "whyNickUsesIt": "Rock-solid VRM thermal performance and extensive rear I/O connectivity for all streaming capture cards."
     },
     {
       "id": "pc-cooling",
@@ -108,23 +91,20 @@
         { "label": "Display", "value": "Wide-Angle LCD Screen for Real-Time Temps" },
         { "label": "Fans", "value": "F120 RGB Core Fans" }
       ],
-      "whyNickUsesIt": "Keeps the 7800X3D whisper-quiet and cool under multi-hour stream loads.",
-      "viewPreset": "pc"
+      "whyNickUsesIt": "Keeps the 7800X3D whisper-quiet under multi-hour stream loads."
     },
     {
       "id": "pc-case",
       "name": "NZXT H6 Flow RGB & C850 PSU",
       "category": "pc",
       "categoryLabel": "Gaming Rig",
-      "role": "Dual-Chamber Chassis & Power Supply",
+      "role": "Dual-Chamber High-Airflow Chassis & Power",
       "specs": [
         { "label": "Case", "value": "NZXT H6 Flow RGB Compact Dual-Chamber" },
         { "label": "Power Supply", "value": "NZXT C850 850W 80+ Gold Fully Modular" },
-        { "label": "Airflow", "value": "Angled Front Fans for GPU Direct Cooling" }
+        { "label": "Airflow", "value": "Angled Front Corner Fans for GPU Direct Cooling" }
       ],
-      "whyNickUsesIt": "Showcase dual-chamber layout with direct GPU intake cooling to keep noise floor minimal for the microphone.",
-      "viewPreset": "pc",
-      "hotspotIndex": 6
+      "whyNickUsesIt": "Seamless wraparound glass showcase design with dedicated direct GPU intake cooling to keep noise floor minimal for the microphone."
     },
     {
       "id": "monitor-main",
@@ -136,11 +116,10 @@
         { "label": "Screen Size", "value": "32 Inch" },
         { "label": "Resolution", "value": "2560 x 1440 QHD" },
         { "label": "Refresh Rate", "value": "170Hz" },
-        { "label": "Response Time", "value": "1ms (MPRT)" }
+        { "label": "Response Time", "value": "1ms (MPRT)" },
+        { "label": "Panel", "value": "Fast VA with FreeSync Premium" }
       ],
-      "whyNickUsesIt": "Crisp 1440p resolution and 170Hz fluidity for competitive Fortnite battles and GeoGuessr reconnaissance.",
-      "viewPreset": "monitors",
-      "hotspotIndex": 2
+      "whyNickUsesIt": "High refresh rate and crisp 1440p resolution give precise visual clarity in competitive Fortnite and GeoGuessr."
     },
     {
       "id": "monitor-secondary",
@@ -154,9 +133,7 @@
         { "label": "Refresh Rate", "value": "144Hz" },
         { "label": "Purpose", "value": "OBS Studio, Twitch Chat, Streamer.bot, Discord" }
       ],
-      "whyNickUsesIt": "Matches the 32-inch scale of the main display to easily monitor live chat, Twitch alerts, and sound levels.",
-      "viewPreset": "monitors",
-      "hotspotIndex": 3
+      "whyNickUsesIt": "Matches the 32-inch scale of the main display to easily monitor live chat, Twitch alerts, sound levels, and bot queues."
     },
     {
       "id": "monitor-utility",
@@ -167,11 +144,10 @@
       "specs": [
         { "label": "Screen Size", "value": "14.5 Inch Ultra-Wide" },
         { "label": "Resolution", "value": "2560 x 720 Ultrawide" },
-        { "label": "Touchscreen", "value": "Yes (Multi-Touch)" }
+        { "label": "Touchscreen", "value": "Yes (Multi-Touch)" },
+        { "label": "Refresh Rate", "value": "60Hz" }
       ],
-      "whyNickUsesIt": "Positioned right beneath the primary monitors as a dedicated touchscreen control center for audio and dashboards.",
-      "viewPreset": "monitors",
-      "hotspotIndex": 4
+      "whyNickUsesIt": "Positioned right beneath the primary monitors as a dedicated touchscreen control center for audio sliders and stream dashboards."
     },
     {
       "id": "audio-mic",
@@ -181,27 +157,25 @@
       "role": "Broadcast Dynamic XLR Voice Microphone",
       "specs": [
         { "label": "Capsule", "value": "Dynamic, Cardioid Polar Pattern" },
-        { "label": "Acoustic Tuning", "value": "Warm broadcast presence with optimized speech clarity" },
-        { "label": "Connection", "value": "Standard 3-Pin XLR" }
+        { "label": "Acoustic Tuning", "value": "Warm broadcast presence with speech clarity" },
+        { "label": "Connection", "value": "Standard 3-Pin XLR" },
+        { "label": "Internal Shielding", "value": "Internal pop filter & humbucker coil" }
       ],
-      "whyNickUsesIt": "Tight cardioid pickup rejects mechanical keyboard clicks while giving commentary a warm broadcast tone.",
-      "viewPreset": "audio",
-      "hotspotIndex": 1
+      "whyNickUsesIt": "Tight cardioid pickup rejects mechanical keyboard clicks and room reflections while giving Nick's commentary a warm broadcast tone."
     },
     {
       "id": "audio-interface",
       "name": "Elgato Wave XLR Interface",
       "category": "audio",
       "categoryLabel": "Audio Chain",
-      "role": "Low-Noise XLR Preamp & Digital Mixer",
+      "role": "Ultra-Low-Noise XLR Preamp & Digital Mixer",
       "specs": [
         { "label": "Gain Range", "value": "Up to 75dB Ultra-Low Noise Gain" },
         { "label": "Anti-Distortion", "value": "Proprietary Clipguard Technology" },
+        { "label": "Controls", "value": "Capacitive Mute Sensor & Multifunction Dial" },
         { "label": "Software", "value": "Wave Link Digital Multi-Track Audio Mixing" }
       ],
-      "whyNickUsesIt": "Hardware Clipguard prevents audio peaking when shouting or laughing during exciting stream moments.",
-      "viewPreset": "audio",
-      "hotspotIndex": 5
+      "whyNickUsesIt": "Hardware Clipguard prevents audio distortion during funny stream moments, while Wave Link cleanly splits audio channels."
     },
     {
       "id": "audio-boom",
@@ -214,9 +188,7 @@
         { "label": "Rotation", "value": "360-degree horizontal swivel" },
         { "label": "Cable Management", "value": "Integrated magnetic cable channels" }
       ],
-      "whyNickUsesIt": "Swings directly under the main monitor line of sight, keeping the screen and face completely unobstructed.",
-      "viewPreset": "audio",
-      "hotspotIndex": 1
+      "whyNickUsesIt": "Swings directly under the main monitor line of sight, keeping Nick's face and screen completely unobstructed on camera."
     },
     {
       "id": "audio-headphones",
@@ -229,8 +201,7 @@
         { "label": "Wireless", "value": "LIGHTSPEED 24-bit uncompressed audio" },
         { "label": "Base Station", "value": "Magnetic charging dock with multi-device switching" }
       ],
-      "whyNickUsesIt": "Pinpoint spatial directional audio for GeoGuessr audio cues and enemy footstep positioning with zero latency.",
-      "viewPreset": "audio"
+      "whyNickUsesIt": "Pinpoint spatial directional audio for GeoGuessr audio cues and Fortnite enemy footstep positioning with zero latency."
     },
     {
       "id": "audio-speakers",
@@ -243,8 +214,7 @@
         { "label": "Drivers", "value": "4-inch bass driver + 13mm silk dome tweeter" },
         { "label": "Inputs", "value": "Dual RCA AUX inputs with side-panel EQ dials" }
       ],
-      "whyNickUsesIt": "High-fidelity listening for video editing, music, and casual playback when not wearing a headset.",
-      "viewPreset": "audio"
+      "whyNickUsesIt": "High-fidelity listening for video editing, music, and casual playback when not wearing a headset off-stream."
     },
     {
       "id": "peripheral-keyboard",
@@ -258,9 +228,7 @@
         { "label": "Switches", "value": "Keychron Super Banana Tactile Switches" },
         { "label": "Firmware", "value": "QMK / VIA Programmable" }
       ],
-      "whyNickUsesIt": "Substantial aluminum weight, satisfying tactile typing feel, and custom macros mapped for stream management.",
-      "viewPreset": "peripherals",
-      "hotspotIndex": 7
+      "whyNickUsesIt": "Substantial aluminum heft, satisfying tactile typing feel, and custom macros mapped for quick stream management."
     },
     {
       "id": "peripheral-mouse",
@@ -271,11 +239,10 @@
       "specs": [
         { "label": "Weight", "value": "55g Ultra-Lightweight" },
         { "label": "Sensor", "value": "Focus X 26K Optical Sensor" },
-        { "label": "Switches", "value": "Gen-3 Optical Mouse Switches (90M clicks)" }
+        { "label": "Switches", "value": "Gen-3 Optical Mouse Switches (90M clicks)" },
+        { "label": "Connectivity", "value": "HyperSpeed Wireless (Up to 8000Hz polling)" }
       ],
-      "whyNickUsesIt": "Ergonomic comfort for long gaming sessions with instant wireless response time and smooth tracking.",
-      "viewPreset": "peripherals",
-      "hotspotIndex": 7
+      "whyNickUsesIt": "Ergonomic comfort for long gaming sessions with instant wireless response time and smooth tracking on desk mats."
     },
     {
       "id": "peripheral-streamdeck",
@@ -288,9 +255,7 @@
         { "label": "Integrations", "value": "OBS Studio, Wave Link, Streamer.bot, Spotify, Discord" },
         { "label": "Stand", "value": "45-degree angled desk stand" }
       ],
-      "whyNickUsesIt": "Controls scene transitions, Channel Point sound effects, Discord mutes, and GeoGuessr torch triggers with single-button precision.",
-      "viewPreset": "peripherals",
-      "hotspotIndex": 5
+      "whyNickUsesIt": "Controls scene transitions, Channel Point sound effects, Discord mutes, and GeoGuessr torch game bot triggers with single-button precision."
     },
     {
       "id": "peripheral-deskmat",
@@ -301,11 +266,10 @@
       "specs": [
         { "label": "Material", "value": "High-density micro-weave cloth with stitched edges" },
         { "label": "Base", "value": "Anti-slip natural rubber base" },
-        { "label": "Design", "value": "Signature SlickPickleNick Topographic Contour Print" }
+        { "label": "Design", "value": "Signature SlickPickleNick Topographic Contour Print" },
+        { "label": "Store", "value": "Available in the Official Merch Shop" }
       ],
       "whyNickUsesIt": "Provides a smooth mouse glide surface with anti-fray stitching and signature stream branding.",
-      "viewPreset": "peripherals",
-      "hotspotIndex": 7,
       "link": "https://slickpicklenick.live/collections/all"
     },
     {
@@ -320,9 +284,7 @@
         { "label": "Lens", "value": "Elgato Prime Lens f/2.4 24mm all-glass" },
         { "label": "Field of View", "value": "82-degree diagonal FOV" }
       ],
-      "whyNickUsesIt": "Outputs uncompressed 1080p60 video with manual ISO/shutter lock, delivering crisp, noise-free framing.",
-      "viewPreset": "camera",
-      "hotspotIndex": 4
+      "whyNickUsesIt": "Outputs uncompressed 1080p60 video with manual ISO/shutter lock, delivering crisp, noise-free camera framing."
     },
     {
       "id": "camera-keylight",
@@ -333,10 +295,10 @@
       "specs": [
         { "label": "Brightness", "value": "Up to 2800 Lumens" },
         { "label": "Color Temperature", "value": "2900K - 7000K (Warm amber to ice white)" },
-        { "label": "Diffusion", "value": "Multi-layer edge-lit frosted glass" }
+        { "label": "Diffusion", "value": "Multi-layer edge-lit frosted glass" },
+        { "label": "Control", "value": "Wi-Fi app & Stream Deck integration" }
       ],
-      "whyNickUsesIt": "Edge-lit frosted diffusion prevents eye strain while evenly illuminating Nick on camera with natural daylight tone.",
-      "viewPreset": "camera"
+      "whyNickUsesIt": "Edge-lit frosted diffusion prevents eye strain during multi-hour streams while evenly illuminating Nick on camera."
     },
     {
       "id": "camera-toplight",
@@ -349,40 +311,40 @@
         { "label": "Mount", "value": "Desk clamp boom mount" },
         { "label": "Purpose", "value": "Ambient fill lighting to eliminate harsh neck & desk shadows" }
       ],
-      "whyNickUsesIt": "Adds soft overhead separation and fills in workstation shadows for professional multi-point broadcast lighting.",
-      "viewPreset": "camera"
+      "whyNickUsesIt": "Adds soft overhead separation and fills in workstation shadows for professional multi-point broadcast lighting."
     }
   ];
 
-  // Camera presets coordinates (position & lookAt target)
-  const CAMERA_PRESETS = {
-    overview: {
-      pos: { x: 0, y: 11, z: 18 },
-      target: { x: 0, y: 3.5, z: 0 }
-    },
-    pc: {
-      pos: { x: 7.2, y: 6.8, z: 8.5 },
-      target: { x: 5.5, y: 4.2, z: 0.5 }
-    },
-    monitors: {
-      pos: { x: 0, y: 6.8, z: 10.5 },
-      target: { x: 0, y: 5.2, z: -0.2 }
-    },
-    audio: {
-      pos: { x: -4.5, y: 6.2, z: 7.5 },
-      target: { x: -3.2, y: 4.0, z: 1.2 }
-    },
-    peripherals: {
-      pos: { x: 0, y: 8.5, z: 7.5 },
-      target: { x: 0, y: 2.2, z: 2.5 }
-    },
-    camera: {
-      pos: { x: 0, y: 9.5, z: 12 },
-      target: { x: 0, y: 7.5, z: -0.5 }
-    }
+  // Category Icons & Badge helpers
+  const categoryIcons = {
+    'pc': '🖥️',
+    'monitors': '📺',
+    'audio': '🎙️',
+    'peripherals': '⌨️',
+    'camera': '💡',
+    'all': '⚡'
   };
 
-  async function loadGearData() {
+  /**
+   * Escape HTML utility to prevent XSS
+   */
+  function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  /**
+   * Initialize Setup Module
+   */
+  async function initGear() {
+    const container = document.getElementById('gear-container');
+    if (!container) return;
+
     try {
       const res = await fetch('assets/data/gear.json');
       if (res.ok) {
@@ -391,819 +353,418 @@
         gearData = fallbackGear;
       }
     } catch (e) {
+      console.warn('Using fallback setup specs data:', e);
       gearData = fallbackGear;
     }
 
-    renderInspector();
-    renderCategorizedSpecSheet();
     updateCategoryCounts();
-
-    // Initialize 3D Scene
-    init3DScene();
+    setupEventListeners();
+    renderGear();
   }
 
-  function init3DScene() {
-    const container = document.getElementById('battlestation-3d-canvas');
-    if (!container || typeof THREE === 'undefined') return;
-
-    // Dimensions
-    const width = container.clientWidth || 800;
-    const height = container.clientHeight || 450;
-
-    // Scene
-    scene = new THREE.Scene();
-
-    // Camera
-    camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    const defaultPreset = CAMERA_PRESETS.overview;
-    camera.position.set(defaultPreset.pos.x, defaultPreset.pos.y, defaultPreset.pos.z);
-
-    // Renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    container.innerHTML = '';
-    container.appendChild(renderer.domElement);
-
-    // OrbitControls
-    if (typeof THREE.OrbitControls !== 'undefined') {
-      controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
-      controls.maxPolarAngle = Math.PI / 2 - 0.05; // Don't go below desk ground
-      controls.minDistance = 4;
-      controls.maxDistance = 28;
-      controls.target.set(defaultPreset.target.x, defaultPreset.target.y, defaultPreset.target.z);
-      controls.update();
-    }
-
-    // Raycasting
-    raycaster = new THREE.Raycaster();
-    mouse = new THREE.Vector2();
-
-    // Lighting
-    setupLighting();
-
-    // Build 3D Battlestation Models
-    buildBattlestationModels();
-
-    // Event Listeners
-    setup3DControls(container);
-
-    // Animation Loop
-    animate();
-
-    // Resize Handler
-    window.addEventListener('resize', onWindowResize);
-  }
-
-  function setupLighting() {
-    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-
-    // Ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, isDark ? 0.7 : 0.9);
-    scene.add(ambientLight);
-
-    // Main Studio Key Light
-    const keyLight = new THREE.DirectionalLight(0xffffff, isDark ? 1.0 : 1.2);
-    keyLight.position.set(6, 14, 10);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 1024;
-    keyLight.shadow.mapSize.height = 1024;
-    keyLight.shadow.camera.near = 0.5;
-    keyLight.shadow.camera.far = 30;
-    keyLight.shadow.bias = -0.001;
-    scene.add(keyLight);
-
-    // Fill Light (Soft cool tone)
-    const fillLight = new THREE.DirectionalLight(0xa5b4fc, 0.4);
-    fillLight.position.set(-8, 10, 6);
-    scene.add(fillLight);
-
-    // Emerald Green Accent Underglow
-    const greenAccent = new THREE.PointLight(0x10b981, 1.8, 12);
-    greenAccent.position.set(0, 2.8, 0);
-    scene.add(greenAccent);
-
-    // PC RGB Glow
-    const pcRgbGlow = new THREE.PointLight(0x34d399, 1.5, 8);
-    pcRgbGlow.position.set(5.5, 4.2, 0.5);
-    scene.add(pcRgbGlow);
-  }
-
-  function buildBattlestationModels() {
-    // Materials
-    const deskMat = new THREE.MeshStandardMaterial({ color: 0x1e222b, roughness: 0.4, metalness: 0.1 });
-    const legMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.3, metalness: 0.8 });
-    const screenFrameMat = new THREE.MeshStandardMaterial({ color: 0x090d16, roughness: 0.3 });
-    const metalMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.2, metalness: 0.9 });
-    const pcChassisMat = new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.3 });
-    const glassMat = new THREE.MeshPhysicalMaterial({
-      color: 0xffffff,
-      transparent: true,
-      opacity: 0.25,
-      roughness: 0.1,
-      metalness: 0.1,
-      transmission: 0.8
+  /**
+   * Update item count badges on category filter tabs
+   */
+  function updateCategoryCounts() {
+    const counts = { all: gearData.length, pc: 0, monitors: 0, audio: 0, peripherals: 0, camera: 0 };
+    gearData.forEach(item => {
+      if (counts[item.category] !== undefined) {
+        counts[item.category]++;
+      }
     });
 
-    // 1. Desk Top & Legs
-    const desk = new THREE.Mesh(new THREE.BoxGeometry(16, 0.5, 7.5), deskMat);
-    desk.position.set(0, 3, 0);
-    desk.receiveShadow = true;
-    scene.add(desk);
-
-    const legGeo = new THREE.BoxGeometry(0.4, 3, 0.4);
-    const legPositions = [
-      [-7.5, 1.5, -3.2], [7.5, 1.5, -3.2],
-      [-7.5, 1.5, 3.2], [7.5, 1.5, 3.2]
-    ];
-    legPositions.forEach(pos => {
-      const leg = new THREE.Mesh(legGeo, legMat);
-      leg.position.set(pos[0], pos[1], pos[2]);
-      leg.castShadow = true;
-      scene.add(leg);
-    });
-
-    // 2. Topographic Desk Mat
-    const matCanvas = createDeskMatTexture();
-    const matTexture = new THREE.CanvasTexture(matCanvas);
-    const matMaterial = new THREE.MeshStandardMaterial({ map: matTexture, roughness: 0.8 });
-    const deskMatMesh = new THREE.Mesh(new THREE.PlaneGeometry(10, 4.5), matMaterial);
-    deskMatMesh.rotation.x = -Math.PI / 2;
-    deskMatMesh.position.set(-0.5, 3.26, 0.8);
-    deskMatMesh.receiveShadow = true;
-    scene.add(deskMatMesh);
-
-    // 3. Main Gaming Display (ASUS TUF 32" 170Hz - Hotspot 2)
-    const mainScreenGroup = new THREE.Group();
-    const mainFrame = new THREE.Mesh(new THREE.BoxGeometry(6.4, 3.8, 0.2), screenFrameMat);
-    mainFrame.castShadow = true;
-    mainScreenGroup.add(mainFrame);
-
-    const mainDisplayTexture = createScreenTexture("ASUS TUF 32'' QHD", "170Hz • 1ms • Gameplay");
-    const mainScreenMat = new THREE.MeshBasicMaterial({ map: mainDisplayTexture });
-    const mainScreen = new THREE.Mesh(new THREE.PlaneGeometry(6.2, 3.6), mainScreenMat);
-    mainScreen.position.z = 0.11;
-    mainScreenGroup.add(mainScreen);
-
-    // Monitor Stand
-    const standPole = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 3, 16), metalMat);
-    standPole.position.set(0, -1.2, -0.6);
-    standPole.castShadow = true;
-    mainScreenGroup.add(standPole);
-
-    mainScreenGroup.position.set(-0.5, 5.8, -1.2);
-    scene.add(mainScreenGroup);
-
-    // 4. Secondary Display (Sceptre 32" 144Hz - Hotspot 3)
-    const secScreenGroup = new THREE.Group();
-    const secFrame = new THREE.Mesh(new THREE.BoxGeometry(6.0, 3.6, 0.2), screenFrameMat);
-    secFrame.castShadow = true;
-    secScreenGroup.add(secFrame);
-
-    const secDisplayTexture = createScreenTexture("SCEPTRE 32'' 144Hz", "OBS Studio • Chat • Discord");
-    const secScreenMat = new THREE.MeshBasicMaterial({ map: secDisplayTexture });
-    const secScreen = new THREE.Mesh(new THREE.PlaneGeometry(5.8, 3.4), secScreenMat);
-    secScreen.position.z = 0.11;
-    secScreenGroup.add(secScreen);
-
-    secScreenGroup.position.set(4.6, 5.7, -0.2);
-    secScreenGroup.rotation.y = -Math.PI / 6.5;
-    scene.add(secScreenGroup);
-
-    // 5. Touchscreen Utility Display (Corsair Xeneon Edge 14.5" - Hotspot 4)
-    const utilScreenGroup = new THREE.Group();
-    const utilFrame = new THREE.Mesh(new THREE.BoxGeometry(4.6, 1.3, 0.15), screenFrameMat);
-    utilScreenGroup.add(utilFrame);
-
-    const utilDisplayTexture = createScreenTexture("CORSAIR XENEON EDGE", "Audio Mix • Sensors • Dash");
-    const utilScreenMat = new THREE.MeshBasicMaterial({ map: utilDisplayTexture });
-    const utilScreen = new THREE.Mesh(new THREE.PlaneGeometry(4.4, 1.15), utilScreenMat);
-    utilScreen.position.z = 0.08;
-    utilScreenGroup.add(utilScreen);
-
-    utilScreenGroup.position.set(-0.5, 3.8, -0.6);
-    utilScreenGroup.rotation.x = -Math.PI / 8;
-    scene.add(utilScreenGroup);
-
-    // 6. Elgato Facecam 1080p60 (Hotspot 4 top)
-    const camMesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.4, 0.5), metalMat);
-    camMesh.position.set(-0.5, 7.85, -1.1);
-    const lensMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.1, 16), new THREE.MeshBasicMaterial({ color: 0x10b981 }));
-    lensMesh.rotation.x = Math.PI / 2;
-    lensMesh.position.set(0, 0, 0.26);
-    camMesh.add(lensMesh);
-    scene.add(camMesh);
-
-    // 7. NZXT H6 Flow PC Tower (Hotspot 6)
-    const pcGroup = new THREE.Group();
-    const pcBody = new THREE.Mesh(new THREE.BoxGeometry(2.4, 4.8, 4.4), pcChassisMat);
-    pcBody.castShadow = true;
-    pcGroup.add(pcBody);
-
-    const pcGlass = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 4.6), glassMat);
-    pcGlass.rotation.y = -Math.PI / 2;
-    pcGlass.position.set(-1.21, 0, 0);
-    pcGroup.add(pcGlass);
-
-    // GPU with glowing edge inside PC
-    const gpuMesh = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.6, 2.6), new THREE.MeshStandardMaterial({ color: 0x1e293b }));
-    gpuMesh.position.set(0.2, -0.6, 0);
-    const gpuGlow = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.2, 2.4), new THREE.MeshBasicMaterial({ color: 0x10b981 }));
-    gpuGlow.position.set(-0.9, 0, 0);
-    gpuMesh.add(gpuGlow);
-    pcGroup.add(gpuMesh);
-
-    // CPU Cooler LCD Ring
-    const cpuCooler = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.2, 16), new THREE.MeshBasicMaterial({ color: 0x34d399 }));
-    cpuCooler.rotation.z = Math.PI / 2;
-    cpuCooler.position.set(0.4, 0.8, 0.2);
-    pcGroup.add(cpuCooler);
-
-    pcGroup.position.set(6.4, 5.65, -0.6);
-    scene.add(pcGroup);
-
-    // 8. Elgato Wave DX XLR Mic & LP Boom Arm (Hotspot 1)
-    const micGroup = new THREE.Group();
-    // Boom arm joint segments
-    const arm1 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.5, 8), metalMat);
-    arm1.position.set(-5.5, 4.2, -0.5);
-    arm1.rotation.z = Math.PI / 3;
-    micGroup.add(arm1);
-
-    const arm2 = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 3.2, 8), metalMat);
-    arm2.position.set(-3.8, 4.7, 0.8);
-    arm2.rotation.y = Math.PI / 4;
-    arm2.rotation.z = -Math.PI / 10;
-    micGroup.add(arm2);
-
-    // Mic capsule
-    const micCapsule = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 1.2, 16), metalMat);
-    micCapsule.rotation.z = Math.PI / 2.8;
-    micCapsule.position.set(-2.5, 4.8, 1.6);
-    micGroup.add(micCapsule);
-    scene.add(micGroup);
-
-    // 9. Lemokey P1 Pro Keyboard & Razer Mouse (Hotspot 7)
-    const kbMesh = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.22, 1.5), new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.6 }));
-    kbMesh.position.set(-1.2, 3.38, 1.4);
-    kbMesh.castShadow = true;
-    scene.add(kbMesh);
-
-    const mouseMesh = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.25, 1.1), new THREE.MeshStandardMaterial({ color: 0x1e293b }));
-    mouseMesh.position.set(1.5, 3.4, 1.4);
-    mouseMesh.castShadow = true;
-    scene.add(mouseMesh);
-
-    // 10. Elgato Stream Deck Mk.2 & Wave XLR (Hotspot 5)
-    const sdMesh = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.3, 1.1), new THREE.MeshStandardMaterial({ color: 0x0f172a }));
-    sdMesh.rotation.x = -Math.PI / 6;
-    sdMesh.position.set(-4.2, 3.5, 1.2);
-    scene.add(sdMesh);
-
-    const waveXlrMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.35, 16), metalMat);
-    waveXlrMesh.position.set(-4.2, 3.45, -0.4);
-    const dialGlow = new THREE.Mesh(new THREE.RingGeometry(0.28, 0.35, 16), new THREE.MeshBasicMaterial({ color: 0x10b981, side: THREE.DoubleSide }));
-    dialGlow.rotation.x = -Math.PI / 2;
-    dialGlow.position.y = 0.18;
-    waveXlrMesh.add(dialGlow);
-    scene.add(waveXlrMesh);
-
-    // 11. Add Floating 3D Hotspot Pins (1–7)
-    createHotspotPins();
-  }
-
-  function createHotspotPins() {
-    const pinConfigs = [
-      { num: 1, label: "Wave DX Dynamic Mic & LP Arm", pos: [-2.5, 5.6, 1.6], preset: "audio", gearId: "audio-mic" },
-      { num: 2, label: "ASUS TUF 32\" 170Hz Gaming Monitor", pos: [-0.5, 7.4, -1.0], preset: "monitors", gearId: "monitor-main" },
-      { num: 3, label: "Sceptre 32\" OBS & Chat Monitor", pos: [4.6, 7.2, 0.0], preset: "monitors", gearId: "monitor-secondary" },
-      { num: 4, label: "Elgato Facecam & Touchscreen", pos: [-0.5, 8.4, -0.9], preset: "camera", gearId: "camera-main" },
-      { num: 5, label: "Stream Deck Mk.2 & Wave XLR", pos: [-4.2, 4.2, 0.8], preset: "peripherals", gearId: "peripheral-streamdeck" },
-      { num: 6, label: "AMD 7800X3D + RTX 4070 Ti SUPER Rig", pos: [6.4, 7.8, -0.6], preset: "pc", gearId: "pc-gpu" },
-      { num: 7, label: "Lemokey P1 Pro Keyboard & Desk Mat", pos: [-0.5, 4.1, 1.8], preset: "peripherals", gearId: "peripheral-keyboard" }
-    ];
-
-    pinConfigs.forEach(cfg => {
-      const pinGroup = new THREE.Group();
-
-      // Outer glow sphere
-      const glowMat = new THREE.MeshBasicMaterial({
-        color: 0x10b981,
-        transparent: true,
-        opacity: 0.85
-      });
-      const pinSphere = new THREE.Mesh(new THREE.SphereGeometry(0.24, 16, 16), glowMat);
-      pinGroup.add(pinSphere);
-
-      // Ring pulse
-      const ringMat = new THREE.MeshBasicMaterial({ color: 0x34d399, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
-      const ring = new THREE.Mesh(new THREE.RingGeometry(0.3, 0.38, 16), ringMat);
-      ring.rotation.x = Math.PI / 2;
-      pinGroup.add(ring);
-
-      pinGroup.position.set(cfg.pos[0], cfg.pos[1], cfg.pos[2]);
-      pinGroup.userData = { isHotspot: true, num: cfg.num, label: cfg.label, preset: cfg.preset, gearId: cfg.gearId };
-
-      scene.add(pinGroup);
-      hotspotMeshes.push(pinGroup);
+    Object.keys(counts).forEach(cat => {
+      const el = document.getElementById(`count-${cat}`);
+      if (el) el.textContent = counts[cat];
     });
   }
 
-  function createScreenTexture(title, sub) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 288;
-    const ctx = canvas.getContext('2d');
+  /**
+   * Filter gear by query and category
+   */
+  function filterGearList(list, query, category) {
+    const q = (query || '').toLowerCase().trim();
+    const cat = (category || 'all').toLowerCase();
 
-    // Gradient background
-    const grad = ctx.createLinearGradient(0, 0, 512, 288);
-    grad.addColorStop(0, '#064e3b');
-    grad.addColorStop(1, '#022c22');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 512, 288);
+    return list.filter(item => {
+      const matchesCategory = cat === 'all' || item.category.toLowerCase() === cat;
+      if (!q) return matchesCategory;
 
-    // Subtle grid lines
-    ctx.strokeStyle = 'rgba(16, 185, 129, 0.2)';
-    ctx.lineWidth = 1;
-    for (let x = 0; x < 512; x += 32) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 288); ctx.stroke();
-    }
-    for (let y = 0; y < 288; y += 32) {
-      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(512, y); ctx.stroke();
-    }
+      const inName = item.name.toLowerCase().includes(q);
+      const inRole = (item.role || '').toLowerCase().includes(q);
+      const inCat = (item.categoryLabel || '').toLowerCase().includes(q);
+      const inWhy = (item.whyNickUsesIt || '').toLowerCase().includes(q);
+      const inSpecs = (item.specs || []).some(
+        s => (s.label && s.label.toLowerCase().includes(q)) || (s.value && s.value.toLowerCase().includes(q))
+      );
 
-    // Text
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 26px Inter, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(title, 256, 130);
-
-    ctx.fillStyle = '#34d399';
-    ctx.font = '600 16px Inter, sans-serif';
-    ctx.fillText(sub, 256, 165);
-
-    return new THREE.CanvasTexture(canvas);
-  }
-
-  function createDeskMatTexture() {
-    const canvas = document.createElement('canvas');
-    canvas.width = 1024;
-    canvas.height = 512;
-    const ctx = canvas.getContext('2d');
-
-    ctx.fillStyle = '#111827';
-    ctx.fillRect(0, 0, 1024, 512);
-
-    // Topographic contours
-    ctx.strokeStyle = 'rgba(16, 185, 129, 0.35)';
-    ctx.lineWidth = 2;
-
-    for (let r = 50; r < 500; r += 40) {
-      ctx.beginPath();
-      ctx.ellipse(350, 256, r * 1.4, r * 0.8, 0, 0, Math.PI * 2);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.ellipse(750, 256, r * 1.1, r * 0.9, 0, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    // Stitched Border
-    ctx.strokeStyle = '#10b981';
-    ctx.lineWidth = 4;
-    ctx.strokeRect(10, 10, 1004, 492);
-
-    return canvas;
-  }
-
-  function setup3DControls(container) {
-    // Preset buttons
-    const presetButtons = document.querySelectorAll('.view-preset-btn[data-preset]');
-    presetButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const presetKey = btn.getAttribute('data-preset');
-        if (CAMERA_PRESETS[presetKey]) {
-          transitionCamera(CAMERA_PRESETS[presetKey]);
-
-          presetButtons.forEach(b => b.classList.toggle('active', b === btn));
-
-          // Select first item matching preset
-          const matchingIdx = gearData.findIndex(g => (g.viewPreset || g.category) === presetKey);
-          if (matchingIdx !== -1) {
-            selectedGearIndex = matchingIdx;
-            renderInspector();
-          }
-        }
-      });
+      return matchesCategory && (inName || inRole || inCat || inWhy || inSpecs);
     });
-
-    // Auto-Rotate Toggle Button
-    const rotateBtn = document.getElementById('toggle-rotate-btn');
-    if (rotateBtn) {
-      rotateBtn.addEventListener('click', () => {
-        isAutoRotating = !isAutoRotating;
-        rotateBtn.classList.toggle('active', isAutoRotating);
-        rotateBtn.setAttribute('aria-pressed', isAutoRotating ? 'true' : 'false');
-      });
-    }
-
-    // Reset View Button
-    const resetViewBtn = document.getElementById('reset-3d-view-btn');
-    if (resetViewBtn) {
-      resetViewBtn.addEventListener('click', () => {
-        transitionCamera(CAMERA_PRESETS.overview);
-      });
-    }
-
-    // Raycast click detection on Canvas
-    container.addEventListener('pointerdown', onCanvasPointerDown);
   }
 
-  function onCanvasPointerDown(event) {
-    const rect = renderer.domElement.getBoundingClientRect();
-    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  /**
+   * Render Gear Items (Grid or Table View)
+   */
+  function renderGear() {
+    const container = document.getElementById('gear-container');
+    const countEl = document.getElementById('gear-results-count');
+    if (!container) return;
 
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(scene.children, true);
+    const filtered = filterGearList(gearData, searchQuery, currentCategory);
 
-    for (let hit of intersects) {
-      let current = hit.object;
-      while (current && current !== scene) {
-        if (current.userData && current.userData.isHotspot) {
-          const data = current.userData;
-          if (data.preset && CAMERA_PRESETS[data.preset]) {
-            transitionCamera(CAMERA_PRESETS[data.preset]);
-          }
-          if (data.gearId) {
-            const idx = gearData.findIndex(g => g.id === data.gearId);
-            if (idx !== -1) {
-              selectedGearIndex = idx;
-              renderInspector();
-            }
-          }
-          return;
-        }
-        current = current.parent;
+    // Update results counter
+    if (countEl) {
+      if (searchQuery || currentCategory !== 'all') {
+        countEl.textContent = `Showing ${filtered.length} of ${gearData.length} setup items`;
+      } else {
+        countEl.textContent = `Showing all ${gearData.length} setup items`;
       }
     }
-  }
 
-  function transitionCamera(preset) {
-    if (!preset || !controls) return;
+    // Empty state
+    if (filtered.length === 0) {
+      container.className = 'setup-empty-container';
+      container.innerHTML = `
+        <div class="empty-state" style="padding: var(--space-10) var(--space-4); text-align: center;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: var(--space-3);" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+          <h3 style="font-size: var(--font-size-md); color: var(--text-primary); margin-bottom: var(--space-2);">No matching specs found</h3>
+          <p style="font-size: var(--font-size-sm); color: var(--text-secondary); max-width: 400px; margin: 0 auto var(--space-4);">
+            No hardware items match "${escapeHTML(searchQuery)}". Try searching for "RTX", "CPU", "RAM", or clear your filter.
+          </p>
+          <button type="button" class="btn btn-secondary btn-sm" id="reset-filter-btn">
+            Clear Search &amp; Filters
+          </button>
+        </div>
+      `;
 
-    isAutoRotating = false;
-    const rotateBtn = document.getElementById('toggle-rotate-btn');
-    if (rotateBtn) rotateBtn.classList.remove('active');
+      const resetBtn = document.getElementById('reset-filter-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          searchQuery = '';
+          currentCategory = 'all';
+          const searchInput = document.getElementById('gear-search');
+          if (searchInput) searchInput.value = '';
+          const clearBtn = document.getElementById('gear-search-clear');
+          if (clearBtn) clearBtn.style.display = 'none';
 
-    const startPos = camera.position.clone();
-    const endPos = new THREE.Vector3(preset.pos.x, preset.pos.y, preset.pos.z);
-    const startTarget = controls.target.clone();
-    const endTarget = new THREE.Vector3(preset.target.x, preset.target.y, preset.target.z);
+          document.querySelectorAll('#gear-category-tabs .filter-chip').forEach(chip => {
+            const isActive = chip.dataset.category === 'all';
+            chip.classList.toggle('active', isActive);
+            chip.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
 
-    const startTime = performance.now();
-    const duration = 1100; // ms
-
-    cameraTween = {
-      update: (now) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const ease = 0.5 - Math.cos(progress * Math.PI) / 2; // Smooth cosine easing
-
-        camera.position.lerpVectors(startPos, endPos, ease);
-        controls.target.lerpVectors(startTarget, endTarget, ease);
-        controls.update();
-
-        if (progress >= 1) {
-          cameraTween = null;
-        }
+          renderGear();
+        });
       }
-    };
-  }
-
-  function animate(now = 0) {
-    animationFrameId = requestAnimationFrame(animate);
-
-    if (cameraTween) {
-      cameraTween.update(now);
-    } else if (isAutoRotating && controls) {
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 1.2;
-    } else if (controls) {
-      controls.autoRotate = false;
+      return;
     }
 
-    if (controls) controls.update();
-
-    // Pulse hotspot animations
-    const pulseScale = 1 + Math.sin(now * 0.004) * 0.12;
-    hotspotMeshes.forEach(pin => {
-      pin.scale.set(pulseScale, pulseScale, pulseScale);
-    });
-
-    if (renderer && scene && camera) {
-      renderer.render(scene, camera);
+    if (currentViewMode === 'table') {
+      // Table View
+      container.className = 'setup-table-container';
+      container.innerHTML = renderTableView(filtered);
+    } else {
+      // Grid Card View
+      container.className = 'setup-grid-container';
+      container.innerHTML = filtered.map(item => renderCardView(item)).join('');
     }
   }
 
-  function onWindowResize() {
-    const container = document.getElementById('battlestation-3d-canvas');
-    if (!container || !camera || !renderer) return;
+  /**
+   * Render single digestible hardware card
+   */
+  function renderCardView(item) {
+    const icon = categoryIcons[item.category] || '⚡';
+    const catLabel = item.categoryLabel || item.category.toUpperCase();
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-  }
-
-  // ==========================================
-  // Active Hardware Inspector & Spec UI
-  // ==========================================
-
-  function renderInspector() {
-    const container = document.getElementById('active-gear-inspector');
-    if (!container || gearData.length === 0) return;
-
-    const item = gearData[selectedGearIndex] || gearData[0];
-
-    const specsRows = (item.specs || []).map(spec => `
-      <div class="inspector-spec-row">
-        <span class="inspector-spec-k">${escapeHTML(spec.label)}</span>
-        <span class="inspector-spec-v">${escapeHTML(spec.value)}</span>
+    // Render clean key-value specs
+    const specsHTML = (item.specs || []).map(spec => `
+      <div class="setup-spec-item">
+        <span class="setup-spec-label">${escapeHTML(spec.label)}</span>
+        <strong class="setup-spec-val">${escapeHTML(spec.value)}</strong>
       </div>
     `).join('');
 
-    const whyCommentary = item.whyNickUsesIt ? `
-      <div class="inspector-why-box">
-        <span class="inspector-why-tag">Why Nick Uses It</span>
-        <p class="inspector-why-text">${escapeHTML(item.whyNickUsesIt)}</p>
+    // Optional expandable creator note
+    const whyHTML = item.whyNickUsesIt ? `
+      <details class="gear-note-details">
+        <summary class="gear-note-summary">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Why Nick Uses It</span>
+        </summary>
+        <div class="gear-note-body">
+          <p>${escapeHTML(item.whyNickUsesIt)}</p>
+        </div>
+      </details>
+    ` : '';
+
+    // Merch/store link if available
+    const linkHTML = item.link ? `
+      <div class="setup-card-footer">
+        <a href="${escapeHTML(item.link)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: center; gap: var(--space-2);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span>View in Official Shop</span>
+        </a>
       </div>
     ` : '';
 
-    const merchLink = item.link ? `
-      <a href="${escapeHTML(item.link)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="margin-top: var(--space-2); width: 100%;">
-        <span>View in Official Merch Shop</span>
-      </a>
-    ` : '';
-
-    container.innerHTML = `
-      <div class="inspector-card">
-        <div class="inspector-nav-bar">
-          <button type="button" id="inspector-prev-btn" class="inspector-arrow-btn" aria-label="Previous hardware item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </button>
-          <span class="inspector-counter">${selectedGearIndex + 1} of ${gearData.length}</span>
-          <button type="button" id="inspector-next-btn" class="inspector-arrow-btn" aria-label="Next hardware item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
+    return `
+      <article class="setup-card" data-category="${escapeHTML(item.category)}">
+        <div class="setup-card-header">
+          <div class="setup-card-badge">
+            <span class="setup-card-icon" aria-hidden="true">${icon}</span>
+            <span>${escapeHTML(catLabel)}</span>
+          </div>
         </div>
 
-        <div class="inspector-header">
-          <span class="badge badge-green">${escapeHTML(item.categoryLabel || item.category)}</span>
-          <h3 class="inspector-title">${escapeHTML(item.name)}</h3>
-          <div class="inspector-role">${escapeHTML(item.role || '')}</div>
+        <div class="setup-card-title-group">
+          <h3 class="setup-card-title">${escapeHTML(item.name)}</h3>
+          <p class="setup-card-role">${escapeHTML(item.role || '')}</p>
         </div>
 
-        <div class="inspector-specs-table">
-          ${specsRows}
+        <div class="setup-spec-matrix">
+          ${specsHTML}
         </div>
 
-        ${whyCommentary}
-        ${merchLink}
-      </div>
+        ${whyHTML}
+        ${linkHTML}
+      </article>
     `;
-
-    // Hook prev/next buttons
-    const prevBtn = document.getElementById('inspector-prev-btn');
-    const nextBtn = document.getElementById('inspector-next-btn');
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        selectedGearIndex = (selectedGearIndex - 1 + gearData.length) % gearData.length;
-        renderInspector();
-        focusItemIn3D(gearData[selectedGearIndex]);
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        selectedGearIndex = (selectedGearIndex + 1) % gearData.length;
-        renderInspector();
-        focusItemIn3D(gearData[selectedGearIndex]);
-      });
-    }
   }
 
-  function focusItemIn3D(item) {
-    if (!item) return;
-    const presetKey = item.viewPreset || item.category;
-    if (CAMERA_PRESETS[presetKey]) {
-      transitionCamera(CAMERA_PRESETS[presetKey]);
+  /**
+   * Render compact data table view
+   */
+  function renderTableView(items) {
+    const rowsHTML = items.map(item => {
+      const icon = categoryIcons[item.category] || '⚡';
+      const catLabel = item.categoryLabel || item.category.toUpperCase();
 
-      const presetButtons = document.querySelectorAll('.view-preset-btn[data-preset]');
-      presetButtons.forEach(b => b.classList.toggle('active', b.getAttribute('data-preset') === presetKey));
-    }
-  }
-
-  function renderCategorizedSpecSheet() {
-    const container = document.getElementById('gear-accordion-container');
-    if (!container || gearData.length === 0) return;
-
-    const categories = [
-      { key: 'pc', label: 'Gaming Rig & PC', icon: '⚡' },
-      { key: 'monitors', label: 'Monitors & Displays', icon: '📺' },
-      { key: 'audio', label: 'Audio Chain & Monitoring', icon: '🎙️' },
-      { key: 'peripherals', label: 'Peripherals & Desk Surface', icon: '⌨️' },
-      { key: 'camera', label: 'Camera & Lighting', icon: '📷' }
-    ];
-
-    container.innerHTML = categories.map((cat, idx) => {
-      const items = gearData.filter(g => g.category === cat.key);
-      const rows = items.map(item => `
-        <div class="spec-accordion-item" data-gear-id="${escapeHTML(item.id)}">
-          <div class="spec-accordion-item-head">
-            <span class="spec-accordion-name">${escapeHTML(item.name)}</span>
-            <span class="spec-accordion-role">${escapeHTML(item.role || '')}</span>
-          </div>
-          <div class="spec-accordion-detail">
-            ${(item.specs || []).map(s => `<span><strong>${escapeHTML(s.label)}:</strong> ${escapeHTML(s.value)}</span>`).join(' • ')}
-          </div>
-        </div>
-      `).join('');
+      const specsText = (item.specs || []).map(s => `
+        <span class="table-spec-pill"><strong>${escapeHTML(s.label)}:</strong> ${escapeHTML(s.value)}</span>
+      `).join(' ');
 
       return `
-        <details class="accordion-item" ${idx === 0 ? 'open' : ''}>
-          <summary class="accordion-summary">
-            <span>${cat.icon} ${cat.label} (${items.length})</span>
-            <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </summary>
-          <div class="accordion-content">
-            <div class="spec-accordion-list">
-              ${rows}
+        <tr>
+          <td class="table-col-name">
+            <div class="table-name-cell">
+              <span class="table-cat-icon" aria-hidden="true">${icon}</span>
+              <div>
+                <strong>${escapeHTML(item.name)}</strong>
+                <div class="table-role-sub">${escapeHTML(item.role || '')}</div>
+              </div>
             </div>
-          </div>
-        </details>
+          </td>
+          <td class="table-col-cat">
+            <span class="badge badge-subtle">${escapeHTML(catLabel)}</span>
+          </td>
+          <td class="table-col-specs">
+            <div class="table-specs-list">
+              ${specsText}
+            </div>
+          </td>
+        </tr>
       `;
     }).join('');
 
-    // Clicking an item in the accordion focuses it in the inspector and 3D scene
-    const itemRows = container.querySelectorAll('.spec-accordion-item');
-    itemRows.forEach(row => {
-      row.addEventListener('click', () => {
-        const id = row.getAttribute('data-gear-id');
-        const idx = gearData.findIndex(g => g.id === id);
-        if (idx !== -1) {
-          selectedGearIndex = idx;
-          renderInspector();
-          focusItemIn3D(gearData[idx]);
+    return `
+      <div class="setup-table-wrapper">
+        <table class="setup-table" aria-label="Hardware Specifications Table">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 32%;">Component &amp; Role</th>
+              <th scope="col" style="width: 18%;">Category</th>
+              <th scope="col" style="width: 50%;">Key Specifications</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHTML}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
 
-          const visualizer = document.getElementById('battlestation-3d-wrapper');
-          if (visualizer) {
-            visualizer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
+  /**
+   * Setup interactive listeners
+   */
+  function setupEventListeners() {
+    // Search input
+    const searchInput = document.getElementById('gear-search');
+    const searchClear = document.getElementById('gear-search-clear');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        if (searchClear) {
+          searchClear.style.display = searchQuery ? 'inline-flex' : 'none';
         }
+        renderGear();
+      });
+    }
+
+    if (searchClear) {
+      searchClear.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        searchQuery = '';
+        searchClear.style.display = 'none';
+        renderGear();
+      });
+    }
+
+    // Category filter tabs
+    const categoryTabs = document.querySelectorAll('#gear-category-tabs .filter-chip');
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        categoryTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        currentCategory = tab.dataset.category || 'all';
+        renderGear();
       });
     });
-  }
 
-  function updateCategoryCounts() {
-    const counts = { all: gearData.length };
-    gearData.forEach((item) => {
-      const cat = item.category.toLowerCase();
-      counts[cat] = (counts[cat] || 0) + 1;
+    // View switcher (Cards vs Table)
+    const viewButtons = document.querySelectorAll('.setup-view-switcher .view-toggle-btn');
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        viewButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        currentViewMode = btn.dataset.view || 'grid';
+        renderGear();
+      });
     });
 
-    const chips = document.querySelectorAll('.chip-btn[data-category]');
-    chips.forEach((chip) => {
-      const cat = chip.dataset.category.toLowerCase();
-      const count = counts[cat] !== undefined ? counts[cat] : 0;
-      const countSpan = chip.querySelector('.chip-count');
-      if (countSpan) {
-        countSpan.textContent = count;
-      }
-    });
-  }
-
-  function setupSpecCopy() {
+    // Copy Specs button
     const copyBtn = document.getElementById('copy-specs-btn');
-    if (!copyBtn) return;
-
-    copyBtn.addEventListener('click', async () => {
-      const formattedSpecs = buildFormattedSpecsText();
-
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(formattedSpecs);
-        } else {
-          const tempArea = document.createElement('textarea');
-          tempArea.value = formattedSpecs;
-          tempArea.style.position = 'fixed';
-          tempArea.style.left = '-9999px';
-          document.body.appendChild(tempArea);
-          tempArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(tempArea);
-        }
-
-        showToast('✓ Setup specs copied to clipboard!');
-        copyBtn.classList.add('copied');
-        const origHTML = copyBtn.innerHTML;
-        copyBtn.innerHTML = `
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span>Specs Copied!</span>
-        `;
-
-        setTimeout(() => {
-          copyBtn.classList.remove('copied');
-          copyBtn.innerHTML = origHTML;
-        }, 2200);
-      } catch (err) {
-        showToast('Could not copy specs to clipboard.');
-      }
-    });
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        copySpecsToClipboard(copyBtn);
+      });
+    }
   }
 
-  function buildFormattedSpecsText() {
-    const header = [
-      "🎮 SLICKPICKLENICK PRO STREAMING SETUP & GEAR SPECS",
-      "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-      ""
+  /**
+   * Generate clean formatted text for clipboard
+   */
+  function formatSpecsText(list) {
+    const categories = [
+      { key: 'pc', title: '🖥️ GAMING RIG' },
+      { key: 'monitors', title: '📺 DISPLAYS' },
+      { key: 'audio', title: '🎙️ AUDIO & STREAM CONTROL' },
+      { key: 'peripherals', title: '⌨️ PERIPHERALS & DESK' },
+      { key: 'camera', title: '💡 CAMERA & STUDIO LIGHTING' }
     ];
 
-    const categoryTitles = {
-      pc: "🖥️ GAMING RIG & PC",
-      monitors: "📺 MONITORS & DISPLAYS",
-      audio: "🎙️ AUDIO CHAIN",
-      peripherals: "⌨️ PERIPHERALS & DESK",
-      camera: "📷 CAMERA & LIGHTING"
-    };
-
-    const categories = ['pc', 'monitors', 'audio', 'peripherals', 'camera'];
-    const lines = [...header];
+    const lines = [
+      '======================================================',
+      '🎮 SLICKPICKLENICK OFFICIAL BROADCAST RIG & SPECS',
+      '======================================================',
+      ''
+    ];
 
     categories.forEach(cat => {
-      const items = gearData.filter(i => i.category === cat);
+      const items = list.filter(i => i.category === cat.key);
       if (items.length > 0) {
-        lines.push(categoryTitles[cat] || cat.toUpperCase() + ":");
+        lines.push(cat.title);
+        lines.push('------------------------------------------------------');
         items.forEach(item => {
-          const specSummary = (item.specs || []).map(s => `${s.label}: ${s.value}`).join(' | ');
-          lines.push(`• ${item.name} (${item.role || ''})`);
-          if (specSummary) {
-            lines.push(`  ↳ ${specSummary}`);
+          lines.push(`• ${item.name} - ${item.role}`);
+          if (item.specs && item.specs.length > 0) {
+            const specSummary = item.specs.map(s => `${s.label}: ${s.value}`).join(' | ');
+            lines.push(`  Specs: ${specSummary}`);
           }
         });
-        lines.push("");
+        lines.push('');
       }
     });
 
-    lines.push("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    lines.push("🔗 Full gear details & live stream: https://slickpicklenick.live");
-
+    lines.push('Official Merch & Stream: https://slickpicklenick.live');
     return lines.join('\n');
   }
 
-  function showToast(message) {
-    let container = document.getElementById('toast-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'toast-container';
-      container.className = 'toast-container';
-      container.setAttribute('aria-live', 'polite');
-      document.body.appendChild(container);
+  /**
+   * Copy specs to clipboard with visual toast feedback
+   */
+  async function copySpecsToClipboard(buttonEl) {
+    const textToCopy = formatSpecsText(gearData);
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        const textarea = document.createElement('textarea');
+        textarea.value = textToCopy;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+
+      const originalHTML = buttonEl.innerHTML;
+      buttonEl.innerHTML = `
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span>Specs Copied!</span>
+      `;
+      buttonEl.classList.add('copied');
+
+      showToast('Hardware specs copied to clipboard!');
+
+      setTimeout(() => {
+        buttonEl.innerHTML = originalHTML;
+        buttonEl.classList.remove('copied');
+      }, 2500);
+    } catch (err) {
+      console.error('Failed to copy specs:', err);
+      showToast('Could not copy specs to clipboard.');
     }
+  }
 
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = `
-      <svg class="toast-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-      <span>${escapeHTML(message)}</span>
-    `;
-
-    container.appendChild(toast);
-    requestAnimationFrame(() => toast.classList.add('show'));
-
+  /**
+   * Toast notification helper
+   */
+  function showToast(message) {
+    let toast = document.getElementById('spn-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'spn-toast';
+      toast.className = 'toast-notification';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
     setTimeout(() => {
       toast.classList.remove('show');
-      setTimeout(() => toast.remove(), 250);
-    }, 2200);
+    }, 3000);
   }
 
-  function escapeHTML(str) {
-    if (!str) return '';
-    return String(str).replace(/[&<>'"]/g,
-      tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-    );
+  // Initialize on DOM load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGear);
+  } else {
+    initGear();
   }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setupSpecCopy();
-    loadGearData();
-  });
 
 })();

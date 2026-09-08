@@ -482,15 +482,15 @@
 }
 
 /* ==========================================================================
-   3D Battlestation & Gear Explorer Component
+   Broadcast Setup & Hardware Specs Component
    ========================================================================== */
 
-.battlestation-3d-section {
-  max-width: 1000px;
+.setup-specs-section {
+  max-width: 900px;
   margin: 0 auto var(--space-12);
 }
 
-.battlestation-section-header {
+.setup-section-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -499,198 +499,215 @@
   margin-bottom: var(--space-6);
 }
 
-.battlestation-3d-layout {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: var(--space-6);
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.25);
-  margin-bottom: var(--space-8);
+.setup-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-@media (max-width: 860px) {
-  .battlestation-3d-layout {
+/* Core Specs Snapshot Grid (4 Key Highlights) */
+.setup-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 800px) {
+  .setup-snapshot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .setup-snapshot-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* 3D Canvas Viewport */
-.battlestation-3d-viewport {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  min-height: 380px;
-  background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%), var(--bg-canvas);
+.snapshot-card {
+  background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-.battlestation-3d-canvas {
-  width: 100%;
-  height: 100%;
-  cursor: grab;
-}
-
-.battlestation-3d-canvas:active {
-  cursor: grabbing;
-}
-
-/* 3D Top Overlay Tools */
-.battlestation-3d-top-tools {
-  position: absolute;
-  top: var(--space-3);
-  right: var(--space-3);
+  padding: var(--space-3) var(--space-4);
   display: flex;
-  gap: var(--space-2);
-  z-index: 5;
-}
-
-.tool-icon-btn {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(8px);
-  color: var(--text-primary);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-md);
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.tool-icon-btn:hover,
-.tool-icon-btn.active {
-  background: var(--brand-green-primary);
-  color: #ffffff;
-  border-color: var(--brand-green-light);
-}
-
-/* 3D Bottom Camera Angle Preset Bar */
-.battlestation-preset-bar {
-  position: absolute;
-  bottom: var(--space-3);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.35rem;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(10px);
-  padding: 0.35rem 0.5rem;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-medium);
-  z-index: 5;
-  max-width: 95%;
-  overflow-x: auto;
-}
-
-.view-preset-btn {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid transparent;
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all var(--transition-fast);
-}
-
-.view-preset-btn:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.view-preset-btn.active {
-  background: var(--brand-green-primary);
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* Hardware Inspector (Right Column) */
-.active-gear-inspector {
-  display: flex;
-  flex-direction: column;
-}
-
-.inspector-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
   gap: var(--space-3);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 
-.inspector-nav-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.inspector-counter {
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--text-muted);
-}
-
-.inspector-arrow-btn {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-medium);
-  color: var(--text-primary);
-  border-radius: var(--radius-sm);
-  width: 26px;
-  height: 26px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.inspector-arrow-btn:hover {
-  background: var(--brand-green-subtle);
+.snapshot-card:hover {
   border-color: var(--brand-green-primary);
+  transform: translateY(-2px);
+}
+
+.snapshot-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.snapshot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.snapshot-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--brand-green-primary);
 }
 
-.inspector-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.snapshot-val {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.inspector-title {
-  font-size: var(--font-size-md);
+.snapshot-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Setup Controls Toolbar (Search + View Mode Toggle) */
+.setup-controls-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.setup-view-switcher {
+  display: inline-flex;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  gap: 3px;
+}
+
+.view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.35rem 0.65rem;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.view-toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+.view-toggle-btn.active {
+  background: var(--brand-green-primary);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Card Grid Layout */
+.setup-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 600px) {
+  .setup-grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Digestible Hardware Card */
+.setup-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.setup-card:hover {
+  border-color: var(--brand-green-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.2);
+}
+
+.setup-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setup-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-green-primary);
+  background: var(--brand-green-subtle);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+}
+
+.setup-card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.setup-card-title {
+  font-size: var(--font-size-base);
   font-weight: 800;
   color: var(--text-primary);
   line-height: 1.3;
   margin: 0;
 }
 
-.inspector-role {
+.setup-card-role {
   font-size: var(--font-size-xs);
   color: var(--text-secondary);
+  margin: 0;
   font-weight: 500;
 }
 
-.inspector-specs-table {
+/* Spec Matrix */
+.setup-spec-matrix {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   padding: var(--space-3);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-.inspector-spec-row {
+.setup-spec-item {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -698,97 +715,153 @@
   font-size: 0.75rem;
 }
 
-.inspector-spec-k {
+.setup-spec-label {
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.inspector-spec-v {
+.setup-spec-val {
   color: var(--text-primary);
   font-weight: 600;
   text-align: right;
   word-break: break-word;
 }
 
-.inspector-why-box {
+/* Expandable Creator Note Details */
+.gear-note-details {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-2);
+}
+
+.gear-note-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brand-green-primary);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  transition: color var(--transition-fast);
+}
+
+.gear-note-summary::-webkit-details-marker {
+  display: none;
+}
+
+.gear-note-summary:hover {
+  color: var(--brand-green-hover);
+}
+
+.gear-note-body {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   background: var(--brand-green-subtle);
-  border-left: 3px solid var(--brand-green-primary);
+  border-left: 2px solid var(--brand-green-primary);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
 }
 
-.inspector-why-tag {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--brand-green-light);
-}
-
-.inspector-why-text {
-  font-size: var(--font-size-xs);
+.gear-note-body p {
+  font-size: 0.75rem;
   color: var(--text-primary);
   line-height: 1.5;
   margin: 0;
 }
 
-/* Categorized Spec Accordion Section */
-.spec-accordion-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-2) 0;
+.setup-card-footer {
+  margin-top: auto;
+  padding-top: var(--space-2);
 }
 
-.spec-accordion-item {
+/* Table View Layout */
+.setup-table-container {
+  margin-top: var(--space-4);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  overflow: hidden;
 }
 
-.spec-accordion-item:hover {
-  border-color: var(--brand-green-primary);
-  transform: translateX(4px);
+.setup-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.setup-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--font-size-xs);
+}
+
+.setup-table thead {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-medium);
+}
+
+.setup-table th {
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.setup-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+.setup-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.setup-table tbody tr:hover {
   background: var(--bg-surface-hover);
 }
 
-.spec-accordion-item-head {
+.table-name-cell {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: 0.2rem;
+  align-items: center;
+  gap: var(--space-3);
 }
 
-.spec-accordion-name {
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  color: var(--text-primary);
+.table-cat-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
-.spec-accordion-role {
-  font-size: 0.72rem;
-  color: var(--brand-green-primary);
-  font-weight: 600;
-}
-
-.spec-accordion-detail {
+.table-role-sub {
   font-size: 0.72rem;
   color: var(--text-muted);
-  line-height: 1.4;
+  font-weight: normal;
+  margin-top: 0.1rem;
 }
 
-.spec-accordion-detail strong {
+.table-specs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.table-spec-pill {
+  display: inline-block;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
   color: var(--text-secondary);
 }
 
+.table-spec-pill strong {
+  color: var(--text-primary);
+}
+
+/* Copy Specs Button */
 .copy-specs-btn {
   display: inline-flex;
   align-items: center;
