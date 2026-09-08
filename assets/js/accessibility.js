@@ -1,7 +1,7 @@
 /**
  * Accessibility Manager - SlickPickleNick Official Website
  * Provides comprehensive accessible tools across Content, Color, and Orientation modules.
- * Features bottom-left launcher button, tabbed menu, mouse tracking guides, and persistence.
+ * Features an expandable side drawer allowing live page preview, scrollable sections, and persistence.
  */
 
 (function () {
@@ -237,83 +237,79 @@
     }
   }
 
-  // Accessibility Modal & Tab Management
-  function setupModal() {
-    const backdrop = document.getElementById('a11y-modal-backdrop');
+  // Accessibility Side Drawer Management
+  function setupDrawer() {
+    const drawer = document.getElementById('a11y-drawer');
     const openBtns = document.querySelectorAll('.a11y-toggle-btn, .a11y-floating-btn');
-    const closeBtn = document.getElementById('a11y-modal-close');
+    const closeBtn = document.getElementById('a11y-drawer-close');
     const floatingBtn = document.getElementById('a11y-floating-trigger');
 
-    if (!backdrop) return;
+    if (!drawer) return;
 
-    function openModal(triggerElement) {
+    function openDrawer(triggerElement) {
       lastActiveElement = triggerElement || document.activeElement;
-      backdrop.classList.add('open');
-      backdrop.setAttribute('aria-hidden', 'false');
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
       if (floatingBtn) floatingBtn.setAttribute('aria-expanded', 'true');
       if (closeBtn) closeBtn.focus();
     }
 
-    function closeModal() {
-      backdrop.classList.remove('open');
-      backdrop.setAttribute('aria-hidden', 'true');
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
       if (floatingBtn) floatingBtn.setAttribute('aria-expanded', 'false');
       if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
         lastActiveElement.focus();
       }
     }
 
+    function toggleDrawer(triggerElement) {
+      if (drawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer(triggerElement);
+      }
+    }
+
     openBtns.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        openModal(btn);
+        e.stopPropagation();
+        toggleDrawer(btn);
       });
     });
 
     if (closeBtn) {
-      closeBtn.addEventListener('click', closeModal);
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeDrawer();
+      });
     }
 
-    backdrop.addEventListener('click', (e) => {
-      if (e.target === backdrop) {
-        closeModal();
-      }
-    });
+    // Close on click outside drawer
+    document.addEventListener('click', (e) => {
+      if (drawer.classList.contains('open')) {
+        const isClickInside = drawer.contains(e.target);
+        let isClickTrigger = false;
+        openBtns.forEach((btn) => {
+          if (btn.contains(e.target)) isClickTrigger = true;
+        });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && backdrop.classList.contains('open')) {
-        closeModal();
-      }
-      // Alt + A shortcut to toggle accessibility menu
-      if (e.altKey && (e.key === 'a' || e.key === 'A')) {
-        e.preventDefault();
-        if (backdrop.classList.contains('open')) {
-          closeModal();
-        } else {
-          openModal(floatingBtn);
+        if (!isClickInside && !isClickTrigger) {
+          closeDrawer();
         }
       }
     });
 
-    // Tab switcher inside modal
-    const tabBtns = document.querySelectorAll('.a11y-tab-btn');
-    const tabPanels = document.querySelectorAll('.a11y-tab-panel');
-
-    tabBtns.forEach((tabBtn) => {
-      tabBtn.addEventListener('click', () => {
-        const targetTab = tabBtn.getAttribute('data-tab');
-
-        tabBtns.forEach((b) => {
-          const isActive = (b === tabBtn);
-          b.classList.toggle('active', isActive);
-          b.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
-
-        tabPanels.forEach((panel) => {
-          const isTarget = (panel.getAttribute('data-panel') === targetTab);
-          panel.classList.toggle('active', isTarget);
-        });
-      });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        closeDrawer();
+      }
+      // Alt + A shortcut to toggle accessibility menu
+      if (e.altKey && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        toggleDrawer(floatingBtn);
+      }
     });
   }
 
@@ -483,7 +479,7 @@
 
   // DOM ready binding
   document.addEventListener('DOMContentLoaded', () => {
-    setupModal();
+    setupDrawer();
     bindControls();
     updateUIControls(activePrefs);
   });
