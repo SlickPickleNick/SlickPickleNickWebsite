@@ -148,9 +148,13 @@
             Point Redemptions
           </div>
           <h1>Channel Points</h1>
-          <p class="description">
+                    <p class="description">
             Browse available Twitch channel point rewards, point costs, cooldown limits, and game challenge redemptions.
           </p>
+          <div class="sync-status" id="sync-status-container" style="display: none; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: 0.85rem; opacity: 0.85; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 9999px; padding: 4px 14px; width: fit-content; margin-left: auto; margin-right: auto;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: var(--color-success, #22c55e); box-shadow: 0 0 8px #22c55e;"></span>
+            <span>Last Synced: <strong id="last-updated-text" style="color: var(--color-primary-light, #38bdf8);">Just now</strong></span>
+          </div>
         </header>
 
         <!-- Search & Filter Controls -->
@@ -185,6 +189,14 @@
               <button type="button" class="chip-btn" data-reward-category="GeoGuessr" role="tab" aria-selected="false">
                 <span>GeoGuessr</span>
                 <span class="chip-count">4</span>
+              </button>
+              <button type="button" class="chip-btn" data-reward-category="Stream Starting" role="tab" aria-selected="false">
+                <span>Stream Starting</span>
+                <span class="chip-count">0</span>
+              </button>
+              <button type="button" class="chip-btn" data-reward-category="Arc Raiders" role="tab" aria-selected="false">
+                <span>Arc Raiders</span>
+                <span class="chip-count">0</span>
               </button>
             </div>
 

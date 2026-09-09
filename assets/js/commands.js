@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Twitch Commands Explorer - SlickPickleNick Website
  * Live search, category tabs, filtering, and animated copy-to-clipboard.
  */
@@ -50,20 +50,6 @@
     { "command": "!stop", "category": "Torch Game", "access": "Everyone", "description": "Freeze Nick's movement during the torch game.", "example": "!stop", "cooldown": "Active bearer only" }
   ];
 
-  async function loadCommands() {
-    try {
-      const res = await fetch('assets/data/commands.json');
-      if (res.ok) {
-        commandsData = await res.json();
-      } else {
-        commandsData = fallbackCommands;
-      }
-    } catch (e) {
-      commandsData = fallbackCommands;
-    }
-    renderCommands();
-    updateCategoryCounts();
-  }
 
   function renderCommands() {
     const tableBody = document.getElementById('commands-table-body');

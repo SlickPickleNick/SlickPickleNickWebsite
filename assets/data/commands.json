@@ -1,11 +1,27 @@
 [
   {
-    "command": "!clip",
+    "command": "!bazinga",
     "category": "General",
     "access": "Everyone",
-    "description": "Clip the last 60 seconds of the stream.",
-    "example": "!clip",
-    "cooldown": "30s"
+    "description": "!bazinga",
+    "example": "!bazinga",
+    "cooldown": "None"
+  },
+  {
+    "command": "!commands",
+    "category": "General",
+    "access": "Everyone",
+    "description": "!commands. (Aliases: !commandlist)",
+    "example": "!commands",
+    "cooldown": "None"
+  },
+  {
+    "command": "!emote",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Showcases all available emotes for viewers and subscribers.",
+    "example": "!emote",
+    "cooldown": "None"
   },
   {
     "command": "!lurk",
@@ -16,12 +32,12 @@
     "cooldown": "None"
   },
   {
-    "command": "!lurkStats",
+    "command": "!lurkers",
     "category": "General",
     "access": "Everyone",
-    "description": "Sends your personal lurking stats to chat.",
-    "example": "!lurkStats",
-    "cooldown": "10s"
+    "description": "Lurk Check. (Aliases: !currentLurkers)",
+    "example": "!lurkers",
+    "cooldown": "None"
   },
   {
     "command": "!lurkLeaderboard",
@@ -29,39 +45,39 @@
     "access": "Everyone",
     "description": "Shows the top lurkers of the stream.",
     "example": "!lurkLeaderboard",
-    "cooldown": "30s"
+    "cooldown": "None"
   },
   {
-    "command": "!followage",
+    "command": "!lurkStats",
     "category": "General",
     "access": "Everyone",
-    "description": "Shows how long you have been following the stream.",
-    "example": "!followage",
-    "cooldown": "10s"
+    "description": "Sends your personal lurking stats to chat.",
+    "example": "!lurkStats",
+    "cooldown": "None"
   },
   {
-    "command": "!watchtime",
+    "command": "!nickstestingthing",
     "category": "General",
     "access": "Everyone",
-    "description": "Sends your total watchtime to the chat.",
-    "example": "!watchtime",
-    "cooldown": "10s"
+    "description": "testing",
+    "example": "!nickstestingthing",
+    "cooldown": "None"
   },
   {
-    "command": "!watchtimeLeaderboard",
+    "command": "!scuba",
     "category": "General",
     "access": "Everyone",
-    "description": "Shows the top watchtime users across the channel.",
-    "example": "!watchtimeLeaderboard",
-    "cooldown": "30s"
+    "description": "SCUBA",
+    "example": "!scuba",
+    "cooldown": "None"
   },
   {
-    "command": "!emote",
+    "command": "!socials",
     "category": "General",
     "access": "Everyone",
-    "description": "Showcases all available emotes for viewers and subscribers.",
-    "example": "!emote",
-    "cooldown": "15s"
+    "description": "Shows Nick's main social media links.",
+    "example": "!socials",
+    "cooldown": "None"
   },
   {
     "command": "!time",
@@ -69,7 +85,15 @@
     "access": "Everyone",
     "description": "Shows the current local time for Nick.",
     "example": "!time",
-    "cooldown": "10s"
+    "cooldown": "None"
+  },
+  {
+    "command": "!unlurk",
+    "category": "General",
+    "access": "Everyone",
+    "description": "Lurk End. (Aliases: !back)",
+    "example": "!unlurk",
+    "cooldown": "None"
   },
   {
     "command": "!uptime",
@@ -77,151 +101,231 @@
     "access": "Everyone",
     "description": "Shows how long the stream has been live.",
     "example": "!uptime",
-    "cooldown": "10s"
+    "cooldown": "None"
   },
   {
-    "command": "!checkinlb",
+    "command": "!watchtime",
     "category": "General",
     "access": "Everyone",
-    "description": "Sends the leaderboard for check-ins based off Check-In reward redemptions.",
-    "example": "!checkinlb",
-    "cooldown": "30s"
+    "description": "Sends your total watchtime to the chat.",
+    "example": "!watchtime",
+    "cooldown": "None"
   },
   {
-    "command": "!checkins",
+    "command": "!watchtimeLeaderboard",
     "category": "General",
     "access": "Everyone",
-    "description": "Shows your personal check-in history.",
-    "example": "!checkins",
-    "cooldown": "10s"
+    "description": "Shows the top watchtime users across the channel.",
+    "example": "!watchtimeLeaderboard",
+    "cooldown": "None"
   },
   {
-    "command": "!socials",
-    "category": "Socials",
-    "access": "Everyone",
-    "description": "Shows Nick's main social media links.",
-    "example": "!socials",
-    "cooldown": "10s"
+    "command": "!breaking",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "News. (Aliases: !news, !breakingnews)",
+    "example": "!breaking",
+    "cooldown": "None"
   },
   {
-    "command": "!discord",
-    "category": "Socials",
-    "access": "Everyone",
-    "description": "Sends the official Discord invite link.",
-    "example": "!discord",
-    "cooldown": "10s"
+    "command": "!clearhidenews",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Clear and Hide. (Aliases: !hideclearnews)",
+    "example": "!clearhidenews",
+    "cooldown": "None"
   },
   {
-    "command": "!website",
-    "category": "Socials",
-    "access": "Everyone",
-    "description": "Links directly to Nick's website.",
-    "example": "!website",
-    "cooldown": "10s"
+    "command": "!forcebreaking",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Force Breaking. (Aliases: !forcenews)",
+    "example": "!forcebreaking",
+    "cooldown": "None"
   },
   {
-    "command": "!tip",
-    "category": "Socials",
-    "access": "Everyone",
-    "description": "Sends the link to send a tip or donation to Nick.",
-    "example": "!tip",
-    "cooldown": "10s"
+    "command": "!goalbarBitsCurrent",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Bits Value Current. (Aliases: !goalbarBitCurrent, !goalbarCheersCurrent)",
+    "example": "!goalbarBitsCurrent",
+    "cooldown": "None"
   },
   {
-    "command": "!merch",
-    "category": "Socials",
-    "access": "Everyone",
-    "description": "Links to the official merch shop.",
-    "example": "!merch",
-    "cooldown": "10s"
+    "command": "!goalbarBitsGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Bits Value Goal. (Aliases: !goalbarBitGoal, !goalbarCheersGoal)",
+    "example": "!goalbarBitsGoal",
+    "cooldown": "None"
   },
   {
-    "command": "!sr [Song and Artist]",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Request a song to be played in the stream queue.",
-    "example": "!sr End of August by Noah Kahan",
-    "cooldown": "5s"
+    "command": "!goalbarChannelPointsCurrent",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Channel Points Value Current",
+    "example": "!goalbarChannelPointsCurrent",
+    "cooldown": "None"
   },
   {
-    "command": "!wrongsong",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Removes your most recent song request.",
-    "example": "!wrongsong",
-    "cooldown": "5s"
+    "command": "!goalbarChannelPointsGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Channel Points Value Goal",
+    "example": "!goalbarChannelPointsGoal",
+    "cooldown": "None"
   },
   {
-    "command": "!myRequests",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Shows your requested songs and their queue positions.",
-    "example": "!myRequests",
-    "cooldown": "10s"
+    "command": "!goalbarDonationsCurrent",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Donations Value Current. (Aliases: !goalbarDonationCurrent)",
+    "example": "!goalbarDonationsCurrent",
+    "cooldown": "None"
   },
   {
-    "command": "!requests",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Retrieves the full list of all requested songs.",
-    "example": "!requests",
-    "cooldown": "15s"
+    "command": "!goalbarDonationsGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Donations Value Goal. (Aliases: !goalbarDonationGoal)",
+    "example": "!goalbarDonationsGoal",
+    "cooldown": "None"
   },
   {
-    "command": "!queue",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Shows the next three songs waiting in the queue.",
-    "example": "!queue",
-    "cooldown": "10s"
+    "command": "!goalbarFollowersGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Followers Value Goal. (Aliases: !goalbarFollowsGoal, !goalbarFollowGoal)",
+    "example": "!goalbarFollowersGoal",
+    "cooldown": "None"
   },
   {
-    "command": "!like",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Add the currently playing song to your personal liked songs.",
-    "example": "!like",
-    "cooldown": "5s"
+    "command": "!goalbarNewFollowersCurrent",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set New Followers Value Current. (Aliases: !goalbarNewFollowsCurrent)",
+    "example": "!goalbarNewFollowersCurrent",
+    "cooldown": "None"
   },
   {
-    "command": "!unlike",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Removes the currently playing song from your liked songs.",
-    "example": "!unlike",
-    "cooldown": "5s"
+    "command": "!goalbarNewFollowersGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set New Followers Value Goal. (Aliases: !goalbarNewFollowsGoal, !goalbarNewFollowGoal)",
+    "example": "!goalbarNewFollowersGoal",
+    "cooldown": "None"
   },
   {
-    "command": "!likes",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Retrieve your list of liked songs.",
-    "example": "!likes",
-    "cooldown": "15s"
+    "command": "!goalbarNewSubscribersCurrent",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set New Subscribers Value Current. (Aliases: !goalbarNewSubsCurrent, !goalbarNewSubCurrent)",
+    "example": "!goalbarNewSubscribersCurrent",
+    "cooldown": "None"
   },
   {
-    "command": "!songLink",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Provides the direct Spotify track link for the current song.",
-    "example": "!songLink",
-    "cooldown": "5s"
+    "command": "!goalbarNewSubscribersGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set New Subscribers Value Goal. (Aliases: !goalbarNewSubsGoal, !goalbarNewSubGoal)",
+    "example": "!goalbarNewSubscribersGoal",
+    "cooldown": "None"
   },
   {
-    "command": "!song",
-    "category": "Spotify",
-    "access": "Everyone",
-    "description": "Shows the title and artist of the currently playing song.",
-    "example": "!song",
-    "cooldown": "5s"
+    "command": "!goalbarOverallGoalCurrent",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Overall Goal Value Current",
+    "example": "!goalbarOverallGoalCurrent",
+    "cooldown": "None"
   },
   {
-    "command": "!lastSong",
-    "category": "Spotify",
+    "command": "!goalbarOverallGoalGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Overall Goal Value Goal",
+    "example": "!goalbarOverallGoalGoal",
+    "cooldown": "None"
+  },
+  {
+    "command": "!goalbarSubscribersGoal",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Set Subscribers Value Goal. (Aliases: !goalbarSubsGoal, !goalbarSubGoal)",
+    "example": "!goalbarSubscribersGoal",
+    "cooldown": "None"
+  },
+  {
+    "command": "!hidenews",
+    "category": "Interactive",
+    "access": "Moderator",
+    "description": "Hide Breaking. (Aliases: !hidebreaking, !newshide, !breakinghide)",
+    "example": "!hidenews",
+    "cooldown": "None"
+  },
+  {
+    "command": "!light",
+    "category": "Interactive",
     "access": "Everyone",
-    "description": "Shows the title and artist of the previous song played.",
-    "example": "!lastSong",
-    "cooldown": "5s"
+    "description": "Light Controls. (Aliases: !lights, !color)",
+    "example": "!light",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addPoints",
+    "category": "Loyalty",
+    "access": "Moderator",
+    "description": "Add Points To User. (Aliases: !pointsAdd)",
+    "example": "!addPoints",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addToAllPresent",
+    "category": "Loyalty",
+    "access": "Moderator",
+    "description": "Add Points To All Present Viewers. (Aliases: !addPointsToAllPresent, !addPointsToPresent, !addToViewers, !addPointsToViewers)",
+    "example": "!addToAllPresent",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addToAllUsers",
+    "category": "Loyalty",
+    "access": "Moderator",
+    "description": "Add Points To All Users. (Aliases: !addPointsToAllUsers)",
+    "example": "!addToAllUsers",
+    "cooldown": "None"
+  },
+  {
+    "command": "!collectTaxes",
+    "category": "Loyalty",
+    "access": "Moderator",
+    "description": "Collect Taxes. (Aliases: !taxesCollect, !taxCollection)",
+    "example": "!collectTaxes",
+    "cooldown": "None"
+  },
+  {
+    "command": "!gamble",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Gamble. (Aliases: !roulette)",
+    "example": "!gamble",
+    "cooldown": "None"
+  },
+  {
+    "command": "!givePoints",
+    "category": "Loyalty",
+    "access": "Everyone",
+    "description": "Transfer Points. (Aliases: !pointsGive, !transferPoints, !pointsTransfer)",
+    "example": "!givePoints",
+    "cooldown": "None"
+  },
+  {
+    "command": "!multiplyAllUsersPoints",
+    "category": "Loyalty",
+    "access": "Moderator",
+    "description": "Multiply All User's Points",
+    "example": "!multiplyAllUsersPoints",
+    "cooldown": "None"
   },
   {
     "command": "!points",
@@ -229,7 +333,15 @@
     "access": "Everyone",
     "description": "Shows your current stream loyalty point balance.",
     "example": "!points",
-    "cooldown": "5s"
+    "cooldown": "None"
+  },
+  {
+    "command": "!pointsHappyHour",
+    "category": "Loyalty",
+    "access": "Moderator",
+    "description": "Enable Happy Hour",
+    "example": "!pointsHappyHour",
+    "cooldown": "None"
   },
   {
     "command": "!pointsLeaderboard",
@@ -237,15 +349,15 @@
     "access": "Everyone",
     "description": "Shows the channel loyalty point leaderboard.",
     "example": "!pointsLeaderboard",
-    "cooldown": "30s"
+    "cooldown": "None"
   },
   {
-    "command": "!gamble [amount]",
+    "command": "!removePoints",
     "category": "Loyalty",
-    "access": "Everyone",
-    "description": "Gambles a chosen amount of loyalty points.",
-    "example": "!gamble 1000",
-    "cooldown": "10s"
+    "access": "Moderator",
+    "description": "Remove Points From User. (Aliases: !pointsRemove)",
+    "example": "!removePoints",
+    "cooldown": "None"
   },
   {
     "command": "!scratchCard",
@@ -253,39 +365,871 @@
     "access": "Everyone",
     "description": "Purchase a scratch card for a chance to win points. Losses contribute to the Jackpot pool.",
     "example": "!scratchCard",
-    "cooldown": "15s"
+    "cooldown": "None"
   },
   {
-    "command": "!givePoints [user] [amount]",
-    "category": "Loyalty",
+    "command": "!addCom",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Add Custom Command. (Aliases: !addCommand, !commandAdd, !comAdd)",
+    "example": "!addCom",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addTag",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Add Tag. (Aliases: !tagAdd)",
+    "example": "!addTag",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addUrl",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Add URL To Whitelist. (Aliases: !urlAdd, !addLink, !linkAdd, !whitelistUrl, !whitelistLink)",
+    "example": "!addUrl",
+    "cooldown": "None"
+  },
+  {
+    "command": "!ban",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Ban User",
+    "example": "!ban",
+    "cooldown": "None"
+  },
+  {
+    "command": "!banWord",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Add Blacklisted Word. (Aliases: !blacklistWord)",
+    "example": "!banWord",
+    "cooldown": "None"
+  },
+  {
+    "command": "!cancelPrediction",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Cancel Prediction. (Aliases: !predictionCancel)",
+    "example": "!cancelPrediction",
+    "cooldown": "None"
+  },
+  {
+    "command": "!createPoll",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Create Poll. (Aliases: !pollCreate, !poll)",
+    "example": "!createPoll",
+    "cooldown": "None"
+  },
+  {
+    "command": "!createPrediction",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Create Prediction. (Aliases: !prediction, !predictionCreate)",
+    "example": "!createPrediction",
+    "cooldown": "None"
+  },
+  {
+    "command": "!customCommands",
+    "category": "Moderation",
     "access": "Everyone",
-    "description": "Give a specified amount of your loyalty points to another viewer.",
-    "example": "!givePoints SlickCass989 500",
-    "cooldown": "10s"
+    "description": "Get Custom Commands",
+    "example": "!customCommands",
+    "cooldown": "None"
   },
   {
-    "command": "!torch",
-    "category": "Torch Game",
+    "command": "!disableFollowAttackProtection",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Disable Follow Attack Protection. (Aliases: !FollowAttackProtectionOff)",
+    "example": "!disableFollowAttackProtection",
+    "cooldown": "None"
+  },
+  {
+    "command": "!editCommand",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Edit Custom Command. (Aliases: !editCom, !comEdit, !commandEdit)",
+    "example": "!editCommand",
+    "cooldown": "None"
+  },
+  {
+    "command": "!enableFollowAttackProtection",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Enable Follow Attack Protection. (Aliases: !FollowAttackProtectionOn)",
+    "example": "!enableFollowAttackProtection",
+    "cooldown": "None"
+  },
+  {
+    "command": "!enableRewards",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Enable Rewards. (Aliases: !enableReward, !rewardEnable, !rewardsEnable)",
+    "example": "!enableRewards",
+    "cooldown": "None"
+  },
+  {
+    "command": "!endPoll",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "End Poll. (Aliases: !pollEnd)",
+    "example": "!endPoll",
+    "cooldown": "None"
+  },
+  {
+    "command": "!endStream",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "End Stream. (Aliases: !streamEnd)",
+    "example": "!endStream",
+    "cooldown": "None"
+  },
+  {
+    "command": "!game",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Set Game. (Aliases: !changeGame, !setGame, !gameSet, !category, !setCategory, !changeCategory)",
+    "example": "!game",
+    "cooldown": "None"
+  },
+  {
+    "command": "!hateRaid",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Toggle Hate Raid Protection. (Aliases: !hateRaidProtection)",
+    "example": "!hateRaid",
+    "cooldown": "None"
+  },
+  {
+    "command": "!lock",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Lock Prediction. (Aliases: !lockPrediction, !predictionLock)",
+    "example": "!lock",
+    "cooldown": "None"
+  },
+  {
+    "command": "!modCommands",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Get Al Mod Commands",
+    "example": "!modCommands",
+    "cooldown": "None"
+  },
+  {
+    "command": "!pauseRewards",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Pause Rewards. (Aliases: !pauseReward, !rewardPause, !rewardsPause)",
+    "example": "!pauseRewards",
+    "cooldown": "None"
+  },
+  {
+    "command": "!permit",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Permit User To Post URLs",
+    "example": "!permit",
+    "cooldown": "None"
+  },
+  {
+    "command": "!pin",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Pin Message. (Aliases: !pinMessage)",
+    "example": "!pin",
+    "cooldown": "None"
+  },
+  {
+    "command": "!prerolls",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Get Pre-Roll Ad Free Time. (Aliases: !prerollAds, !prerollTime)",
+    "example": "!prerolls",
+    "cooldown": "None"
+  },
+  {
+    "command": "!refreshAudio",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Refresh Audio Sources. (Aliases: !audioRefresh, !refAudio, !redAud, !audioRef, !audRef)",
+    "example": "!refreshAudio",
+    "cooldown": "None"
+  },
+  {
+    "command": "!refreshBrowserSources",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Refresh Browser Sources. (Aliases: !browserSourceRefresh)",
+    "example": "!refreshBrowserSources",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeBottedFollowers",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Manually Remove Botted Followers",
+    "example": "!removeBottedFollowers",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeCommand",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove Custom Command. (Aliases: !removeCom, !comRemove, !commandRemove, !deleteCom, !delCom, !comDel, !deleteCommand)",
+    "example": "!removeCommand",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeLatestFollowers",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove Latest Followers",
+    "example": "!removeLatestFollowers",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeTag",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove Tag. (Aliases: !tagRemove, !deleteTag, !tagDelete)",
+    "example": "!removeTag",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeTime",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove Time. (Aliases: !timeRemove, !deductTime, !timeDeduct)",
+    "example": "!removeTime",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeTimer",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Delete Timer. (Aliases: !timerRemove, !timerDelete, !deleteTimer)",
+    "example": "!removeTimer",
+    "cooldown": "None"
+  },
+  {
+    "command": "!removeUrl",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove URL From Whitelist. (Aliases: !removeLink, !deleteUrl, !deleteLink, !delUrl, !delLink)",
+    "example": "!removeUrl",
+    "cooldown": "None"
+  },
+  {
+    "command": "!resolvePrediction",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Resolve Prediction. (Aliases: !predictionResolve, !resolve)",
+    "example": "!resolvePrediction",
+    "cooldown": "None"
+  },
+  {
+    "command": "!resumeTimer",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Continue Timer. (Aliases: !timerResume, !timerContinue, !continueTimer)",
+    "example": "!resumeTimer",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardCooldown",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Change Reward Cooldown. (Aliases: !cooldownReward)",
+    "example": "!rewardCooldown",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardCost",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Change Reward Cost. (Aliases: !changeRewardCost, !setRewardCost, !rewardPrice)",
+    "example": "!rewardCost",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardDisable",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Disable Reward. (Aliases: !rewardsDisable, !disableReward, !disableRewards)",
+    "example": "!rewardDisable",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardMaxPerStream",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Change Reward Max Per Stream. (Aliases: !rewardMax, !rewardLimit, !limitReward)",
+    "example": "!rewardMaxPerStream",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardMaxPerUserPerStream",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Change Reward Max Per User Per Stream. (Aliases: !rewardMaxUser, !rewardLimitUser, !maxUserReward)",
+    "example": "!rewardMaxPerUserPerStream",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardPrompt",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Change Reward Prompt. (Aliases: !changeRewardPrompt, !setRewardPrompt, !rewardDescription, !setRewardDescription, !changeRewardDescription)",
+    "example": "!rewardPrompt",
+    "cooldown": "None"
+  },
+  {
+    "command": "!rewardTitle",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Change Reward Title. (Aliases: !changeRewardTitle, !setRewardTitle, !rewardName, !changeRewardName, !setRewardName)",
+    "example": "!rewardTitle",
+    "cooldown": "None"
+  },
+  {
+    "command": "!runAds",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Run Ads. (Aliases: !adsRun, !playAds)",
+    "example": "!runAds",
+    "cooldown": "None"
+  },
+  {
+    "command": "!scene",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Set Scene. (Aliases: !changeScene, !setScene)",
+    "example": "!scene",
+    "cooldown": "None"
+  },
+  {
+    "command": "!scenes",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Get Scene List. (Aliases: !getScenes, !obsScenes)",
+    "example": "!scenes",
+    "cooldown": "None"
+  },
+  {
+    "command": "!shoutout",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Shoutout User. (Aliases: !so)",
+    "example": "!shoutout",
+    "cooldown": "None"
+  },
+  {
+    "command": "!skipTTS",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Skip TTS. (Aliases: !ttsStop, !stopTTS, !ttsStop)",
+    "example": "!skipTTS",
+    "cooldown": "None"
+  },
+  {
+    "command": "!snooze",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Snooze Ad. (Aliases: !adSnooze, !snoozeAd)",
+    "example": "!snooze",
+    "cooldown": "None"
+  },
+  {
+    "command": "!so",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Shoutout. (Aliases: !shoutout)",
+    "example": "!so",
+    "cooldown": "None"
+  },
+  {
+    "command": "!timeAdd",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Add Time. (Aliases: !addTime, !createTimer, !timerCreate)",
+    "example": "!timeAdd",
+    "cooldown": "None"
+  },
+  {
+    "command": "!timeout",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Timeout User. (Aliases: !to)",
+    "example": "!timeout",
+    "cooldown": "None"
+  },
+  {
+    "command": "!timerPause",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Pause Timer. (Aliases: !pauseTimer, !stopTimer, !timerStop)",
+    "example": "!timerPause",
+    "cooldown": "None"
+  },
+  {
+    "command": "!title",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Set Title. (Aliases: !changeTitle, !setTitle, !channelTitle)",
+    "example": "!title",
+    "cooldown": "None"
+  },
+  {
+    "command": "!toggleAsciiProtection",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Toggle ASCII Protection. (Aliases: !asciiProtection, !asciProtection, !toggleAsciProtection)",
+    "example": "!toggleAsciiProtection",
+    "cooldown": "None"
+  },
+  {
+    "command": "!toggleBlacklistedWordsFilter",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Toggle Blacklisted Words Filter",
+    "example": "!toggleBlacklistedWordsFilter",
+    "cooldown": "None"
+  },
+  {
+    "command": "!toggleCapsProtection",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Toggle Caps Protection. (Aliases: !capsProtection)",
+    "example": "!toggleCapsProtection",
+    "cooldown": "None"
+  },
+  {
+    "command": "!toggleEmoteProtection",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Toggle Emote Protection. (Aliases: !emoteProtection)",
+    "example": "!toggleEmoteProtection",
+    "cooldown": "None"
+  },
+  {
+    "command": "!toggleUrlFilter",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Toggle URL Filter. (Aliases: !urlFilter)",
+    "example": "!toggleUrlFilter",
+    "cooldown": "None"
+  },
+  {
+    "command": "!translate",
+    "category": "Moderation",
     "access": "Everyone",
-    "description": "Join the viewer pool to be selected as the torch bearer for the GeoGuessr round.",
-    "example": "!torch",
-    "cooldown": "Round-based"
+    "description": "Translate Message",
+    "example": "!translate",
+    "cooldown": "None"
   },
   {
-    "command": "!acceptTorch",
+    "command": "!unbanWord",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove Blacklist Word. (Aliases: !removeBlacklistedWord)",
+    "example": "!unbanWord",
+    "cooldown": "None"
+  },
+  {
+    "command": "!unpauseReward",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Unpause Rewards. (Aliases: !unpauseRewards, !rewardUnpause, !rewardsUnpause)",
+    "example": "!unpauseReward",
+    "cooldown": "None"
+  },
+  {
+    "command": "!unpin",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Unpin Message. (Aliases: !unpinMessage)",
+    "example": "!unpin",
+    "cooldown": "None"
+  },
+  {
+    "command": "!urlAddUser",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Add User To URL Whitelist",
+    "example": "!urlAddUser",
+    "cooldown": "None"
+  },
+  {
+    "command": "!urlRemoveUser",
+    "category": "Moderation",
+    "access": "Moderator",
+    "description": "Remove User From URL Whitelist",
+    "example": "!urlRemoveUser",
+    "cooldown": "None"
+  },
+  {
+    "command": "!whitelistedUrls",
+    "category": "Moderation",
+    "access": "Everyone",
+    "description": "Get Whitelisted URLs. (Aliases: !whitelistedLinks)",
+    "example": "!whitelistedUrls",
+    "cooldown": "None"
+  },
+  {
+    "command": "!discord",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Sends the official Discord invite link.",
+    "example": "!discord",
+    "cooldown": "None"
+  },
+  {
+    "command": "!merch",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Links to the official merch shop.",
+    "example": "!merch",
+    "cooldown": "None"
+  },
+  {
+    "command": "!tip",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Sends the link to send a tip or donation to Nick.",
+    "example": "!tip",
+    "cooldown": "None"
+  },
+  {
+    "command": "!website",
+    "category": "Socials",
+    "access": "Everyone",
+    "description": "Links directly to Nick's website.",
+    "example": "!website",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addSong",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Add Song To Playlist. (Aliases: !add, !saveSong)",
+    "example": "!addSong",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addSongToPlaylistFromInput",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Add Song To Playlist From Input",
+    "example": "!addSongToPlaylistFromInput",
+    "cooldown": "None"
+  },
+  {
+    "command": "!addToLikedSongs",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Add To Liked Songs. (Aliases: !addLike, !likeAdd)",
+    "example": "!addToLikedSongs",
+    "cooldown": "None"
+  },
+  {
+    "command": "!back",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Previous Song. (Aliases: !previous, !previousSong)",
+    "example": "!back",
+    "cooldown": "None"
+  },
+  {
+    "command": "!bannedSongs",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Banned Song List. (Aliases: !bannedSongList, !excludedSongs, !excludedSondList)",
+    "example": "!bannedSongs",
+    "cooldown": "None"
+  },
+  {
+    "command": "!banSong",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Ban Song. (Aliases: !excludeSong)",
+    "example": "!banSong",
+    "cooldown": "None"
+  },
+  {
+    "command": "!broadcasterTopArtists",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Get Top Artists",
+    "example": "!broadcasterTopArtists",
+    "cooldown": "None"
+  },
+  {
+    "command": "!broadcasterTopTracks",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Get Top Songs. (Aliases: !broadcasterTopSongs)",
+    "example": "!broadcasterTopTracks",
+    "cooldown": "None"
+  },
+  {
+    "command": "!changeDevice",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Change Device. (Aliases: !setDevice)",
+    "example": "!changeDevice",
+    "cooldown": "None"
+  },
+  {
+    "command": "!devices",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Device List. (Aliases: !deviceList)",
+    "example": "!devices",
+    "cooldown": "None"
+  },
+  {
+    "command": "!lastSong",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows the title and artist of the previous song played.",
+    "example": "!lastSong",
+    "cooldown": "None"
+  },
+  {
+    "command": "!like",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Add the currently playing song to your personal liked songs.",
+    "example": "!like",
+    "cooldown": "None"
+  },
+  {
+    "command": "!likes",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Retrieve your list of liked songs.",
+    "example": "!likes",
+    "cooldown": "None"
+  },
+  {
+    "command": "!myQueue",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Get Queue Position. (Aliases: !myRequests, !queuePos, !queuePositions)",
+    "example": "!myQueue",
+    "cooldown": "None"
+  },
+  {
+    "command": "!myTopArtists",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Top Requested Artists (User). (Aliases: !topArtistsUser)",
+    "example": "!myTopArtists",
+    "cooldown": "None"
+  },
+  {
+    "command": "!myTopSongs",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Top Requested Songs (User). (Aliases: !topSongsUser)",
+    "example": "!myTopSongs",
+    "cooldown": "None"
+  },
+  {
+    "command": "!pause",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Pause Song. (Aliases: !stop, !pauseSong, !stopSong)",
+    "example": "!pause",
+    "cooldown": "None"
+  },
+  {
+    "command": "!play",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Play Song. (Aliases: !playSong, !continue)",
+    "example": "!play",
+    "cooldown": "None"
+  },
+  {
+    "command": "!playlist",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Current Playlist. (Aliases: !currentPlaylist)",
+    "example": "!playlist",
+    "cooldown": "None"
+  },
+  {
+    "command": "!playlists",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Get Playlists. (Aliases: !getPlaylists)",
+    "example": "!playlists",
+    "cooldown": "None"
+  },
+  {
+    "command": "!playPlaylist",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Change Playlist. (Aliases: !setPlaylist, !changePlaylist)",
+    "example": "!playPlaylist",
+    "cooldown": "None"
+  },
+  {
+    "command": "!queue",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows the next three songs waiting in the queue.",
+    "example": "!queue",
+    "cooldown": "None"
+  },
+  {
+    "command": "!remove",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Remove From Queue. (Aliases: !removeFromQueue, !removeSong, !deleteSong, !deleteSongFromQueue)",
+    "example": "!remove",
+    "cooldown": "None"
+  },
+  {
+    "command": "!requests",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Retrieves the full list of all requested songs.",
+    "example": "!requests",
+    "cooldown": "None"
+  },
+  {
+    "command": "!restart",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Restart Current Song. (Aliases: !restartSong, !restartCurrentSong, !replay, !replaySong)",
+    "example": "!restart",
+    "cooldown": "None"
+  },
+  {
+    "command": "!skip",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Skip Song. (Aliases: !next, !skipSong, !nextSong)",
+    "example": "!skip",
+    "cooldown": "None"
+  },
+  {
+    "command": "!song",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Shows the title and artist of the currently playing song.",
+    "example": "!song",
+    "cooldown": "None"
+  },
+  {
+    "command": "!songLink",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Provides the direct Spotify track link for the current song.",
+    "example": "!songLink",
+    "cooldown": "None"
+  },
+  {
+    "command": "!sr",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Song Request",
+    "example": "!sr",
+    "cooldown": "None"
+  },
+  {
+    "command": "!topArtists",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Top Requested Artists",
+    "example": "!topArtists",
+    "cooldown": "None"
+  },
+  {
+    "command": "!topSongs",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Top Requested Songs",
+    "example": "!topSongs",
+    "cooldown": "None"
+  },
+  {
+    "command": "!unbanSong",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Unban Song. (Aliases: !includeSong)",
+    "example": "!unbanSong",
+    "cooldown": "None"
+  },
+  {
+    "command": "!unlike",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Removes the currently playing song from your liked songs.",
+    "example": "!unlike",
+    "cooldown": "None"
+  },
+  {
+    "command": "!vol",
+    "category": "Spotify",
+    "access": "Moderator",
+    "description": "Change Volume. (Aliases: !volume, !songVolume)",
+    "example": "!vol",
+    "cooldown": "None"
+  },
+  {
+    "command": "!voteskip",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Voteskip",
+    "example": "!voteskip",
+    "cooldown": "None"
+  },
+  {
+    "command": "!wrongsong",
+    "category": "Spotify",
+    "access": "Everyone",
+    "description": "Removes your most recent song request.",
+    "example": "!wrongsong",
+    "cooldown": "None"
+  },
+  {
+    "command": "!accepttorch",
     "category": "Torch Game",
     "access": "Everyone",
     "description": "Accept the responsibility of stopping Nick when prompted in chat.",
     "example": "!acceptTorch",
-    "cooldown": "When prompted"
+    "cooldown": "None"
   },
   {
-    "command": "!declineTorch",
+    "command": "!declinetorch",
     "category": "Torch Game",
     "access": "Everyone",
     "description": "Decline the torch bearer role. A new viewer will be selected.",
     "example": "!declineTorch",
-    "cooldown": "When prompted"
+    "cooldown": "None"
+  },
+  {
+    "command": "!nicktorchloss",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Nick Torch Loss. (Aliases: !nicktorchlose)",
+    "example": "!nicktorchloss",
+    "cooldown": "None"
+  },
+  {
+    "command": "!nicktorchwin",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Nick Wins Game",
+    "example": "!nicktorchwin",
+    "cooldown": "None"
   },
   {
     "command": "!stop",
@@ -293,6 +1237,86 @@
     "access": "Everyone",
     "description": "Use this command when prompted to freeze Nick's movement during the torch game.",
     "example": "!stop",
-    "cooldown": "Active bearer only"
+    "cooldown": "None"
+  },
+  {
+    "command": "!torch",
+    "category": "Torch Game",
+    "access": "Everyone",
+    "description": "Join the viewer pool to be selected as the torch bearer for the GeoGuessr round.",
+    "example": "!torch",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchbegin",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Begin Game",
+    "example": "!torchbegin",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchcancel",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Cancel Torch Game",
+    "example": "!torchcancel",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchforceselect",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Force Select Bearer",
+    "example": "!torchforceselect",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchforcestop",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Force Stop Movement",
+    "example": "!torchforcestop",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchreset",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Game Reset",
+    "example": "!torchreset",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchskipbearer",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Skip Current Bearer",
+    "example": "!torchskipbearer",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchstartgame",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Start Torch Game",
+    "example": "!torchstartgame",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchstartround",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Torch Start Round",
+    "example": "!torchstartround",
+    "cooldown": "None"
+  },
+  {
+    "command": "!torchstatus",
+    "category": "Torch Game",
+    "access": "Moderator",
+    "description": "Check Game Status",
+    "example": "!torchstatus",
+    "cooldown": "None"
   }
 ]

@@ -28,7 +28,7 @@ describe('Data Integrity & Schema Validation', () => {
 
     it('should have valid schema on each command entry', () => {
       const data = JSON.parse(fs.readFileSync(commandsPath, 'utf8'));
-      const validCategories = ['General', 'Socials', 'Spotify', 'Loyalty', 'Torch Game', 'Games'];
+      const validCategories = ['General', 'Socials', 'Spotify', 'Loyalty', 'Torch Game', 'Games', 'Interactive', 'Moderation'];
       const seenCommands = new Set();
 
       data.forEach((cmd, index) => {

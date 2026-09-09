@@ -48,6 +48,20 @@
     } catch (e) {
       rewardsData = fallbackRewards;
     }
+
+    try {
+      const metaRes = await fetch('assets/data/metadata.json');
+      if (metaRes.ok) {
+        const meta = await metaRes.json();
+        const updatedEl = document.getElementById('last-updated-text');
+        const containerEl = document.getElementById('sync-status-container');
+        if (updatedEl && meta.lastUpdatedFormatted) {
+          updatedEl.textContent = meta.lastUpdatedFormatted;
+          if (containerEl) containerEl.style.display = 'inline-flex';
+        }
+      }
+    } catch (e) {}
+
     renderRewards();
     updateCategoryCounts();
   }
