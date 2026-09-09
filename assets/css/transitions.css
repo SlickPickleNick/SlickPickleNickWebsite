@@ -240,6 +240,7 @@
   margin-bottom: var(--space-3);
   background: linear-gradient(135deg, #ffffff 30%, #93c5fd 70%, #3b82f6 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 40px rgba(59, 130, 246, 0.22);
 }
@@ -247,6 +248,7 @@
 [data-theme="light"] .kinetic-title {
   background: linear-gradient(135deg, #0f172a 20%, #1e40af 60%, #2563eb 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: none;
 }
