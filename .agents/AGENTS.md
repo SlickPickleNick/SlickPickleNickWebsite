@@ -40,6 +40,10 @@ This repository contains the official website for **SlickPickleNick**, a gaming 
 - Dynamic content such as Twitch commands (`assets/data/commands.json`) and Channel Point Rewards (`assets/data/rewards.json`) are stored as clean JSON data.
 - Search and category filters render instantly on the client side without page reloads.
 
+### 5. Notion Dev Logs & Release Tracking
+- Major feature releases, significant architectural milestones, and branch pushes should be logged to the official Notion workspace (**`📝 Dev Logs & Session History`** database).
+- Follow the workflow defined in [`.agents/rules/dev-logs.md`](file:///Users/nicksilvestro/GitHub%20Repos/SlickPickleNickWebsite/SlickPickleNickWebsite/.agents/rules/dev-logs.md).
+
 ---
 
 ## File Structure
