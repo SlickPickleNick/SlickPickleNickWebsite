@@ -56,6 +56,7 @@
   <link rel="stylesheet" href="assets/css/navigation.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/accessibility.css">
+  <link rel="stylesheet" href="assets/css/transitions.css">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -69,9 +70,8 @@
           <span class="brand-name">SlickPickleNick</span>
         </a>
 
-        <!-- Desktop Navigation with Sliding Pill -->
+        <!-- Desktop Navigation -->
         <nav class="desktop-nav" role="navigation" aria-label="Primary Navigation">
-          <div class="nav-sliding-pill" aria-hidden="true"></div>
           <a href="index.html" class="nav-link">Home</a>
           <a href="commands.html" class="nav-link active">Commands</a>
           <a href="rewards.html" class="nav-link">Channel Points</a>
@@ -109,44 +109,34 @@
             <span>Watch Live</span>
           </a>
 
-          <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="mobile-drawer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <!-- Mobile Animated Hamburger -->
+          <button type="button" id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-dropdown-menu">
+            <span class="hamburger-box" aria-hidden="true">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </span>
           </button>
+        </div>
+      </div>
+
+      <!-- Floating Top-Right Mobile Dropdown Menu -->
+      <div id="mobile-dropdown-menu" class="mobile-dropdown-menu" aria-hidden="true" role="dialog" aria-modal="false" aria-label="Navigation Menu">
+        <nav class="mobile-dropdown-nav">
+          <a href="index.html" class="mobile-dropdown-link"><span>Home</span></a>
+          <a href="commands.html" class="mobile-dropdown-link active"><span>Twitch Commands</span></a>
+          <a href="rewards.html" class="mobile-dropdown-link"><span>Channel Points</span></a>
+          <a href="about.html" class="mobile-dropdown-link"><span>About &amp; Gear</span></a>
+          <a href="games.html" class="mobile-dropdown-link"><span>Games I Play</span></a>
+          <a href="community.html" class="mobile-dropdown-link"><span>Community &amp; Socials</span></a>
+        </nav>
+        <div class="mobile-dropdown-footer">
+          <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="btn btn-twitch" style="width: 100%; justify-content: center;">
+            Watch Live on Twitch
+          </a>
         </div>
       </div>
     </header>
-
-    <!-- Mobile Drawer -->
-    <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-      <div class="drawer-backdrop" tabindex="-1"></div>
-      <div class="drawer-panel">
-        <div class="drawer-header">
-          <div class="brand-link">
-            <span class="brand-badge" aria-hidden="true">SPN</span>
-            <span class="brand-name">SlickPickleNick</span>
-          </div>
-          <button type="button" id="mobile-drawer-close" class="action-btn" aria-label="Close navigation menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-        </div>
-        <nav class="drawer-nav">
-          <a href="index.html" class="drawer-link">Home</a>
-          <a href="commands.html" class="drawer-link active">Twitch Commands</a>
-          <a href="rewards.html" class="drawer-link">Channel Points</a>
-          <a href="about.html" class="drawer-link">About &amp; Gear</a>
-          <a href="games.html" class="drawer-link">Games I Play</a>
-          <a href="community.html" class="drawer-link">Community &amp; Socials</a>
-        </nav>
-        <div class="drawer-footer">
-          <a href="https://twitch.tv/slickpicklenick" target="_blank" rel="noopener noreferrer" class="btn btn-twitch">
-            Watch Live on Twitch
-          </a>
-          <button type="button" class="btn btn-secondary a11y-toggle-btn">
-            Accessibility Options
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- Main Content -->
     <main id="main-content" class="page-main" role="main">
@@ -164,7 +154,7 @@
         </header>
 
         <!-- Search & Filter Controls -->
-        <section class="search-container" aria-label="Command search and filter">
+        <section class="search-container reveal-on-scroll" aria-label="Command search and filter">
           <div class="search-input-wrapper">
             <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="search" id="commands-search-input" class="search-input" placeholder="Search commands or keywords (e.g. !lurk, spotify, torch)..." aria-label="Search Twitch commands">
@@ -208,7 +198,7 @@
         </div>
 
         <!-- Commands Table -->
-        <div class="table-responsive">
+        <div class="table-responsive reveal-on-scroll">
           <table class="data-table" aria-label="Twitch Commands List">
             <thead>
               <tr>
@@ -555,6 +545,7 @@
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/accessibility.js"></script>
   <script src="assets/js/commands.js"></script>
+  <script src="assets/js/page-transitions.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

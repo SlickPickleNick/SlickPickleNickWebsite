@@ -3,14 +3,26 @@
    ========================================================================== */
 
 :root {
-  /* Brand Accents */
-  --brand-green-primary: #10b981;
-  --brand-green-hover: #059669;
-  --brand-green-light: #34d399;
-  --brand-green-subtle: rgba(16, 185, 129, 0.1);
-  --brand-green-border: rgba(16, 185, 129, 0.22);
-  --brand-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  --brand-glow: 0 0 24px rgba(16, 185, 129, 0.2);
+  /* Brand Accents - Electric Cyber Blue */
+  --brand-blue-primary: #3b82f6;
+  --brand-blue-hover: #2563eb;
+  --brand-blue-light: #60a5fa;
+  --brand-blue-subtle: rgba(59, 130, 246, 0.12);
+  --brand-blue-border: rgba(59, 130, 246, 0.28);
+  --brand-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --brand-glow: 0 0 24px rgba(59, 130, 246, 0.28);
+
+  /* Semantic Brand Mappings & Backward Compatibility */
+  --brand-primary: var(--brand-blue-primary);
+  --brand-hover: var(--brand-blue-hover);
+  --brand-light: var(--brand-blue-light);
+  --brand-subtle: var(--brand-blue-subtle);
+  --brand-border: var(--brand-blue-border);
+  --brand-green-primary: var(--brand-blue-primary);
+  --brand-green-hover: var(--brand-blue-hover);
+  --brand-green-light: var(--brand-blue-light);
+  --brand-green-subtle: var(--brand-blue-subtle);
+  --brand-green-border: var(--brand-blue-border);
 
   /* Platform Colors */
   --color-twitch: #9146ff;
@@ -58,7 +70,7 @@
   --radius-full: 9999px;
 
   /* Focus Indicator for Accessibility */
-  --focus-ring: 3px solid #10b981;
+  --focus-ring: 3px solid #3b82f6;
   --focus-offset: 3px;
 
   /* Refined Animation & Easing */
@@ -97,9 +109,6 @@
   --border-medium: rgba(255, 255, 255, 0.18);
   --border-strong: rgba(255, 255, 255, 0.28);
 
-  --nav-pill-bg: rgba(255, 255, 255, 0.08);
-  --nav-pill-border: rgba(255, 255, 255, 0.15);
-
   --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   --header-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
@@ -108,6 +117,15 @@
    Light Theme
    ========================================================================== */
 [data-theme="light"] {
+  --brand-blue-primary: #2563eb;
+  --brand-blue-hover: #1d4ed8;
+  --brand-blue-light: #3b82f6;
+  --brand-blue-subtle: rgba(37, 99, 235, 0.08);
+  --brand-blue-border: rgba(37, 99, 235, 0.22);
+  --brand-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --brand-glow: 0 0 20px rgba(37, 99, 235, 0.18);
+  --focus-ring: 3px solid #2563eb;
+
   --bg-app: #f8fafc;
   --bg-surface: #ffffff;
   --bg-surface-elevated: #f1f5f9;
@@ -123,9 +141,6 @@
   --border-subtle: #e2e8f0;
   --border-medium: #cbd5e1;
   --border-strong: #94a3b8;
-
-  --nav-pill-bg: #e2e8f0;
-  --nav-pill-border: #cbd5e1;
 
   --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   --header-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);

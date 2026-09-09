@@ -1,6 +1,6 @@
 /**
  * Main Application Script - SlickPickleNick Website
- * Sliding navigation pill, mobile drawer, and active route controller.
+ * Navigation active routes, mobile dropdown menu, and UI controllers.
  */
 
 (function () {
@@ -9,7 +9,7 @@
   // Highlight current page in navigation
   function highlightActiveRoute() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    const allNavLinks = document.querySelectorAll('.nav-link, .drawer-link');
+    const allNavLinks = document.querySelectorAll('.nav-link, .drawer-link, .mobile-dropdown-link');
 
     allNavLinks.forEach((link) => {
       const href = link.getAttribute('href');
@@ -26,109 +26,76 @@
     });
   }
 
-  // Sliding Navigation Pill Indicator
-  function setupSlidingNav() {
-    const desktopNav = document.querySelector('.desktop-nav');
-    if (!desktopNav) return;
+  // Mobile Navigation Dropdown Menu & Animated Hamburger Toggle
+  function setupMobileMenu() {
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
+    const dropdown = document.getElementById('mobile-dropdown-menu');
+    const legacyDrawer = document.getElementById('mobile-drawer');
 
-    let pill = desktopNav.querySelector('.nav-sliding-pill');
-    if (!pill) {
-      pill = document.createElement('div');
-      pill.className = 'nav-sliding-pill';
-      desktopNav.insertBefore(pill, desktopNav.firstChild);
+    if (!toggleBtn) return;
+
+    function openMenu() {
+      toggleBtn.classList.add('open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      if (dropdown) {
+        dropdown.classList.add('open');
+        dropdown.setAttribute('aria-hidden', 'false');
+      }
+      if (legacyDrawer) {
+        legacyDrawer.classList.add('open');
+      }
     }
 
-    const navLinks = desktopNav.querySelectorAll('.nav-link');
-    let activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
-
-    function movePillTo(targetLink) {
-      if (!targetLink || !pill) return;
-      const navRect = desktopNav.getBoundingClientRect();
-      const linkRect = targetLink.getBoundingClientRect();
-
-      const offsetLeft = linkRect.left - navRect.left;
-      const linkWidth = linkRect.width;
-
-      pill.style.transform = `translateX(${offsetLeft}px)`;
-      pill.style.width = `${linkWidth}px`;
-      pill.classList.add('visible');
+    function closeMenu() {
+      toggleBtn.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      if (dropdown) {
+        dropdown.classList.remove('open');
+        dropdown.setAttribute('aria-hidden', 'true');
+      }
+      if (legacyDrawer) {
+        legacyDrawer.classList.remove('open');
+      }
     }
 
-    // Initial positioning after DOM render
-    requestAnimationFrame(() => {
-      activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
-      if (activeLink) {
-        movePillTo(activeLink);
+    function toggleMenu(e) {
+      e.stopPropagation();
+      const isOpen = toggleBtn.classList.contains('open');
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    toggleBtn.addEventListener('click', toggleMenu);
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!toggleBtn.contains(e.target) && (!dropdown || !dropdown.contains(e.target))) {
+        closeMenu();
       }
     });
 
-    // Hover glide across nav items
-    navLinks.forEach((link) => {
-      link.addEventListener('mouseenter', () => {
-        movePillTo(link);
+    // Close on link click
+    document.querySelectorAll('.mobile-dropdown-link, .drawer-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMenu();
       });
     });
 
-    // Return to active page on mouse leave
-    desktopNav.addEventListener('mouseleave', () => {
-      activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
-      if (activeLink) {
-        movePillTo(activeLink);
-      }
-    });
-
-    // Recalculate on window resize
-    window.addEventListener('resize', () => {
-      activeLink = desktopNav.querySelector('.nav-link.active') || navLinks[0];
-      if (activeLink) {
-        movePillTo(activeLink);
-      }
-    });
-  }
-
-  // Mobile Navigation Drawer
-  function setupMobileDrawer() {
-    const drawer = document.getElementById('mobile-drawer');
-    const toggleBtn = document.getElementById('mobile-menu-toggle');
-    const closeBtn = document.getElementById('mobile-drawer-close');
-    const backdrop = document.querySelector('.drawer-backdrop');
-    const drawerLinks = document.querySelectorAll('.drawer-link');
-
-    if (!drawer || !toggleBtn) return;
-
-    function openDrawer() {
-      drawer.classList.add('open');
-      drawer.setAttribute('aria-hidden', 'false');
-      toggleBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-      if (closeBtn) closeBtn.focus();
-    }
-
-    function closeDrawer() {
-      drawer.classList.remove('open');
-      drawer.setAttribute('aria-hidden', 'true');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-      toggleBtn.focus();
-    }
-
-    toggleBtn.addEventListener('click', openDrawer);
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closeDrawer);
-    }
-
-    if (backdrop) {
-      backdrop.addEventListener('click', closeDrawer);
-    }
-
-    drawerLinks.forEach((link) => {
-      link.addEventListener('click', closeDrawer);
-    });
-
+    // Close on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        closeDrawer();
+      if (e.key === 'Escape' && toggleBtn.classList.contains('open')) {
+        closeMenu();
+        toggleBtn.focus();
+      }
+    });
+
+    // Auto-close on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 900 && toggleBtn.classList.contains('open')) {
+        closeMenu();
       }
     });
   }
@@ -147,8 +114,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     highlightActiveRoute();
-    setupSlidingNav();
-    setupMobileDrawer();
+    setupMobileMenu();
     setupAccordions();
   });
 })();

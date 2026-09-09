@@ -1,0 +1,59 @@
+name: Deploy GitHub Pages (Dual Main & Beta)
+
+on:
+  push:
+    branches:
+      - main
+      - beta
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Production (main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: _site
+
+      - name: Checkout Staging (beta)
+        uses: actions/checkout@v4
+        with:
+          ref: beta
+          path: _site/beta
+
+      - name: Prepare Site Artifacts
+        run: |
+          # Prevent Jekyll processing
+          touch _site/.nojekyll
+          touch _site/beta/.nojekyll
+          # Remove Git metadata from artifact
+          rm -rf _site/.git
+          rm -rf _site/beta/.git
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

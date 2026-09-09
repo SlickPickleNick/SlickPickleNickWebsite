@@ -42,7 +42,8 @@ This repository contains the official website for **SlickPickleNick**, a gaming 
 
 ### 5. Notion Dev Logs & Release Tracking
 - Major feature releases, significant architectural milestones, and branch pushes should be logged to the official Notion workspace (**`📝 Dev Logs & Session History`** database).
-- Follow the workflow defined in [`.agents/rules/dev-logs.md`](file:///Users/nicksilvestro/GitHub%20Repos/SlickPickleNickWebsite/SlickPickleNickWebsite/.agents/rules/dev-logs.md).
+- Every entry MUST include full, structured Markdown release notes in the page body via `API-update-page-markdown`.
+- Follow the workflow defined in [`.agents/rules/dev-logs.md`](file:///c:/Users/nicks/Documents/SlickNick/GitHub/SlickPickleNickWebsite/SlickPickleNickWebsite/.agents/rules/dev-logs.md).
 
 ---
 

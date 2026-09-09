@@ -198,8 +198,8 @@
   font-weight: 700;
   color: var(--text-muted);
   background: var(--bg-surface-elevated);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
   text-transform: uppercase;
   letter-spacing: 0.04em;
