@@ -200,8 +200,16 @@ button {
 
 /* Clean Page Header */
 .page-header {
+  padding-top: var(--space-10);
   margin-bottom: var(--space-8);
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .page-header {
+    padding-top: var(--space-14);
+    margin-bottom: var(--space-10);
+  }
 }
 
 .page-header .eyebrow {

@@ -212,10 +212,10 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 3. 3D Perspective Tilt on Portal Cards
+  // 3. Dynamic Ambient Spotlight on Cards
   // ---------------------------------------------------------------------------
-  function init3DCardTilt() {
-    const cards = document.querySelectorAll('.portal-card');
+  function initCardSpotlight() {
+    const cards = document.querySelectorAll('.portal-card, .explore-card');
     if (!cards.length) return;
 
     cards.forEach((card) => {
@@ -226,19 +226,8 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        const xPct = (x / rect.width) - 0.5;
-        const yPct = (y / rect.height) - 0.5;
-
-        const rotX = -yPct * 12;
-        const rotY = xPct * 12;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
         card.style.setProperty('--mouse-x', `${((x / rect.width) * 100).toFixed(1)}%`);
         card.style.setProperty('--mouse-y', `${((y / rect.height) * 100).toFixed(1)}%`);
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
       });
     });
   }
@@ -246,6 +235,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     initParticleCanvas();
     initAmbientSpotlight();
-    init3DCardTilt();
+    initCardSpotlight();
   });
 })();
