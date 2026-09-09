@@ -43,6 +43,14 @@
   transform: translateY(0);
 }
 
+/* Data tables, search containers, and reward grids must always be visible */
+.table-responsive,
+.reward-grid,
+.data-table {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* Staggered children reveal */
 .stagger-reveal > * {
   opacity: 0;

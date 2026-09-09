@@ -75,6 +75,7 @@
       }
     } catch (e) {}
 
+    console.log('[SPN Commands] Loaded ' + commandsData.length + ' commands.');
     renderCommands();
     updateCategoryCounts();
   }
