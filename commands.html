@@ -167,40 +167,52 @@
             </button>
           </div>
 
-          <!-- Category Chips -->
-          <div class="filter-chips" role="tablist" aria-label="Filter commands by category">
-            <button type="button" class="chip-btn active" data-category="all" role="tab" aria-selected="true">
-              <span>All</span>
-              <span class="chip-count">36</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="General" role="tab" aria-selected="false">
-              <span>General</span>
-              <span class="chip-count">12</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="Socials" role="tab" aria-selected="false">
-              <span>Socials</span>
-              <span class="chip-count">5</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="Spotify" role="tab" aria-selected="false">
-              <span>Spotify Requests</span>
-              <span class="chip-count">11</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="Loyalty" role="tab" aria-selected="false">
-              <span>Loyalty Points</span>
-              <span class="chip-count">5</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="Torch Game" role="tab" aria-selected="false">
-              <span>GeoGuessr Torch</span>
-              <span class="chip-count">4</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="Interactive" role="tab" aria-selected="false">
-              <span>Interactive</span>
-              <span class="chip-count">0</span>
-            </button>
-            <button type="button" class="chip-btn" data-category="Moderation" role="tab" aria-selected="false">
-              <span>Moderation</span>
-              <span class="chip-count">0</span>
-            </button>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-4);">
+            <!-- Category Chips -->
+            <div class="filter-chips" role="tablist" aria-label="Filter commands by category">
+              <button type="button" class="chip-btn active" data-category="all" role="tab" aria-selected="true">
+                <span>All</span>
+                <span class="chip-count">53</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="General" role="tab" aria-selected="false">
+                <span>General</span>
+                <span class="chip-count">15</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="Socials" role="tab" aria-selected="false">
+                <span>Socials</span>
+                <span class="chip-count">4</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="Spotify" role="tab" aria-selected="false">
+                <span>Spotify Requests</span>
+                <span class="chip-count">21</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="Loyalty" role="tab" aria-selected="false">
+                <span>Loyalty Points</span>
+                <span class="chip-count">5</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="Torch Game" role="tab" aria-selected="false">
+                <span>GeoGuessr Torch</span>
+                <span class="chip-count">4</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="Interactive" role="tab" aria-selected="false">
+                <span>Interactive</span>
+                <span class="chip-count">1</span>
+              </button>
+              <button type="button" class="chip-btn" data-category="Moderation" role="tab" aria-selected="false">
+                <span>Moderation</span>
+                <span class="chip-count">3</span>
+              </button>
+            </div>
+
+            <!-- Permission Level Filter -->
+            <div style="display: flex; align-items: center; gap: var(--space-2);">
+              <label for="commands-access-select" style="font-size: var(--font-size-xs); color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;">Permission:</label>
+              <select id="commands-access-select" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-medium); padding: 0.35rem 0.65rem; border-radius: var(--radius-sm); font-size: var(--font-size-xs); font-family: inherit; cursor: pointer; transition: var(--transition-theme);">
+                <option value="Everyone" selected>Everyone</option>
+                <option value="all">All Permissions</option>
+                <option value="Moderator">Moderators Only</option>
+              </select>
+            </div>
           </div>
         </section>
 
@@ -554,10 +566,10 @@
   </aside>
 
   <!-- Scripts -->
-  <script src="assets/js/theme.js?v=20260909-02"></script>
-  <script src="assets/js/accessibility.js?v=20260909-02"></script>
-  <script src="assets/js/commands.js?v=20260909-02"></script>
-  <script src="assets/js/page-transitions.js?v=20260909-02"></script>
-  <script src="assets/js/main.js?v=20260909-02"></script>
+  <script src="assets/js/theme.js?v=20260909-03"></script>
+  <script src="assets/js/accessibility.js?v=20260909-03"></script>
+  <script src="assets/js/commands.js?v=20260909-03"></script>
+  <script src="assets/js/page-transitions.js?v=20260909-03"></script>
+  <script src="assets/js/main.js?v=20260909-03"></script>
 </body>
 </html>

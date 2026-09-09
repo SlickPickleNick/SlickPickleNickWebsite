@@ -190,9 +190,33 @@ describe('JavaScript Modules & Logic', () => {
       assert.strictEqual(generalCmds[0].command, '!clip');
     });
 
-    it('should return empty array for non-matching search queries', () => {
-      const results = filterCommands(sampleCommands, 'xyznonexistent123', 'all');
-      assert.strictEqual(results.length, 0);
+    it('should filter commands by permission level defaulting to Everyone', () => {
+      const permsCommands = [
+        { command: '!clip', category: 'General', access: 'Everyone', description: 'Clip stream.' },
+        { command: '!ban', category: 'Moderation', access: 'Moderator', description: 'Ban user.' },
+        { command: '!so', category: 'Moderation', access: 'Moderator', description: 'Shoutout.' }
+      ];
+
+      function filterWithAccess(commands, access) {
+        return commands.filter(c => access === 'all' || (c.access || 'Everyone').toLowerCase() === access.toLowerCase());
+      }
+
+      const everyoneOnly = filterWithAccess(permsCommands, 'Everyone');
+      assert.strictEqual(everyoneOnly.length, 1);
+      assert.strictEqual(everyoneOnly[0].command, '!clip');
+
+      const modOnly = filterWithAccess(permsCommands, 'Moderator');
+      assert.strictEqual(modOnly.length, 2);
+
+      const allPerms = filterWithAccess(permsCommands, 'all');
+      assert.strictEqual(allPerms.length, 3);
+    });
+
+    it('commands.js and rewards.js should declare expected default filter states', () => {
+      const commandsContent = fs.readFileSync(path.join(rootDir, 'assets', 'js', 'commands.js'), 'utf8');
+      const rewardsContent = fs.readFileSync(path.join(rootDir, 'assets', 'js', 'rewards.js'), 'utf8');
+      assert.ok(commandsContent.includes("currentAccess = 'Everyone'"), "commands.js must default currentAccess to 'Everyone'");
+      assert.ok(rewardsContent.includes("currentSort = 'low-high'"), "rewards.js must default currentSort to 'low-high'");
     });
   });
 

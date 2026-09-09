@@ -8,7 +8,7 @@
 
   let rewardsData = [];
   let currentCategory = 'all';
-  let currentSort = 'featured';
+  let currentSort = 'low-high';
   let searchQuery = '';
 
   const fallbackRewards = [

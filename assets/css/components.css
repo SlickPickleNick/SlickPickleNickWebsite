@@ -291,6 +291,28 @@
   border-radius: var(--radius-sm);
 }
 
+.mod-access-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm);
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  margin-left: var(--space-2);
+  vertical-align: middle;
+}
+
+[data-theme="light"] .mod-access-badge {
+  background: rgba(220, 38, 38, 0.08);
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.25);
+}
+
 /* Copy Button with Animated Checkmark */
 .copy-btn {
   display: inline-flex;

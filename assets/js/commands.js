@@ -8,6 +8,7 @@
 
   let commandsData = [];
   let currentCategory = 'all';
+  let currentAccess = 'Everyone';
   let searchQuery = '';
 
   const fallbackCommands = [
@@ -93,15 +94,21 @@
         currentCategory === 'all' ||
         itemCat === currentCategory.toLowerCase();
 
+      const itemAccess = (item.access || 'Everyone').toLowerCase();
+      const matchAccess =
+        currentAccess === 'all' ||
+        itemAccess === currentAccess.toLowerCase();
+
       const q = searchQuery.toLowerCase().trim();
       const matchSearch =
         !q ||
         (item.command && item.command.toLowerCase().includes(q)) ||
         (item.description && item.description.toLowerCase().includes(q)) ||
         itemCat.includes(q) ||
-        (item.example && item.example.toLowerCase().includes(q));
+        (item.example && item.example.toLowerCase().includes(q)) ||
+        itemAccess.includes(q);
 
-      return matchCategory && matchSearch;
+      return matchCategory && matchAccess && matchSearch;
     });
 
     if (resultCount) {
@@ -120,6 +127,10 @@
       .map((item) => {
         const cmdStr = item.command || '';
         const pureCmd = cmdStr.split(' ')[0];
+        const isMod = (item.access || '').toLowerCase() === 'moderator';
+        const modBadge = isMod
+          ? `<span class="mod-access-badge" title="Requires Moderator permission">Mod</span>`
+          : '';
         return `
         <tr>
           <td style="font-weight: 600;">
@@ -129,6 +140,7 @@
                 <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
               </button>
             </div>
+            ${modBadge}
           </td>
           <td>${escapeHTML(item.description || '')}</td>
           <td style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.example || cmdStr)}</td>
@@ -142,14 +154,19 @@
   }
 
   function updateCategoryCounts() {
+    const pool = commandsData.filter((i) => {
+      if (currentAccess === 'all') return true;
+      return (i.access || 'Everyone').toLowerCase() === currentAccess.toLowerCase();
+    });
+
     document.querySelectorAll('.chip-btn[data-category]').forEach((btn) => {
       const cat = btn.getAttribute('data-category');
       const countEl = btn.querySelector('.chip-count');
       if (countEl) {
         if (cat === 'all') {
-          countEl.textContent = commandsData.length;
+          countEl.textContent = pool.length;
         } else {
-          const c = commandsData.filter((i) => (i.category || '').toLowerCase() === cat.toLowerCase()).length;
+          const c = pool.filter((i) => (i.category || '').toLowerCase() === cat.toLowerCase()).length;
           countEl.textContent = c;
         }
       }
@@ -238,6 +255,16 @@
         renderCommands();
       });
     });
+
+    const accessSelect = document.getElementById('commands-access-select');
+    if (accessSelect) {
+      accessSelect.value = currentAccess;
+      accessSelect.addEventListener('change', (e) => {
+        currentAccess = e.target.value;
+        renderCommands();
+        updateCategoryCounts();
+      });
+    }
 
     loadCommands();
   });
