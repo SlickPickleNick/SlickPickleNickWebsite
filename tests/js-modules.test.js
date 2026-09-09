@@ -35,6 +35,13 @@ describe('JavaScript Modules & Logic', () => {
     });
   });
 
+  it('commands.js and rewards.js should declare data loader functions', () => {
+    const commandsContent = fs.readFileSync(path.join(rootDir, 'assets', 'js', 'commands.js'), 'utf8');
+    const rewardsContent = fs.readFileSync(path.join(rootDir, 'assets', 'js', 'rewards.js'), 'utf8');
+    assert.ok(commandsContent.includes('function loadCommands()') || commandsContent.includes('loadCommands ='), 'commands.js must declare loadCommands');
+    assert.ok(rewardsContent.includes('function loadRewards()') || rewardsContent.includes('loadRewards ='), 'rewards.js must declare loadRewards');
+  });
+
   describe('Theme Engine Logic', () => {
     it('theme.js should export or contain theme toggle and storage keys', () => {
       const themeContent = fs.readFileSync(path.join(rootDir, 'assets', 'js', 'theme.js'), 'utf8');

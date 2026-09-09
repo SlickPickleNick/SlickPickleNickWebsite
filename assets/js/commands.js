@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Twitch Commands Explorer - SlickPickleNick Website
  * Live search, category tabs, filtering, and animated copy-to-clipboard.
  */
@@ -50,6 +50,34 @@
     { "command": "!stop", "category": "Torch Game", "access": "Everyone", "description": "Freeze Nick's movement during the torch game.", "example": "!stop", "cooldown": "Active bearer only" }
   ];
 
+  async function loadCommands() {
+    try {
+      const res = await fetch('assets/data/commands.json');
+      if (res.ok) {
+        commandsData = await res.json();
+      } else {
+        commandsData = fallbackCommands;
+      }
+    } catch (e) {
+      commandsData = fallbackCommands;
+    }
+
+    try {
+      const metaRes = await fetch('assets/data/metadata.json');
+      if (metaRes.ok) {
+        const meta = await metaRes.json();
+        const updatedEl = document.getElementById('last-updated-text');
+        const containerEl = document.getElementById('sync-status-container');
+        if (updatedEl && meta.lastUpdatedFormatted) {
+          updatedEl.textContent = meta.lastUpdatedFormatted;
+          if (containerEl) containerEl.style.display = 'inline-flex';
+        }
+      }
+    } catch (e) {}
+
+    renderCommands();
+    updateCategoryCounts();
+  }
 
   function renderCommands() {
     const tableBody = document.getElementById('commands-table-body');
@@ -59,16 +87,17 @@
     if (!tableBody) return;
 
     const filtered = commandsData.filter((item) => {
+      const itemCat = (item.category || '').toLowerCase();
       const matchCategory =
         currentCategory === 'all' ||
-        item.category.toLowerCase() === currentCategory.toLowerCase();
+        itemCat === currentCategory.toLowerCase();
 
       const q = searchQuery.toLowerCase().trim();
       const matchSearch =
         !q ||
-        item.command.toLowerCase().includes(q) ||
-        item.description.toLowerCase().includes(q) ||
-        item.category.toLowerCase().includes(q) ||
+        (item.command && item.command.toLowerCase().includes(q)) ||
+        (item.description && item.description.toLowerCase().includes(q)) ||
+        itemCat.includes(q) ||
         (item.example && item.example.toLowerCase().includes(q));
 
       return matchCategory && matchSearch;
@@ -88,19 +117,20 @@
 
     tableBody.innerHTML = filtered
       .map((item) => {
-        const pureCmd = item.command.split(' ')[0];
+        const cmdStr = item.command || '';
+        const pureCmd = cmdStr.split(' ')[0];
         return `
         <tr>
           <td style="font-weight: 600;">
             <div class="command-code-wrap">
-              <code>${escapeHTML(item.command)}</code>
+              <code>${escapeHTML(cmdStr)}</code>
               <button class="copy-btn" data-copy="${escapeHTML(pureCmd)}" title="Copy ${escapeHTML(pureCmd)}" aria-label="Copy ${escapeHTML(pureCmd)}">
                 <svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
               </button>
             </div>
           </td>
-          <td>${escapeHTML(item.description)}</td>
-          <td style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.example || item.command)}</td>
+          <td>${escapeHTML(item.description || '')}</td>
+          <td style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.example || cmdStr)}</td>
           <td style="color: var(--text-muted); font-size: var(--font-size-xs);">${escapeHTML(item.cooldown || 'None')}</td>
         </tr>
       `;
@@ -118,7 +148,7 @@
         if (cat === 'all') {
           countEl.textContent = commandsData.length;
         } else {
-          const c = commandsData.filter((i) => i.category.toLowerCase() === cat.toLowerCase()).length;
+          const c = commandsData.filter((i) => (i.category || '').toLowerCase() === cat.toLowerCase()).length;
           countEl.textContent = c;
         }
       }
