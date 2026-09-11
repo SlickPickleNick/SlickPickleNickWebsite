@@ -659,13 +659,24 @@ html[data-highlight-content="true"] .faq-item:hover {
 /* 14. Stop Animations / Reduced Motion */
 html[data-reduced-motion="true"] *,
 html[data-reduced-motion="true"] *::before,
-html[data-reduced-motion="true"] *::after,
-@media (prefers-reduced-motion: reduce) {
+html[data-reduced-motion="true"] *::after {
   animation-duration: 0.001ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
   transition: none !important;
   scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* 15. Highlight Links */
